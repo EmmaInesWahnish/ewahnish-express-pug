@@ -87,6 +87,7 @@ routerProducts.get('/:id', async (req, res) => {
     }
 })
 
+//This route adds a product
 routerProducts.post('/', async (req, res) => {
     let receive = req.body;
     let producto = [{
