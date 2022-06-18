@@ -1,10 +1,16 @@
 const Container = require('./js/Container.js');
+const loadContainer = require('./js/containerLoadExpress')
 
-const Persons = new Container('./files/persons.txt');
+//const containerLoad = require('./js/containerLoadExpress.js')
 
 const express = require('express');
 
 const app = express();
+
+//Here we create the routers for our routes
+const routerSetupTest = express.Router();
+app.use('/setupTest', routerSetupTest);
+
 
 app.use('/static', express.static(__dirname + './public'))
 app.use(express.json());
@@ -15,7 +21,7 @@ app.set('views', './views'); // especifica el directorio de vistas
 
 app.set('view engine', 'ejs'); // registra el motor de plantillas
 
-app.get('/hello', function (req, res) {
+routerSetupTest.get('/hello', function (req, res) {
     req.body = {
         mensaje: "Usando Ejs en express"
     }
@@ -23,15 +29,15 @@ app.get('/hello', function (req, res) {
 });
 
 
-app.get('/urlparam', (req, res) => {
+routerSetupTest.get('/urlparam', (req, res) => {
     res.send(req.query);
 })
 
-app.post('/urljson', (req, res) => {
+routerSetupTest.post('/urljson', (req, res) => {
     res.send(req.body);
 })
 
-app.get('/datos', (req, res)=>{
+routerSetupTest.get('/datos', (req, res)=>{
     res.render('meter.ejs', req.query)
 })
 

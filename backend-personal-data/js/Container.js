@@ -1,4 +1,4 @@
-const fs = require('fs')
+const fs = require('fs');
 
 class Container {
     constructor(fileName){
@@ -84,6 +84,55 @@ class Container {
             console.log(error)
         }
     }
+
+    static async saveArray(array) {
+        let id = 0;
+         try {
+            const elements = await this.getAll();
+            id = elements[elements.length - 1].id;
+            console.log(id);
+            array.forEach(function (element) {
+                id = id + 1;
+                element.id = id
+                elements.push(element);
+            })
+            try{
+                await fs.promises.writeFile(this.fileName, JSON.stringify(products),)
+            }
+            catch(error){
+                console.log(error);
+            }
+        }
+        catch (error) {
+            console.log(error)
+            const elements = [];
+            console.log(id);
+            array.forEach(function (element) {
+                id = id + 1;
+                element.id = id
+                elements.push(element);
+            })
+            try{
+                await fs.promises.writeFile(this.fileName, JSON.stringify(products),)
+            }
+            catch(error){
+                console.log(error);
+            }
+        }
+    }
+
+    async deleteLoadExpress(array) {
+        try {
+            //deletes the file
+            await fs.promises.unlink(this.filename);
+            await this.saveArray(array);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    
 }
 
 module.exports =  Container 
