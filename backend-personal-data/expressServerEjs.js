@@ -1,50 +1,54 @@
-const Container = require('./js/Container.js');
-const loadContainer = require('./js/containerLoadExpress')
+import express from 'express'
+import anyContainerLoader from './api/containerLoadExpress.js'
+import AnyContainer from './api/Container.js'
+const People = new AnyContainer('./files/personas.txt');
 
-//const containerLoad = require('./js/containerLoadExpress.js')
+let personas = [];
 
-const express = require('express');
+const app = express()
 
-const app = express();
+app.use(express.urlencoded({ extended: true }))
 
-//Here we create the routers for our routes
-const routerSetupTest = express.Router();
-app.use('/setupTest', routerSetupTest);
+app.set('views', './views');
+app.set('view engine', 'ejs');
 
-
-app.use('/static', express.static(__dirname + './public'))
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }))
-
-
-app.set('views', './views'); // especifica el directorio de vistas
-
-app.set('view engine', 'ejs'); // registra el motor de plantillas
-
-routerSetupTest.get('/hello', function (req, res) {
-    req.body = {
-        mensaje: "Usando Ejs en express"
+app.get('/', async (req, res) => {
+    try {
+        personas = await People.getAll()
     }
-    res.render('hello.ejs', req.body);
+    catch (error) {
+        console.log(error);
+    }
+    res.render('formulario', { personas });
 });
 
+app.post('/datos', async (req, res) => {
+    let element = [{
+        nombre: req.body.nombre,
+        apellido: req.body.apellido,
+        edad: req.body.edad
+    }]
+    if (element) {
+        try {
+            await People.saveArray(element);
+            try {
+                personas = await People.getAll();
+                res.redirect('/')
+            }
+            catch (error) {
+                console.log(error)
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+});
 
-routerSetupTest.get('/urlparam', (req, res) => {
-    res.send(req.query);
-})
-
-routerSetupTest.post('/urljson', (req, res) => {
-    res.send(req.body);
-})
-
-routerSetupTest.get('/datos', (req, res)=>{
-    res.render('meter.ejs', req.query)
-})
-
-
+/* ------------------------------------------------------ */
 /* Server Listen */
 const PORT = 8080
 const server = app.listen(PORT, () => {
-    console.log(`Server http listening at port ${server.address().port}`)
+    console.log(`Servidor escuchando en el puerto ${server.address().port}`)
 })
 server.on('error', error => console.log(`Error en servidor ${error}`))

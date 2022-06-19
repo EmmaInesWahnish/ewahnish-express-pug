@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width'/>
+        <link rel="styleshheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+        <title>Mi plantilla de medidor en EJS</title>
+        <style>
+            .dflex{
+                display: flex;
+                flex-direction: row;
+                margin: 2px;
+                align-items: center;       
+            }
+            .titulo{
+                color:darkblue;
+                font-style: italic;               
+            }
+        </style>     
+    </head>        
+        <h1 class='titulo'><%= titulo %>
+            <div class='dflex'>
+                <p><%= min %></p>
+                <meter value="<%= nivel %>" min="<%=min %>" max="<%=max %>" > </meter>
+                <p><%= max %></p>
+            </div>    
+        </h1>
+</html>

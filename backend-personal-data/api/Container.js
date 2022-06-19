@@ -1,22 +1,20 @@
-const fs = require('fs');
+import fs from 'fs';
 
-class Container {
-    constructor(fileName){
-        this.fileName = fileName
+class AnyContainer {
+    constructor(anyFile){
+        this.anyFile = anyFile
     }
 
     async getAll() {
         try {
-            const fileData = await fs.promises.readFile(this.fileName)
+            const fileData = await fs.promises.readFile(this.anyFile)
 
             const array = JSON.parse(fileData)
 
             return array
            
         } catch (error) {
-           const array = []
-           await fs.promises.writeFile(this.fileName, JSON.stringify(array))
-
+           const array = [];
            return array
         }
     }
@@ -26,13 +24,16 @@ class Container {
         try { 
             const elements = await this.getAll()                                    
             const newID = elements.length === 0 ? 1 : elements[elements.length - 1].id + 1
+            
             object.id = newID
 
             elements.push(object)
 
             const fileData = JSON.stringify(elements, null, 3)
 
-            await fs.promises.writeFile(this.fileName, fileData)
+            console.log("Asi va ", fileData);
+
+            await fs.promises.writeFile(this.anyFile, fileData)
 
 
             return newID
@@ -50,6 +51,7 @@ class Container {
             const elementFound = elements.find((element) => element.id == id)
 
             return elementFound
+            
         } catch (error) {
             console.log(error)    
         }
@@ -65,7 +67,7 @@ class Container {
                 let removedObject = [];
                 removedObject = elements.splice(whichId, 1);
                 console.log("Deleted product ", removedObject);
-                await fs.promises.writeFile(this.fileName, JSON.stringify(elements, null, 3))
+                await fs.promises.writeFile(this.anyFile, JSON.stringify(elements, null, 3))
                 return removedObject;    
             } else {
                 console.log("There is no product with id ", findId);
@@ -78,14 +80,14 @@ class Container {
 
     async deleteAll() {
         try {
-            await fs.promises.writeFile(this.fileName, JSON.stringify([]));
+            await fs.promises.writeFile(this.anyFile, JSON.stringify([]));
             return [];
         } catch (error) {
             console.log(error)
         }
     }
 
-    static async saveArray(array) {
+    async saveArray(array) {
         let id = 0;
          try {
             const elements = await this.getAll();
@@ -97,7 +99,7 @@ class Container {
                 elements.push(element);
             })
             try{
-                await fs.promises.writeFile(this.fileName, JSON.stringify(products),)
+                await fs.promises.writeFile(this.anyFile, JSON.stringify(elements),)
             }
             catch(error){
                 console.log(error);
@@ -113,7 +115,7 @@ class Container {
                 elements.push(element);
             })
             try{
-                await fs.promises.writeFile(this.fileName, JSON.stringify(products),)
+                await fs.promises.writeFile(this.anyFile, JSON.stringify(elements),)
             }
             catch(error){
                 console.log(error);
@@ -124,15 +126,28 @@ class Container {
     async deleteLoadExpress(array) {
         try {
             //deletes the file
-            await fs.promises.unlink(this.filename);
-            await this.saveArray(array);
+            await fs.promises.unlink(this.anyFile);
+            try {
+                await this.saveArray(array);
+            }
+            catch(error){
+                console.log(error);
+            }
+    
         }
         catch (error) {
             console.log(error);
+            try {
+                await this.saveArray(array);
+            }
+            catch(error){
+                console.log(error);
+            }
+    
         }
     }
 
     
 }
 
-module.exports =  Container 
+export default  AnyContainer 
