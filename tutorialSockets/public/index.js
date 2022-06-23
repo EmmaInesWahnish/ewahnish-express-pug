@@ -80,6 +80,7 @@ inputField.addEventListener("keyup", () => {
 });
 
 socket.on("new user", function (data) {
+  console.log(data);
   data.map((user) => addToUsersBox(user));
 });
 

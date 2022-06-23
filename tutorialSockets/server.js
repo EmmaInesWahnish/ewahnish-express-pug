@@ -1,27 +1,24 @@
 const express = require("express");
-
 const socket = require("socket.io");
 
+// App setup
+const PORT = 5000;
 const app = express();
+const server = app.listen(PORT, function () {
+  console.log(`Listening on port ${PORT}`);
+  console.log(`http://localhost:${PORT}`);
+});
 
-app.use(express.static('./public'))
+// Static files
+app.use(express.static("public"));
 
-app.get('/', (req, res) => {
-    res.sendFile('index.html', { root: __dirname })
-})
-
-const PORT = 3000
-const server = app.listen(PORT, () => {
-    console.log(`Servidor escuchando en el puerto ${server.address().port}`)
-})
-server.on('error', error => console.log(`Error en servidor ${error}`))
-
-const io = socket(server); 
+// Socket setup
+const io = socket(server);
 
 const activeUsers = new Set();
 
 io.on("connection", function (socket) {
-  console.log("Made socket connection");
+  //console.log("Made socket connection");
 
   socket.on("new user", function (data) {
     socket.userId = data;
