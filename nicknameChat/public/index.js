@@ -22,6 +22,20 @@ socket.on('chat message', (msg) => {
     window.scrollTo(0, document.body.scrollHeight);
 });
 
+socket.on('new user', (msg) => {
+    var item = document.createElement('li');
+    item.textContent = msg;
+    messages.appendChild(item);
+    window.scrollTo(0, document.body.scrollHeight);
+})
+
+socket.on('old messages', (msg) => {
+    var item = document.createElement('li');
+    item.textContent = msg;
+    messages.appendChild(item);
+    window.scrollTo(0, document.body.scrollHeight);
+})
+
 function addMessage(e) {
     let message = {
         author: document.getElementById("username").value,
