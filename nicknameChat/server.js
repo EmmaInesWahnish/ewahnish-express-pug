@@ -25,9 +25,12 @@ io.on('connection', (socket) => {
         io.emit('new user', `${users.id} ${users.name}`);
     })
     io.emit('new user', `${socket.id} entered the chat`);
-    io.emit('old messages', `${messageList}`)
 
-    socket.on("join room", (roomName, cb) =>{
+    for (let msg in messageList) {
+        socket.emit('old messages', `${messageList[msg]}`)
+    }
+
+    socket.on("join room", (roomName, cb) => {
         socket.join(roomName);
         cb(messages[roomName]);
     });
@@ -49,8 +52,6 @@ const addToMessageList = (message) => {
     messageList.push(message);
     console.log(messageList);
 }
-
-io.emit('some event', { someProperty: 'some value', otherProperty: 'other value' }); // This will emit the event to all connected sockets
 
 server.listen(3000, () => {
     console.log('listening on *:3000');
