@@ -30,6 +30,7 @@ io.on('connection', (socket) => {
         io.emit('new user', `${users.id} ${users.name}`);
     })
     io.emit('new user', `${socket.id} entered the chat`);
+    addToUsers(socket.id);
 
     for (let msg in messageList) {
         socket.emit('old messages', `${messageList[msg]}`)
@@ -56,6 +57,11 @@ io.on('connection', (socket) => {
 const addToMessageList = (message) => {
     messageList.push(message);
     console.log(messageList);
+}
+
+const addToUsers = (user) => {
+    users.push(user);
+    console.log(users);
 }
 
 server.listen(3000, () => {

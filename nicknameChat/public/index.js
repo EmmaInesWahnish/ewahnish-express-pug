@@ -9,7 +9,7 @@ form.addEventListener('submit', function (e) {
     e.preventDefault();
     let message = addMessage();
     if (input.value) {
-        socket.emit('chat message', ` ${message.timehh} Sender:${message.id}  ${message.sender}   Mensaje:${message.text}`);
+        socket.emit('chat message', ` ${message.timehh} Id:${message.id}  Sender: ${message.sender}   Message:${message.text}`);
         input.value = '';
         username.value = '';
     }
