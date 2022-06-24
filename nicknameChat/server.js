@@ -6,15 +6,8 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 
 let messageList = [];
-let roomId = 0;
-let room = '';
-let users = [];
 
-const messages = {
-    general:[],
-    work: [],
-    javascript: [],
-}
+let users = [];
 
 app.use(express.static('./public'))
 
@@ -31,7 +24,7 @@ io.on('connection', (socket) => {
         users.push(user);
         io.emit('new user', `${users.id} ${users.name}`);
     })
-    io.emit('new user', `${socket.id} logged in`);
+    io.emit('new user', `${socket.id} entered the chat`);
     io.emit('old messages', `${messageList}`)
 
     socket.on("join room", (roomName, cb) =>{
@@ -40,7 +33,8 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
-        console.log('user disconnected');
+        io.emit('new user', `${socket.id} left the chat`);
+        //console.log('user disconnected');
     });
 
     socket.on('chat message', (msg) => {
@@ -50,7 +44,6 @@ io.on('connection', (socket) => {
     })
 
 });
-
 
 const addToMessageList = (message) => {
     messageList.push(message);
