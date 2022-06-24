@@ -7,6 +7,8 @@ const io = new Server(server);
 
 let messageList = [];
 
+let userIndex = 0
+
 let users = [];
 
 app.use(express.static('./public'))
@@ -16,7 +18,10 @@ app.get('/', (req, res) => {
 })
 
 io.on('connection', (socket) => {
-    socket.on("join server", (username) => {
+    userIndex = userIndex + 1;
+    let username = "user" + userIndex;
+
+    socket.on('join server', () => {
         const user = {
             username: username,
             id: socket.id,

@@ -9,7 +9,7 @@ form.addEventListener('submit', function (e) {
     e.preventDefault();
     let message = addMessage();
     if (input.value) {
-        socket.emit('chat message', `Origen:${message.id}  Autor:${message.author}   Mensaje:${message.text}`);
+        socket.emit('chat message', ` ${message.timehh} Sender:${message.id}  ${message.sender}   Mensaje:${message.text}`);
         input.value = '';
         username.value = '';
     }
@@ -44,10 +44,12 @@ socket.on('old messages', (msg) => {
 })
 
 function addMessage(e) {
+    let today= new Date();
     let message = {
         id: socket.id,
-        author: document.getElementById("username").value,
+        sender: document.getElementById("username").value,
         text: document.getElementById("input").value,
+        timehh: today
     };
     return message;
 }
