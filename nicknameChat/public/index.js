@@ -9,7 +9,7 @@ form.addEventListener('submit', function (e) {
     e.preventDefault();
     let message = addMessage();
     if (input.value) {
-        socket.emit('chat message', `Autor: ${message.author}   Mensaje: ${message.text}`);
+        socket.emit('chat message', `Origen:${message.id}  Autor:${message.author}   Mensaje:${message.text}`);
         input.value = '';
         username.value = '';
     }
@@ -29,6 +29,13 @@ socket.on('new user', (msg) => {
     window.scrollTo(0, document.body.scrollHeight);
 })
 
+socket.on('join server', (msg) => {
+    var item = document.createElement('li');
+    item.textContent = msg;
+    messages.appendChild(item);
+    window.scrollTo(0, document.body.scrollHeight);
+})
+
 socket.on('old messages', (msg) => {
     var item = document.createElement('li');
     item.textContent = msg;
@@ -38,6 +45,7 @@ socket.on('old messages', (msg) => {
 
 function addMessage(e) {
     let message = {
+        id: socket.id,
         author: document.getElementById("username").value,
         text: document.getElementById("input").value,
     };
