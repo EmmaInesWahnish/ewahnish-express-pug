@@ -15,9 +15,6 @@ let productos = [];
 app.use(express.static('./public'))
 app.use(express.urlencoded({ extended: true }))
 
-let lDir = __dirname + '/public/views/layouts/';
-console.log("layoutsDir = ", lDir);
-
 app.engine('hbs',
   handlebars.engine({
     extname: '.hbs',
