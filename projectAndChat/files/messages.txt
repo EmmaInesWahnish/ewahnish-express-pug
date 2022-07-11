@@ -1,0 +1,26 @@
+[
+   {
+      "socketid": "O-8XwiQR0FostLAUAAAB",
+      "sender": "ewahnish@gmail.com",
+      "text": "Un mensaje de prueba",
+      "timehh": "2022-06-27T23:07:13.911Z"
+   },
+   {
+      "socketid": "S9DIyO1ZMiHdYiFiAAAF",
+      "sender": "jminich@gmail.com",
+      "text": "Otra prueba",
+      "timehh": "2022-06-27T23:07:56.862Z"
+   },
+   {
+      "socketid": "9SQtB_xiHewytIZGAAAB",
+      "sender": "ewahnish@gmail.com",
+      "text": "hello",
+      "timehh": "2022-07-11T17:35:18.286Z"
+   },
+   {
+      "socketid": "z_vRdSNqFISEb3woAAAD",
+      "sender": "jlminich1@gmail.com",
+      "text": "Estoy trabajando no molesten",
+      "timehh": "2022-07-11T17:37:04.307Z"
+   }
+]

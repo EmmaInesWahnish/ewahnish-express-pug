@@ -1,0 +1,24 @@
+include ./partials/_head
+body
+    div(class="container mt-3")
+        div(class="jumbotron")
+            h1(style="color:darkblue;")="Ingrese datos"
+            br
+            form(action="/productos" method="post")
+                div(class="form-group")
+                    label(for="title")
+                        b="Nombre"
+                    input(id="title" class="form-control" type="text" name="title")
+                div(class="form-group")
+                    label(for="price")
+                        b="Precio"
+                    input(id="price" class="form-control" type="number" name="price")
+                div(class="form-group")
+                    label(for="thumbnail")
+                        b="Imagen"
+                    input(id="thumbnail" class="form-control" type="text" name="thumbnail")
+                button(class="btn btn-success mt-3 mb-5")="Enviar"
+            h2(style="color:darkred;")="Historial"
+div
+    include ./partials/_table
+    include ./partials/_footer
