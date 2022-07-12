@@ -17,5 +17,5 @@ async function dbContainerDeleteById() {
 
 }
 
-const result = dbContainerDeleteById();
-console.log(result);
+const result = dbContainerDeleteById()
+    .then((result) => console.log(result));

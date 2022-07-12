@@ -49,6 +49,7 @@ async function anyContainerLoader() {
     try {
 
         await Products.saveArray(products);
+        return products;
     }
     catch (error) {
         console.log(error)

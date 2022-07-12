@@ -8,7 +8,7 @@ async function dbContainerModifyOneProduct() {
     let myId = 34;
 
     let myJson =     {
-        title: "Carne a la Olla con cebolla, zanahoria y zapallo",
+        title: "Carne con cebolla y zapallo",
     }
 
     try {
@@ -23,5 +23,5 @@ async function dbContainerModifyOneProduct() {
 
 }
 
-const result = dbContainerModifyOneProduct();
-console.log(result);
+dbContainerModifyOneProduct()
+    .then((result) => console.log(result));

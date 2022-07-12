@@ -5,7 +5,7 @@ const Products = new DbContainer(knex, 'productos');
 
 async function dbContainerAddOneProduct() {
 
-    let item =     {
+    let item = {
         title: "Locro",
         thumbnail: "/images/locro.png",
         price: 350
@@ -23,5 +23,5 @@ async function dbContainerAddOneProduct() {
 
 }
 
-const result = dbContainerAddOneProduct();
-console.log(result);
+dbContainerAddOneProduct()
+    .then((result) => console.log(result));
