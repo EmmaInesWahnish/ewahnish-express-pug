@@ -48,20 +48,11 @@ const Products = new DbContainer(knex, 'productos');
 async function anyContainerLoader() {
     try {
 
-        await Products.deleteAll(products);
-        
-        try {
-
-            await Products.saveArray(products);
-        }
-        catch (error) {
-            console.log(error)
-        }
-
+        await Products.saveArray(products);
     }
     catch (error) {
         console.log(error)
-    }
+    } 
 
 }
 
