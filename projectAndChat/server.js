@@ -1,3 +1,6 @@
+const { knex } = require('./options/mariaDB.js');
+const {knexSqLite} = require('./options/mySqlite3');
+const DbContainer = require('./DbContainer/DbContainer.js');
 const express = require('express');
 const handlebars = require('express-handlebars');
 const AnyContainer = require('./api/Container.js');
@@ -6,8 +9,9 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
-const Messages = new AnyContainer('./files/messages.txt');
-const Products = new AnyContainer('./files/productos.txt');
+
+const Messages = new DbContainer(knexSqLite, 'messages');
+const Products = new DbContainer(knex, 'productos');
 
 let list = [];
 let productos = [];
@@ -30,6 +34,7 @@ app.set('views', './public/views');
 app.set('view engine', 'html');
 
 app.get('/', async (req, res) => {
+    
     try {
         productos = await Products.getAll()
         res.render('index.hbs', { root: __dirname, productos })
@@ -37,10 +42,11 @@ app.get('/', async (req, res) => {
     catch (error) {
         console.log(error);
     }
+    
 })
 
 io.on('connection', async (socket) => {
-
+    
     try {
         list = await Messages.getLines();
         for (let msg in list) {
@@ -66,6 +72,7 @@ io.on('connection', async (socket) => {
     })
 
     socket.on('new product', async (msg) => {
+        
         let element = [{
             title: msg.title,
             price: msg.price,
@@ -87,17 +94,21 @@ io.on('connection', async (socket) => {
                 console.log(error);
             }
         }
+        
     });
 
 });
 
 app.get('/productos', async (req, res) => {
+    
     try {
         productos = await Products.getAll()
     }
     catch (error) {
         console.log(error);
     }
+
+    console.log(productos)
     res.render('products.hbs', { productos });
 });
 

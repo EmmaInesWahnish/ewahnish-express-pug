@@ -11,8 +11,6 @@ class DbContainer {
                 .del()
         } catch (error) {
             console.log(error);
-        } finally {
-            this.myDbConnection.destroy()
         }
 
         console.log('producto eliminado')
@@ -26,9 +24,6 @@ class DbContainer {
         catch (error) {
             console.log(error);
         }
-        finally {
-            this.myDbConnection.destroy()
-        }
 
         console.log('productos eliminados')
     }
@@ -41,9 +36,6 @@ class DbContainer {
         }
         catch (e) {
             console.log(e);
-        }
-        finally {
-            this.myDbConnection.destroy()
         }
 
         console.log('Producto/s Agregado/s');
@@ -73,8 +65,6 @@ class DbContainer {
             return array;
         } catch (error) {
             console.log(error);
-        } finally {
-            this.myDbConnection.destroy();
         }
     }
 
@@ -84,10 +74,7 @@ class DbContainer {
             return array;
         } catch (error) {
             console.log(error)
-        } finally {
-            this.myDbConnection.destroy()
         }
-
     }
 
     async deleteLoadExpress(array) {
@@ -97,8 +84,6 @@ class DbContainer {
                 await this.saveArray(array)
             } catch (error) {
                 console.log(error);
-            } finally {
-                this.myDbConnection.destroy()
             }
         }
         catch (error) {
@@ -108,8 +93,6 @@ class DbContainer {
             } catch (error) {
                 console.log(error);
             }
-        } finally {
-            this.myDbConnection.destroy()
         }
     }
 
@@ -118,8 +101,6 @@ class DbContainer {
             await this.myDbConnection(this.myTable).where({ id: myId }).update(myJson);
         } catch (error) {
             console.log(error)
-        } finally {
-            this.myDbConnection.destroy()
         }
 
         console.log('producto modificado')
@@ -128,17 +109,11 @@ class DbContainer {
     async saveLine(object) {
         try {
 
-            elements = [];
-
-            elements.push(object)
-
-            await this.saveArray(object)
+            await this.save(object)
 
         } catch (error) {
             console.log(error)
             return error
-        } finally {
-            this.myDbConnection.destroy()
         }
 
     }
@@ -151,8 +126,6 @@ class DbContainer {
         } catch (error) {
             const array = [];
             return array
-        } finally {
-            this.myDbConnection.destroy()
         }
 
     }
