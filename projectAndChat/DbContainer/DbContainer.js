@@ -118,17 +118,6 @@ class DbContainer {
 
     }
 
-    async getLines() {
-        try {
-            array = await this.getAll();
-            console.log(array);
-            return array
-        } catch (error) {
-            const array = [];
-            return array
-        }
-
-    }
 }
 
 module.exports = DbContainer;

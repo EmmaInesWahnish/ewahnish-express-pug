@@ -1,5 +1,5 @@
 const { knex } = require('./options/mariaDB.js');
-const {knexSqLite} = require('./options/mySqlite3');
+const { knexSqLite } = require('./options/mySqlite3.js');
 const DbContainer = require('./DbContainer/DbContainer.js');
 const express = require('express');
 const handlebars = require('express-handlebars');
@@ -20,12 +20,12 @@ app.use(express.static('./public'))
 app.use(express.urlencoded({ extended: true }))
 
 app.engine('hbs',
-  handlebars.engine({
-    extname: '.hbs',
-    defaultLayout: 'main.hbs',
-    layoutsDir: __dirname + '/public/views/layouts/', //ruta a la plantilla principal
-    partialsDir: __dirname + '/public/views/partials/' //ruta a los parciales
-  })
+    handlebars.engine({
+        extname: '.hbs',
+        defaultLayout: 'main.hbs',
+        layoutsDir: __dirname + '/public/views/layouts/', //ruta a la plantilla principal
+        partialsDir: __dirname + '/public/views/partials/' //ruta a los parciales
+    })
 );
 
 //Template engine setting
@@ -34,7 +34,7 @@ app.set('views', './public/views');
 app.set('view engine', 'html');
 
 app.get('/', async (req, res) => {
-    
+
     try {
         productos = await Products.getAll()
         res.render('index.hbs', { root: __dirname, productos })
@@ -42,13 +42,13 @@ app.get('/', async (req, res) => {
     catch (error) {
         console.log(error);
     }
-    
+
 })
 
 io.on('connection', async (socket) => {
-    
+
     try {
-        list = await Messages.getLines();
+        list = await Messages.getAll();
         for (let msg in list) {
             socket.emit('old messages', list[msg]);
         }
@@ -62,17 +62,15 @@ io.on('connection', async (socket) => {
 
     socket.on('disconnect', () => {
         io.sockets.emit('new user', `${socket.id} ha abandonado el Centro de mensajes`);
-        //console.log('user disconnected');
     });
 
     socket.on('chat message', (msg) => {
-        //console.log('message: ' + msg);
         io.emit('chat message', msg);
         addToMessageList(msg)
     })
 
     socket.on('new product', async (msg) => {
-        
+
         let element = [{
             title: msg.title,
             price: msg.price,
@@ -94,13 +92,13 @@ io.on('connection', async (socket) => {
                 console.log(error);
             }
         }
-        
+
     });
 
 });
 
 app.get('/productos', async (req, res) => {
-    
+
     try {
         productos = await Products.getAll()
     }
@@ -112,26 +110,12 @@ app.get('/productos', async (req, res) => {
     res.render('products.hbs', { productos });
 });
 
-const addToMessageList = async (message) => {
+const addToMessageList = async (msg) => {
     try {
-        let list = await Messages.getLines();
-        list.push(message)
-        try {
-            await Messages.saveLine(message);
-        }
-        catch (error) {
-            console.log(error)
-        }
-
+        await Messages.saveLine(msg);
     }
     catch (error) {
-        console.log(error);
-        try {
-            await Messages.saveLine(message);
-        }
-        catch (error) {
-            console.log(error)
-        }
+        console.log(error)
     }
     return list;
 }

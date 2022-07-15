@@ -3,11 +3,11 @@ const {knexSqLite} = require('../options/mySqlite3');
 
 const createTable = async (knexSqlite) => {
   await knexSqlite.schema.createTable('messages', table =>{
-    table.string('socketid').primary();
+    table.increments('id').primary();
     table.string('sender');
+    table.string('socketid');
     table.string('text');
-    table.string('timehh');
-  
+    table.string('timehh')
   });
   console.log('Tabla messages creada')
 }
