@@ -82,6 +82,7 @@ function addProduct(e) {
   }
 
   function renderProduct(data) {
+    document.getElementById('noHay').innerText ="";
     const productTable = document.getElementById('products')
     const where = document.createElement('tr')
     where.innerHTML = `<td>
