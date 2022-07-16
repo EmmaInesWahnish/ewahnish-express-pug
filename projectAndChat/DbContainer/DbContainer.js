@@ -44,18 +44,12 @@ class DbContainer {
     async saveArray(array) {
         const connection = this.myDbConnection
         const theTable = this.myTable
-
-        array.forEach(async function (item) {
-
             try {
-                await connection(theTable).insert(item);
+                await connection(theTable).insert(array);
             }
             catch (e) {
                 console.log(e);
             }
-
-        });
-
         console.log('Producto/s Agregado/s');
     }
 
