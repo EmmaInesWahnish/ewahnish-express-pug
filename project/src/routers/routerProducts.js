@@ -1,10 +1,10 @@
 import express from 'express';
-import AnyContainer from "../api/Container.js";
+import ProductsDaoFile from "../daos/products/ProductsDaoFile.js";
 
 const routerProducts = express.Router();
 import fs from 'fs';
 
-const Products = new AnyContainer('./files/productos.txt');
+const Products = new ProductsDaoFile();
 
 let isAdmin = false;
 
