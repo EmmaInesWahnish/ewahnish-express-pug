@@ -51,8 +51,8 @@
    },
    {
       "timestamp": 1656710054455,
-      "nombre": "Talladro de banco",
-      "descripcion": "Talladro de banco agujereadora Luqstoff",
+      "nombre": "Taladro de banco",
+      "descripcion": "Taladro de banco agujereadora Luqstoff",
       "codigo": "TB-00-01",
       "foto": "/images/taladro-banco.jpeg",
       "precio": 4670,

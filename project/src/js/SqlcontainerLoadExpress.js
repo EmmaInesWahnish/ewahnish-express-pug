@@ -1,4 +1,4 @@
-import AnyContainer from '../api/Container.js';
+import ProductsDaoSql from '../daos/products/ProductsDaoSql.js';
 const products = [
     {
         timestamp: Date.now(),
@@ -191,11 +191,11 @@ const products = [
     },
 ]
 
-const Products = new AnyContainer('./files/productos.txt');
+const Products = new ProductsDaoSql();
 
 async function anyContainerLoader() {
 
-    await Products.deleteLoadExpress(products)
+    await Products.saveArray(products)
     
 }
 
