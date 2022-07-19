@@ -35,6 +35,11 @@ const renderProducts = (productId) => {
                 renderHome();
             } else {
                 let product = data.product
+
+                if (product.id === undefined){
+                    product = data.product[0]
+                }
+
                 const cardContainer = document.getElementById('oneProduct')
 
                 const cards = document.createElement('div');

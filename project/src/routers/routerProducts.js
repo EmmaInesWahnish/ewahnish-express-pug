@@ -1,10 +1,10 @@
 import express from 'express';
-import ProductsDaoFile from "../daos/products/ProductsDaoFile.js";
+import ProductsDao from "../daos/products/ProductsDaoSql.js";
 
 const routerProducts = express.Router();
 import fs from 'fs';
 
-const Products = new ProductsDaoFile();
+const Products = new ProductsDao();
 
 let isAdmin = false;
 
