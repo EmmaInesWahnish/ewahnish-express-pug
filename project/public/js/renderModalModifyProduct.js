@@ -29,7 +29,7 @@ const renderModalModifyProduct = (product) => {
 
       <div class="form-group">
         <label for="foto"><b>Foto (url)</b></label>
-        <input id="photo" class="form-control" type="text" name="photo">
+        <input id="photo" class="form-control" type="text" name="foto">
       </div>
 
       <div class="form-group">

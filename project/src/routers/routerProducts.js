@@ -1,12 +1,12 @@
 import express from 'express';
-import ProductsDao from "../daos/products/ProductsDaoSql.js";
+import ProductsDao from "../daos/products/ProductsDaoFile.js";
 
 const routerProducts = express.Router();
 import fs from 'fs';
 
 const Products = new ProductsDao();
 
-let isAdmin = false;
+let isAdmin = true;
 
 // *** ROUTES ***
 //This route returns the products list
@@ -119,7 +119,7 @@ routerProducts.put('/:id', async (req, res) => {
     } else {
         const id = parseInt(req.params.id);
         let receive = req.body;
-        let searchedProduct = {};
+        let searchedProduct= {};
         console.log("The id ", id, "receive  ", receive)
         try {
             const products = await Products.getAll();

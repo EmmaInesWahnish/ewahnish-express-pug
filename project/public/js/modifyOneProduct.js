@@ -3,9 +3,9 @@ const modifyOneProduct = (modifiedProduct) => {
 
     const productRoute = `http://localhost:8080/api/productos/${modifiedProduct.id}`
 
-    console.log(productRoute);
+    console.log("ruta ",productRoute);
 
-    console.log("La modificacion ", modifiedProduct)
+    console.log("Modify one product ", modifiedProduct)
 
     const requestOptions = {
         method:'PUT',
