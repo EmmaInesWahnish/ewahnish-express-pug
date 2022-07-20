@@ -1,12 +1,16 @@
 import express from 'express';
-import ProductsDao from "../daos/products/ProductsDaoFile.js";
+import ProductsDao from "../daos/products/ProductsDaoSql.js";
+import envs from '../../dotenvConfig.cjs'
 
 const routerProducts = express.Router();
 import fs from 'fs';
+import e from 'express';
 
 const Products = new ProductsDao();
 
-let isAdmin = true;
+let isAdmin;
+
+(envs.IS_ADMIN === 'true') ?  isAdmin = true : isAdmin = false;
 
 // *** ROUTES ***
 //This route returns the products list
@@ -119,12 +123,11 @@ routerProducts.put('/:id', async (req, res) => {
     } else {
         const id = parseInt(req.params.id);
         let receive = req.body;
-        let searchedProduct= {};
         console.log("The id ", id, "receive  ", receive)
         try {
             const products = await Products.getAll();
             const index = products.findIndex(element => element.id === id);
-            searchedProduct = products[index];
+            let searchedProduct = products[index];
             console.log(index, " product.nombre ", receive.nombre);
             if (index !== -1) {
 
@@ -147,6 +150,8 @@ routerProducts.put('/:id', async (req, res) => {
                     products[index].stock = receive.stock;
                 }
 
+                searchedProduct = products[index];
+                console.log(searchedProduct);
                 //The array gets updated here
                 let array = [];
 
@@ -162,12 +167,36 @@ routerProducts.put('/:id', async (req, res) => {
 
                     })
                 })
-
-                //productos.txt file is replaced with the updated array
-                try {
-                    await fs.promises.unlink('./files/productos.txt');
+                console.log("Array in routerProducts ", array)
+                //productos.json file is replaced with the updated array
+                if (envs.APIP_TYPE === "FILE") {
                     try {
-                        await Products.saveArray(array);
+                        await fs.promises.unlink('./DB/productos.json');
+                        try {
+                            await Products.saveArray(array);
+                            res.json({
+                                message: 'Modificacion exitosa',
+                                product: array
+                            })
+                        }
+                        catch (error) {
+                            res.json({
+                                message: 'No fue posible cargar los productos en productos.txt',
+                                error: error
+                            })
+                        }
+                    }
+                    catch (error) {
+                        res.json({
+                            message: 'No se pudo borrar el archivo productos.txt',
+                            error: error
+                        })
+                    }
+
+                }
+                else {
+                    try {
+                        await Products.modifyById(id, searchedProduct);
                         res.json({
                             message: 'Modificacion exitosa',
                             product: array
@@ -175,16 +204,10 @@ routerProducts.put('/:id', async (req, res) => {
                     }
                     catch (error) {
                         res.json({
-                            message: 'No fue posible cargar los productos en productos.txt',
+                            message: 'No fue posible modificar el producto',
                             error: error
                         })
                     }
-                }
-                catch (error) {
-                    res.json({
-                        message: 'No se pudo borrar el archivo productos.txt',
-                        error: error
-                    })
                 }
             } else {
                 res.json({

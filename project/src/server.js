@@ -1,6 +1,7 @@
 import express from 'express';
 import routerProducts from './routers/routerProducts.js';
 import routerCart from './routers/routerCart.js';
+import envs from '../dotenvConfig.cjs'
 
 const app = express();
 
@@ -21,7 +22,7 @@ app.all('*', (req, res) => {
 })
 
 /* Server Listen */
-const port = process.env.PORT || 8080;
+const port = envs.PORT;
 const server = app.listen(port, () => {
     console.log(`Server http listening at port ${server.address().port}`)
 })

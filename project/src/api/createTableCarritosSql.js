@@ -1,5 +1,5 @@
-const {knex} = require('../options/mariaDB');
-const {knexSqLite} = require('../options/mySqlite3');
+const {knex} = require('../configurations/mariaDB.cjs');
+const {knexSqLite} = require('../configurations/mySqlite3.cjs');
 
 const createTable = async (knexSqlite) => {
   await knexSqlite.schema.createTable('messages', table =>{
