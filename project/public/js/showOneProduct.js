@@ -35,7 +35,7 @@ const renderProducts = (productId) => {
                 renderHome();
             } else {
                 let product = data.product
-
+                console.log("En show ", product)
                 if (product.id === undefined){
                     product = data.product[0]
                 }

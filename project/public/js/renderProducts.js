@@ -44,7 +44,6 @@ const renderProducts = () => {
             document.getElementById('productCards').innerHTML = "";
 
             const cardContainer = document.getElementById('productCards')
-
             for (let product of data.products) {
                 array.push(product)
                 quantity[product.id] = 0;

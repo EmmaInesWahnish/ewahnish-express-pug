@@ -1,10 +1,9 @@
 import express from 'express';
-import ProductsDao from "../daos/products/ProductsDaoSql.js";
+import ProductsDao from "../daos/products/ProductsDaoFirebase.js";
 import envs from '../../dotenvConfig.cjs'
 
 const routerProducts = express.Router();
 import fs from 'fs';
-import e from 'express';
 
 const Products = new ProductsDao();
 
@@ -33,10 +32,12 @@ routerProducts.get('/', async (req, res) => {
 
 //This route returns a product according to its id.
 routerProducts.get('/:id', async (req, res) => {
-    let id = parseInt(req.params.id);
-    if (!isNaN(id)) {
+    let id = req.params.id;
+    console.log("Id en routerProduct ",id)
+//    if (!isNaN(id)) {
         try {
             const producto = await Products.getById(id);
+            console.log("El producto ", producto)
             if (producto != undefined) {
                 res.json({
                     message: 'Producto encontrado',
@@ -55,11 +56,12 @@ routerProducts.get('/:id', async (req, res) => {
                 error: error
             })
         }
-    } else {
-        res.json({
-            "error": "El id solicitado no es numerico"
-        })
-    }
+//    } 
+//    else {
+//        res.json({
+//            "error": "El id solicitado no es numerico"
+//        })
+//    }
 })
 
 //This route ads a product
@@ -121,7 +123,7 @@ routerProducts.put('/:id', async (req, res) => {
             error: -1
         })
     } else {
-        const id = parseInt(req.params.id);
+        const id = req.params.id;
         let receive = req.body;
         console.log("The id ", id, "receive  ", receive)
         try {
@@ -232,9 +234,9 @@ routerProducts.delete('/:id', async (req, res) => {
             error: -1
         })
     } else {
-        const id = parseInt(req.params.id);
+        const id = req.params.id;
         console.log(id);
-        if (!isNaN(id)) {
+    //    if (!isNaN(id)) {
             try {
                 const removedProduct = await Products.deleteById(id);
                 if (removedProduct.length === 0) {
@@ -254,11 +256,12 @@ routerProducts.delete('/:id', async (req, res) => {
                     error: error
                 })
             }
-        } else {
-            res.json({
-                message: "El id suministrado no es numerico"
-            })
-        }
+        //} 
+        //else {
+        //    res.json({
+        //        message: "El id suministrado no es numerico"
+        //    })
+        //}
     }
 })
 
