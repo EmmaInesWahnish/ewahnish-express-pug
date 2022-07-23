@@ -1,7 +1,7 @@
 import express from 'express';
 import routerProducts from './routers/routerProducts.js';
 import routerCart from './routers/routerCart.js';
-import envs from '../dotenvConfig.cjs'
+import envs from '../dotenvConfig.js'
 
 const app = express();
 

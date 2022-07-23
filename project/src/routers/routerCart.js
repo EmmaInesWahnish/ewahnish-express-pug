@@ -1,6 +1,6 @@
 import express from 'express';
 import CartsDaoFile from "../daos/carts/CartsDaoFile.js";
-import envs from '../../dotenvConfig.cjs';
+import envs from '../../dotenvConfig.js';
 
 const routerCart = express.Router();
 const Cart = new CartsDaoFile();
