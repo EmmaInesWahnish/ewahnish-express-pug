@@ -21,8 +21,8 @@ routerCart.get('/', async (req, res) => {
 
 //This route returns a cart according to its id.
 routerCart.get('/:id', async (req, res) => {
-    let id = parseInt(req.params.id);
-    if (!isNaN(id)) {
+    let id = req.params.id;
+//    if (!isNaN(id)) {
         try {
             const carrito = await Cart.getById(id);
             if (carrito != undefined) {
@@ -44,11 +44,13 @@ routerCart.get('/:id', async (req, res) => {
                 error: error
             })
         }
-    } else {
-        res.json({
-            "error": "El id solicitado no es numerico"
-        })
-    }
+    //} 
+    //else {
+    //    res.json({
+    //        "error": "El id solicitado no es numerico"
+    //    })
+    //
+//}
 })
 
 //This route ads an empty cart
@@ -94,7 +96,7 @@ routerCart.post('/', async (req, res) => {
 //This route updates the cart with the selected id
 //A product is added to the cart with id :id
 routerCart.post('/:id/productos', async (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     let indexc = 0
     let indexp = 0
     let receive = req.body;
@@ -154,7 +156,7 @@ routerCart.post('/:id/productos', async (req, res) => {
 })
 
 routerCart.delete('/:id/productos/:id_prod', async (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     const id_prod = parseInt(req.params.id_prod)
     try {
         const carts = await Cart.getAll();
@@ -195,8 +197,8 @@ routerCart.delete('/:id/productos/:id_prod', async (req, res) => {
 
 //This route removes the cart with the selected id
 routerCart.delete('/:id', async (req, res) => {
-    const id = parseInt(req.params.id);
-    if (!isNaN(id)) {
+    const id = req.params.id;
+//    if (!isNaN(id)) {
         try {
             const removedCart = await Cart.deleteById(id);
             let howManyProducts = Cart.productos.length;
@@ -218,11 +220,12 @@ routerCart.delete('/:id', async (req, res) => {
                 error: error
             })
         }
-    } else {
-        res.json({
-            message: "El id suministrado no es numerico"
-        })
-    }
+    //} 
+    //else {
+    //    res.json({
+    //        message: "El id suministrado no es numerico"
+    //    })
+    //}
 })
 
 export default routerCart;

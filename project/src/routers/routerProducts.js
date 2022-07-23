@@ -1,5 +1,5 @@
 import express from 'express';
-import ProductsDao from "../daos/products/ProductsDaoFirebase.js";
+import ProductsDao from "../daos/products/ProductsDaoSql.js";
 import envs from '../../dotenvConfig.cjs'
 
 const routerProducts = express.Router();
