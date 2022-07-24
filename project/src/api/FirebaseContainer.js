@@ -1,21 +1,16 @@
-import db from '../configurations/firebase.config.js';
-import { onSnapshot, collection, updateDoc, doc, addDoc, deleteDoc, getDocs, getDoc, DocumentSnapshot } from 'firebase/firestore'
-
 class FirebaseContainer {
     constructor(myTable) {
         this.myTable = myTable;
     }
 
     async deleteById(myId) {
-        const docRef = doc(db, this.myTable, myId)
         try {
-            await deleteDoc(docRef);
+            const doc = this.query.doc(`${myId}`);
+            const item = await doc.delete();
+            console.log("Item eliminado ", item)
         } catch (error) {
             console.log(error);
         }
-
-        console.log('producto eliminado')
-
     }
 
     async deleteAll() {
@@ -35,15 +30,14 @@ class FirebaseContainer {
     }
 
     async save(item) {
-        const collectionRef = collection(db, this.myTable);
         try {
-            await addDoc(collectionRef, item);
+            const doc = this.query.doc();
+            await doc.set(item[0]);
+            console.log("Item insertado ")
         }
         catch (e) {
             console.log(e);
         }
-
-        console.log('Producto/s Agregado/s');
     }
 
     async saveArray(array) {
@@ -61,23 +55,23 @@ class FirebaseContainer {
 
     async getAll() {
         try {
-            const productsCol = collection(db, this.myTable);
-            const productsSnapshot = await getDocs(productsCol);
-            const array = productsSnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-            return array;
+            const querySnapshot = await this.query.get();
+            let docs = querySnapshot.docs;
+            const response = docs.map(doc => ({ ...doc.data(), id: doc.id }));
+            console.log(response);
+            return response;
         } catch (error) {
             console.log(error);
         }
     }
 
     async getById(myId) {
-        let array =[]
-        const docRef = doc(db, this.myTable, myId );
-        try {
-            const docSnap = await getDoc(docRef);
-            array = ({ ...docSnap.data(), id: docSnap.id });
-            console.log(" en getById", array)
-            return array;
+        try {    
+            const doc = this.query.doc(`${myId}`);
+            const item = await doc.get(doc);
+            const response = ({ ...item.data(), id: item.id });
+            console.log(" en getById", response)
+            return response;
         } catch (error) {
             console.log(error)
         }
@@ -103,14 +97,14 @@ class FirebaseContainer {
     }
 
     async modifyById(myId, myJson) {
-        const docRef = doc(db, this.myTable, myId);
         try {
-            await updateDoc(docRef, myJson);
+            const doc = this.query.doc(`${myId}`);
+            let item = await doc.update(myJson);
+            console.log("Item actualizado ", item)
         } catch (error) {
             console.log(error)
         }
 
-        console.log('producto modificado')
     }
 
     async saveLine(object) {

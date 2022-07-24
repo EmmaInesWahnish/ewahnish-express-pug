@@ -71,7 +71,6 @@ const renderNewProductForm = () => {
     let quantity = document.getElementById("quantity");
   
     nomb.addEventListener('change', function () {
-      console.log(product.nombre);
       product.nombre = document.getElementById("nomb").value;
     })
     desc.addEventListener('change', function () {
@@ -101,7 +100,7 @@ const renderNewProductForm = () => {
         precio: product.precio,
         stock: product.stock,
       }
-  
+      console.log("Producto que se intenta añadir ", addedProduct)
       addOneProduct(addedProduct);
   
     })

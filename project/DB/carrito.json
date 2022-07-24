@@ -697,5 +697,22 @@
             "cantidad": 1
          }
       ]
+   },
+   {
+      "id": 54,
+      "timestamp": 1658624184040,
+      "productos": [
+         {
+            "id": "WS06bYc8LFkdeR78gfVH",
+            "timestamp": 1658540235142,
+            "nombre": "Baliza rotativa",
+            "descripcion": "Baliza rotativa giratoria imantada 12v",
+            "codigo": "BG-00-01",
+            "foto": "/images/baliza-giratoria.jpeg",
+            "precio": 1390,
+            "stock": 50,
+            "cantidad": 1
+         }
+      ]
    }
 ]

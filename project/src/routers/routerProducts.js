@@ -1,5 +1,5 @@
 import express from 'express';
-import ProductsDao from "../daos/products/ProductsDaoFile.js";
+import ProductsDao from "../daos/products/ProductsDaoFirebase.js";
 import envs from '../../dotenvConfig.js'
 
 const routerProducts = express.Router();
@@ -84,7 +84,7 @@ routerProducts.post('/', async (req, res) => {
         }]
         if (producto) {
             try {
-                await Products.saveArray(producto);
+                await Products.save(producto);
                 try {
                     const products = await Products.getAll();
                     res.json({
