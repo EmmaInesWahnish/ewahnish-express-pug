@@ -1,7 +1,7 @@
 import renderModalAddToCart from './renderModalAddToCart.js'
-const createACart = (cart,quantity, product) => {
+const createACart = (cart, quantity, product) => {
 
-    let cartId 
+    let cartId = '';
 
     const productRoute = `http://localhost:8080/api/carrito/`
 
@@ -14,7 +14,6 @@ const createACart = (cart,quantity, product) => {
     fetch(productRoute, requestOptions)
     .then(async res => {
         const data = await res.json();
-        console.log(data);
         cartId = data.cartId;
         document.getElementById('activeCart').innerHTML = "";
         document.getElementById('activeCart').innerHTML = `Carrito Activo = `;
@@ -35,7 +34,7 @@ const createACart = (cart,quantity, product) => {
             stock: product.stock,
             cantidad: quantity
         }
-        console.log(cartId)
+        console.log("Aqui cart Id ",cartId , "aqui cart ", cart)
         const productRoute2 = `http://localhost:8080/api/carrito/${cartId}/productos`
     
         console.log(productRoute2);

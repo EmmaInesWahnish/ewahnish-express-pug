@@ -1,6 +1,6 @@
 import AnyContainer from '../api/Container.js';
 
-const Products = new AnyContainer('./files/carrito.txt');
+const Products = new AnyContainer('./DB/carrito.json');
 
 console.log(Products)
 

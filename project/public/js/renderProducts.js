@@ -13,9 +13,7 @@ let array = [];
 //element.parentNode.removeChild(element);
 const renderProducts = () => {
     let qobject = [{}];
-    let quantity = [];
-    let i = 0;
-    let cartId = 0;
+    let cartId = '';
     let cart = [];
 
     document.getElementById('activeCart').innerHTML = "";
@@ -167,9 +165,9 @@ const renderProducts = () => {
 
                         let quantity = qobject[i].value;
 
-                        let cartId = Number(cartNumber.innerText)
+                        let cartId = cartNumber.innerText
 
-                        if (cartId === 0) {
+                        if (cartId === '') {
 
                             let cart = {
                                 timestamp: Date.now(),
@@ -179,10 +177,10 @@ const renderProducts = () => {
 
                             let cartNumber = document.getElementById("cartNumber")
 
-                            cartId = Number(cartNumber.innerText)
+                            cartId = cartNumber.innerText
 
                         } else {
-                            cartId = Number(cartNumber.innerText)
+                            cartId = cartNumber.innerText
                             renderModalAddToCart(product, quantity, cartId);
                         }
 
@@ -190,15 +188,15 @@ const renderProducts = () => {
 
                     let dButtonId = `C${product.id}`
 
-                    let productId = Number(`${product.id}`)
+                    let productId = `${product.id}`
 
                     let deleteProductFromCart = document.getElementById(dButtonId);
 
                     deleteProductFromCart.addEventListener('click', function () {
 
-                        let cartId2 = Number(cartNumber.innerText)
+                        let cartId2 = cartNumber.innerText
 
-                        if (cartId2 === 0) {
+                        if (cartId2 === '') {
                             alert(`Aun no se ha habilitado ningun carrito`);
                         } else {
                             renderModalDeleteFromCart(productId, cartId2);

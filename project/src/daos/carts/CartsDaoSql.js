@@ -11,7 +11,7 @@ class CartsDaoSql extends SqlContainer {
     constructor() {
         super()
         this.myDbConnection = knexSqLite;
-        this.myTable = 'carritos'
+        this.myTable = 'carrito'
     }
 
     async disconnect() {

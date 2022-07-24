@@ -22,35 +22,27 @@ routerCart.get('/', async (req, res) => {
 //This route returns a cart according to its id.
 routerCart.get('/:id', async (req, res) => {
     let id = req.params.id;
-//    if (!isNaN(id)) {
-        try {
-            const carrito = await Cart.getById(id);
-            if (carrito != undefined) {
-                res.json({
-                    message: 'carrito encontrado',
-                    id: carrito.id,
-                    timestamp: carrito.timestamp,
-                    productos: carrito.productos
-                })
-            } else {
-                res.json({
-                    message: "carrito no encontrado"
-                })
-            }
-        }
-        catch (error) {
+    try {
+        const carrito = await Cart.getById(id);
+        if (carrito != undefined) {
             res.json({
-                message: "Se produjo un error al buscar el carrito",
-                error: error
+                message: 'carrito encontrado',
+                id: carrito.id,
+                timestamp: carrito.timestamp,
+                productos: carrito.productos
+            })
+        } else {
+            res.json({
+                message: "carrito no encontrado"
             })
         }
-    //} 
-    //else {
-    //    res.json({
-    //        "error": "El id solicitado no es numerico"
-    //    })
-    //
-//}
+    }
+    catch (error) {
+        res.json({
+            message: "Se produjo un error al buscar el carrito",
+            error: error
+        })
+    }
 })
 
 //This route ads an empty cart
@@ -105,14 +97,15 @@ routerCart.post('/:id/productos', async (req, res) => {
     let modifiedCart = [];
     try {
         carts = await Cart.getAll();
-        indexc = carts.findIndex(element => element.id === id);
+        indexc = carts.findIndex(element => element.id == id);
+        console.log("Entra al primer try ", indexc)
         if (indexc !== -1) {
             searchedCart = carts[indexc];
             let cartId = searchedCart.id;
             let cartTimestamp = searchedCart.timestamp;
             const productArray = searchedCart.productos;
             console.log("Productos .1 ", productArray)
-            indexp = productArray.findIndex(element => element.id === receive.id);
+            indexp = productArray.findIndex(element => element.id == receive.id);
             console.log(indexp)
             if (indexp !== -1) {
                 carts[indexc].productos[indexp].cantidad = carts[indexc].productos[indexp].cantidad + receive.cantidad;
@@ -157,14 +150,14 @@ routerCart.post('/:id/productos', async (req, res) => {
 
 routerCart.delete('/:id/productos/:id_prod', async (req, res) => {
     const id = req.params.id;
-    const id_prod = parseInt(req.params.id_prod)
+    const id_prod = req.params.id_prod
     try {
         const carts = await Cart.getAll();
-        const indexc = carts.findIndex(element => element.id === id);
+        const indexc = carts.findIndex(element => element.id == id);
         const searchedCart = carts[indexc];
         const productArray = searchedCart.productos;
         if (indexc !== -1) {
-            const indexp = productArray.findIndex(element => element.id === id_prod);
+            const indexp = productArray.findIndex(element => element.id == id_prod);
             if (indexp !== -1) {
                 try {
                     await Cart.deleteProdById(id, id_prod);
@@ -177,7 +170,7 @@ routerCart.delete('/:id/productos/:id_prod', async (req, res) => {
                         message: 'No fue posible eliminar el producto del carrito',
                         error: error
                     })
-                }                   
+                }
 
             } else {
                 res.json({
@@ -198,34 +191,27 @@ routerCart.delete('/:id/productos/:id_prod', async (req, res) => {
 //This route removes the cart with the selected id
 routerCart.delete('/:id', async (req, res) => {
     const id = req.params.id;
-//    if (!isNaN(id)) {
-        try {
-            const removedCart = await Cart.deleteById(id);
-            let howManyProducts = Cart.productos.length;
+    try {
+        const removedCart = await Cart.deleteById(id);
+        let howManyProducts = Cart.productos.length;
 
-            if (removedCart.length === 0) {
-                res.json({
-                    message: "El carrito solicitado no existe"
-                })
-            } else {
-                res.json({
-                    message: "El carrito ha sido eliminado",
-                    product: removedCart
-                })
-            }
-        }
-        catch (error) {
+        if (removedCart.length === 0) {
             res.json({
-                message: "El carrito no pudo ser eliminado",
-                error: error
+                message: "El carrito solicitado no existe"
+            })
+        } else {
+            res.json({
+                message: "El carrito ha sido eliminado",
+                product: removedCart
             })
         }
-    //} 
-    //else {
-    //    res.json({
-    //        message: "El id suministrado no es numerico"
-    //    })
-    //}
+    }
+    catch (error) {
+        res.json({
+            message: "El carrito no pudo ser eliminado",
+            error: error
+        })
+    }
 })
 
 export default routerCart;

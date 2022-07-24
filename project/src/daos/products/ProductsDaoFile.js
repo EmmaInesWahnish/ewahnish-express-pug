@@ -1,6 +1,6 @@
 import FileContainer from '../../api/FileContainer.js';
 
-class ProductsDaoFiles extends FileContainer {
+class ProductsDaoFile extends FileContainer {
 
     constructor() {
         super('./DB/productos.json')
@@ -11,4 +11,4 @@ class ProductsDaoFiles extends FileContainer {
     }
 }
 
-export default ProductsDaoFiles;
+export default ProductsDaoFile;

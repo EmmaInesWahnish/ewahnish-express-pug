@@ -605,5 +605,97 @@
             "cantidad": 1
          }
       ]
+   },
+   {
+      "timestamp": 1658616214697,
+      "productos": [],
+      "id": 38
+   },
+   {
+      "timestamp": 1658616324911,
+      "productos": [],
+      "id": 39
+   },
+   {
+      "timestamp": 1658617290949,
+      "productos": [],
+      "id": 40
+   },
+   {
+      "timestamp": 1658618397810,
+      "productos": [],
+      "id": 41
+   },
+   {
+      "timestamp": 1658619553352,
+      "productos": [],
+      "id": 42
+   },
+   {
+      "timestamp": 1658619831504,
+      "productos": [],
+      "id": 43
+   },
+   {
+      "timestamp": 1658619943262,
+      "productos": [],
+      "id": 44
+   },
+   {
+      "timestamp": 1658619981667,
+      "productos": [],
+      "id": 45
+   },
+   {
+      "timestamp": 1658620690620,
+      "productos": [],
+      "id": 46
+   },
+   {
+      "timestamp": 1658620866401,
+      "productos": [],
+      "id": 47
+   },
+   {
+      "timestamp": 1658622479574,
+      "productos": [],
+      "id": 48
+   },
+   {
+      "timestamp": 1658622998013,
+      "productos": [],
+      "id": 49
+   },
+   {
+      "timestamp": 1658623107114,
+      "productos": [],
+      "id": 50
+   },
+   {
+      "timestamp": 1658623424214,
+      "productos": [],
+      "id": 51
+   },
+   {
+      "timestamp": 1658623530793,
+      "productos": [],
+      "id": 52
+   },
+   {
+      "id": 53,
+      "timestamp": 1658623566876,
+      "productos": [
+         {
+            "id": 3,
+            "timestamp": 1656710054455,
+            "nombre": "Llaves combinadas",
+            "descripcion": "Llaves combinadas acodadas marca Hamilton",
+            "codigo": "LC-00-01",
+            "foto": "/images/llaves-combinadas.jpeg",
+            "precio": 10120,
+            "stock": 30,
+            "cantidad": 1
+         }
+      ]
    }
 ]
