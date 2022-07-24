@@ -4,7 +4,6 @@ const { Schema, model } = mongoose
 const cartCollection = 'carrito';
 
 const CartSchema = new Schema({
-    _id: new ObjectID(),
     timestamp: { type: Date, required: true },
     productos: [{
         _id: { type: String, required: true},

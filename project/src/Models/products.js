@@ -1,10 +1,9 @@
-import mongoose, { isObjectIdOrHexString } from "mongoose";
+import mongoose from "mongoose";
 const {Schema, model} = mongoose
 
 const productCollection = 'productos';
 
 const ProductSchema = new Schema({
-    _id: new ObjectID(),
     timestamp:{type: Date, required: true},
     nombre: {type: String, required: true, max: 100},
     descripcion: {type: String, required: true, max: 100},
