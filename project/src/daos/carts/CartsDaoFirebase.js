@@ -13,7 +13,7 @@ if (admin.apps.length === 0) {
 
 const db = admin.firestore();
 
-const query = db.collection('productos');
+const query = db.collection('carrito');
 
 import FirebaseContainer from '../../api/FirebaseContainer.js';
 
