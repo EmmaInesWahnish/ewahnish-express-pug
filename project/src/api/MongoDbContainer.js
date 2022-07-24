@@ -1,12 +1,15 @@
-class FirebaseContainer {
+import envs from '../../dotenvConfig.js';
+const URL = envs.URL;
+class MongoDbContainer {
+
     constructor(myTable) {
         this.myTable = myTable;
     }
 
     async deleteById(myId) {
         try {
-            const doc = this.query.doc(`${myId}`);
-            const item = await doc.delete();
+            this.connectToDb();
+            const item = await UserModel.deleteOne({ _id: myId });
             console.log("Item eliminado ", item)
         } catch (error) {
             console.log(error);
@@ -15,25 +18,23 @@ class FirebaseContainer {
 
     async deleteAll() {
         try {
-            const productsCol = collection(db, this.myTable);
-            const productsSnapshot = await getDocs(productsCol);
-            const array = productsSnapshot.docs.map(doc => doc.data());
+            this.connectToDb();
+            const array = this.getAll()
             for (element in array) {
                 let myId = array[element].id;
                 this.deleteById(myId);
             }
+            console.log('productos eliminados')
         } catch (error) {
             console.log(error);
         }
-
-        console.log('productos eliminados')
     }
 
     async save(item) {
         try {
-            const doc = this.query.doc();
-            await doc.set(item[0]);
-            console.log("Item insertado ")
+            this.connectToDb();
+            await this.TheModel.create(item[0]);
+            console.log("Item insertado");
         }
         catch (e) {
             console.log(e);
@@ -41,24 +42,22 @@ class FirebaseContainer {
     }
 
     async saveArray(array) {
-        const collectionRef = collection(db, this.myTable);
+        this.connectToDb();
         for (let item in array) {
             try {
-                await addDoc(collectionRef, array[item]);
+                await this.TheModel.create(array[item]);
             }
             catch (e) {
                 console.log(e);
             }
         }
-        console.log('Producto/s Agregado/s');
+        console.log('Item/s Agregado/s');
     }
 
     async getAll() {
         try {
-            const querySnapshot = await this.query.get();
-            let docs = querySnapshot.docs;
-            const response = docs.map(doc => ({ ...doc.data(), id: doc.id }));
-            console.log(response);
+            this.connectToDb();
+            const response = await this.TheModel.find({});
             return response;
         } catch (error) {
             console.log(error);
@@ -66,11 +65,9 @@ class FirebaseContainer {
     }
 
     async getById(myId) {
-        try {    
-            const doc = this.query.doc(`${myId}`);
-            const item = await doc.get(doc);
-            const response = ({ ...item.data(), id: item.id });
-            console.log(" en getById", response)
+        try {
+            this.connectToDb();
+            const response = await this.TheModel.find({ _id: myId });
             return response;
         } catch (error) {
             console.log(error)
@@ -98,8 +95,8 @@ class FirebaseContainer {
 
     async modifyById(myId, myJson) {
         try {
-            const doc = this.query.doc(`${myId}`);
-            let item = await doc.update(myJson);
+            this.connectToDb();
+            let item = await this.TheModel.updateOne({ _id: myId }, { $set: myJson });
             console.log("Item actualizado ", item)
         } catch (error) {
             console.log(error)
@@ -121,4 +118,4 @@ class FirebaseContainer {
 
 }
 
-export default FirebaseContainer;
+export default MongoDbContainer;

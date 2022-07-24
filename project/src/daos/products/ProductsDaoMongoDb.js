@@ -1,16 +1,34 @@
 
-const db = admin.firestore();
+import mongoose from 'mongoose';
+import envs from '../../../dotenvConfig.js'
+import ProductModel from "../../../src/Models/products.js";
+import MongoDbContainer from '../../api/MongoDbContainer.js';
 
-const query = db.collection('productos');
+const URL = envs.URL.toString();
+const TheModel = ProductModel;
 
-import FirebaseContainer from '../../api/FirebaseContainer.js';
+const connectToDb = async () => {
+    try {
+        let rta = await mongoose.connect(URL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        })
+        console.log("Estado de la conexion ", mongoose.connection.readyState);
+    } catch (error) {
+        console.error("DB Error: ", error);
+    }
+}
 
-class ProductsDaoFirebase extends FirebaseContainer {
+connectToDb();
+
+connectToDb();
+
+class ProductsDaoMongoDb extends MongoDbContainer {
 
     constructor() {
         super()
-        this.db = db;
-        this.query = query;
+        this.connectToDb = connectToDb;
+        this.TheModel = TheModel;
     }
 
     async disconnect() {
@@ -18,4 +36,4 @@ class ProductsDaoFirebase extends FirebaseContainer {
     }
 }
 
-export default ProductsDaoFirebase;
+export default ProductsDaoMongoDb;

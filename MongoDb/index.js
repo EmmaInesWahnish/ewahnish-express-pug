@@ -12,7 +12,8 @@ const main = async () => {
       useUnifiedTopology: true,
     });
     console.log("DB Connected");
-
+    //mongoose.connection.readyState == 0; // not connected
+    //mongoose.connection.readyState == 1; // connected
     /* --------------------------------------- */
     /*                CREATE                   */
     /* --------------------------------------- */
