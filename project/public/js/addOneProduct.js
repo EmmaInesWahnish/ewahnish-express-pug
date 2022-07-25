@@ -14,8 +14,7 @@ const addOneProduct = (addedProduct) => {
         const data = await res.json();
         console.log(data);
         const theProductId = data.theProductId;
-        console.log("In addOneProduct ", theProductId)
-        if (theProductId != undefined){
+        if (data.product[0].id === undefined){
             productId = theProductId;
         }
         else {

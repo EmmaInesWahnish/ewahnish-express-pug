@@ -1,5 +1,5 @@
 import express from 'express';
-import ProductsDao from "../daos/products/ProductsDaoFirebase.js";
+import ProductsDao from "../daos/products/ProductsDaoSql.js";
 import envs from '../../dotenvConfig.js'
 
 const routerProducts = express.Router();
@@ -122,7 +122,7 @@ routerProducts.put('/:id', async (req, res) => {
         console.log("The id ", id, "receive  ", receive)
         try {
             const products = await Products.getAll();
-            const index = products.findIndex(element => element.id === id);
+            const index = products.findIndex(element => element.id == id);
             let searchedProduct = products[index];
             console.log(index, " product.nombre ", receive.nombre);
             if (index !== -1) {
@@ -230,7 +230,6 @@ routerProducts.delete('/:id', async (req, res) => {
     } else {
         const id = req.params.id;
         console.log(id);
-        //    if (!isNaN(id)) {
         try {
             const removedProduct = await Products.deleteById(id);
             if (removedProduct.length === 0) {
@@ -250,12 +249,6 @@ routerProducts.delete('/:id', async (req, res) => {
                 error: error
             })
         }
-        //} 
-        //else {
-        //    res.json({
-        //        message: "El id suministrado no es numerico"
-        //    })
-        //}
     }
 })
 
