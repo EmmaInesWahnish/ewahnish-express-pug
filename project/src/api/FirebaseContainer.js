@@ -33,7 +33,8 @@ class FirebaseContainer {
         try {
             const doc = this.query.doc();
             await doc.set(item[0]);
-            console.log("Item insertado ")
+            const theProductId = doc.id;
+            return theProductId;
         }
         catch (e) {
             console.log(e);
@@ -41,14 +42,8 @@ class FirebaseContainer {
     }
 
     async saveArray(array) {
-        const collectionRef = collection(db, this.myTable);
         for (let item in array) {
-            try {
-                await addDoc(collectionRef, array[item]);
-            }
-            catch (e) {
-                console.log(e);
-            }
+            this.save(item)
         }
         console.log('Producto/s Agregado/s');
     }

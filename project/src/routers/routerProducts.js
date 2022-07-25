@@ -9,7 +9,7 @@ const Products = new ProductsDao();
 
 let isAdmin;
 
-(envs.IS_ADMIN === 'true') ?  isAdmin = true : isAdmin = false;
+(envs.IS_ADMIN === 'true') ? isAdmin = true : isAdmin = false;
 
 // *** ROUTES ***
 //This route returns the products list
@@ -33,35 +33,28 @@ routerProducts.get('/', async (req, res) => {
 //This route returns a product according to its id.
 routerProducts.get('/:id', async (req, res) => {
     let id = req.params.id;
-    console.log("Id en routerProduct ",id)
-//    if (!isNaN(id)) {
-        try {
-            const producto = await Products.getById(id);
-            console.log("El producto ", producto)
-            if (producto != undefined) {
-                res.json({
-                    message: 'Producto encontrado',
-                    product: producto,
-                    bool: isAdmin
-                })
-            } else {
-                res.json({
-                    message: "Producto no encontrado"
-                })
-            }
-        }
-        catch (error) {
+    console.log("Id en routerProduct ", id)
+    try {
+        const producto = await Products.getById(id);
+        console.log("El producto ", producto)
+        if (producto != undefined) {
             res.json({
-                message: "Se produjo un error al buscar el producto",
-                error: error
+                message: 'Producto encontrado',
+                product: producto,
+                bool: isAdmin
+            })
+        } else {
+            res.json({
+                message: "Producto no encontrado"
             })
         }
-//    } 
-//    else {
-//        res.json({
-//            "error": "El id solicitado no es numerico"
-//        })
-//    }
+    }
+    catch (error) {
+        res.json({
+            message: "Se produjo un error al buscar el producto",
+            error: error
+        })
+    }
 })
 
 //This route ads a product
@@ -84,13 +77,14 @@ routerProducts.post('/', async (req, res) => {
         }]
         if (producto) {
             try {
-                await Products.save(producto);
+                const theProductId = await Products.save(producto);
                 try {
                     const products = await Products.getAll();
                     res.json({
                         message: "Producto incorporado",
                         product: producto,
                         bool: isAdmin,
+                        theProductId: theProductId
                     })
                 }
                 catch (error) {
@@ -236,26 +230,26 @@ routerProducts.delete('/:id', async (req, res) => {
     } else {
         const id = req.params.id;
         console.log(id);
-    //    if (!isNaN(id)) {
-            try {
-                const removedProduct = await Products.deleteById(id);
-                if (removedProduct.length === 0) {
-                    res.json({
-                        message: "El producto solicitado no existe"
-                    })
-                } else {
-                    res.json({
-                        message: "El producto ha sido eliminado",
-                        product: removedProduct
-                    })
-                }
-            }
-            catch (error) {
+        //    if (!isNaN(id)) {
+        try {
+            const removedProduct = await Products.deleteById(id);
+            if (removedProduct.length === 0) {
                 res.json({
-                    message: "El producto no pudo ser eliminado",
-                    error: error
+                    message: "El producto solicitado no existe"
+                })
+            } else {
+                res.json({
+                    message: "El producto ha sido eliminado",
+                    product: removedProduct
                 })
             }
+        }
+        catch (error) {
+            res.json({
+                message: "El producto no pudo ser eliminado",
+                error: error
+            })
+        }
         //} 
         //else {
         //    res.json({

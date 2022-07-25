@@ -1,6 +1,6 @@
 import showOneProduct from './showOneProduct.js'
 const addOneProduct = (addedProduct) => {
-
+    let productId = '';
     const productRoute = `http://localhost:8080/api/productos/`
 
     const requestOptions = {
@@ -13,8 +13,15 @@ const addOneProduct = (addedProduct) => {
     .then(async res => {
         const data = await res.json();
         console.log(data);
-        alert(`Alta de producto ${data.product[0].id} exitosa`);
-        let productId = data.product[0].id;
+        const theProductId = data.theProductId;
+        console.log("In addOneProduct ", theProductId)
+        if (theProductId != undefined){
+            productId = theProductId;
+        }
+        else {
+            productId = data.product[0].id;
+        }
+        alert(`Alta de producto ${ productId } exitosa`);
         showOneProduct(productId);
     })
     .catch(error => {
