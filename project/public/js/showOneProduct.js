@@ -1,8 +1,6 @@
 import renderHome from './renderHome.js';
 
 const renderProducts = (productId) => {
-    let quantity = [];
-    quantity[productId] = 0
 
     document.getElementById('activeCart').innerHTML = "";
     document.getElementById('cartNumber').innerHTML = "";

@@ -9,7 +9,7 @@ class MongoDbContainer {
     async deleteById(myId) {
         try {
             this.connectToDb();
-            const item = await UserModel.deleteOne({ _id: myId });
+            const item = await this.TheModel.deleteOne({ _id: myId });
             console.log("Item eliminado ", item)
         } catch (error) {
             console.log(error);

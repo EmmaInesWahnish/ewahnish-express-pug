@@ -18,6 +18,14 @@ const CartSchema = new Schema({
     }]
 })
 
+CartSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+CartSchema.set('toJSON', {
+    virtuals: true
+});
+
 const CartModel = model(cartCollection, CartSchema)
 
 export default CartModel;
