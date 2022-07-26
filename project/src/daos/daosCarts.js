@@ -2,29 +2,29 @@ import CartsDaoFile from './carts/CartsDaoFile.js'
 import CartsDaoFirebase from './carts/CartsDaoFirebase.js'
 import CartsDaoMongoDb from './carts/CartsDaoMongoDb.js'
 import CartsDaoMariaDb from './carts/CartsDaoMariaDb.js'
-import CartsDaoSql from './carts/CartsDaoSql'
+import CartsDaoSql from './carts/CartsDaoSql.js'
 import envs from '../../dotenvConfig.js'
 
-const db = envs.APIP_TYPE || 'FILE'
+const db = envs.APIC_TYPE || 'FILE'
 
-let cartDao
+let Cart
 
 switch (db) {
     case 'FIREBASE':
-        cartDao = new CartsDaoFirebase()
+        Cart = new CartsDaoFirebase()
         break
     case 'MONGODB':
-        cartDao = new CartsDaoMongoDb()
+        Cart = new CartsDaoMongoDb()
         break
     case 'MARIADB':
-        cartDao = new CartsDaoMariaDb()
+        Cart = new CartsDaoMariaDb()
         break
     case 'SQL':
-        cartDao = new CartsDaoSql()
+        Cart = new CartsDaoSql()
         break
     default:
-        cartDao = new CartsDaoFile()
+        Cart = new CartsDaoFile()
         break
 }
 
-export { cartDao }
+export { Cart }

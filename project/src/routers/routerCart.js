@@ -1,9 +1,9 @@
 import express from 'express';
-import CartsDaoFile from "../daos/carts/CartsDaoFile.js";
+import { Cart } from "../daos/daosCarts.js";
 import envs from '../../dotenvConfig.js';
 
 const routerCart = express.Router();
-const Cart = new CartsDaoFile();
+
 // *** ROUTES ***
 //This route returns all carts
 routerCart.get('/', async (req, res) => {

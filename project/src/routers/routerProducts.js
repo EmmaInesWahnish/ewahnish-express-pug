@@ -1,11 +1,9 @@
 import express from 'express';
-import ProductsDao from "../daos/products/ProductsDaoMongoDb.js";
+import { Products} from "../daos/daosProducts.js";
 import envs from '../../dotenvConfig.js'
 
 const routerProducts = express.Router();
 import fs from 'fs';
-
-const Products = new ProductsDao();
 
 let isAdmin;
 

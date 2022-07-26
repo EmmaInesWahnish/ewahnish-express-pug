@@ -19,10 +19,6 @@ const connectToDb = async () => {
     }
 }
 
-connectToDb();
-
-connectToDb();
-
 class ProductsDaoMongoDb extends MongoDbContainer {
 
     constructor() {
