@@ -236,10 +236,11 @@
     }
   }
   
-  .spinner {
-    font-size: xx-large;
-    margin: auto;
-    max-width: 800px;
+  .big_id {
+    font-size: x-small;
+    width:250px;
+    text-overflow: ellipsis;
+    overflow:hidden;
   }
   
   button {

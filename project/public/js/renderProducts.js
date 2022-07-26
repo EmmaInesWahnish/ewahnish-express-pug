@@ -56,8 +56,9 @@ const renderProducts = () => {
                 cards.setAttribute('class', 'flex-container-card')
 
                 cards.innerHTML = `<div>
-                                    <div id=${product.id} class="card-header center" width="300px" >
-                                        <h3>${product.id} ${product.codigo}</h3>
+                                    <div id=${product.id} class="card-header center big_id" width="300px" >
+                                        <h6>${product.id}</h6>
+                                        <h3>${product.codigo}</h3>
                                         <h3><i>${product.nombre}</i></h3> 
                                         <h3>${product.descripcion}</h3>
                                         <h3>Precio: ${product.precio}</h3>
