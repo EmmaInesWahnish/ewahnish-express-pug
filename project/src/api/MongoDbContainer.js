@@ -34,6 +34,14 @@ class MongoDbContainer {
         try {
             this.connectToDb();
             await this.TheModel.create(item[0]);
+            try {
+                const items = await this.TheModel.find({}).sort({_id: -1}).limit(1);
+                const theProductId = items[0]._id;
+                return theProductId              
+            }
+            catch(e) {
+                console.log(e);
+            }
             console.log("Item insertado");
         }
         catch (e) {
