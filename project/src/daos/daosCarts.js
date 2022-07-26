@@ -1,30 +1,30 @@
-import ProductsDaoFile from './products/ProductsDaoFile.js'
-import ProductsDaoFirebase from './products/ProductsDaoFirebase.js'
-import ProductsDaoMongoDb from './products/ProductsDaoMongoDb.js'
-import ProductsDaoMariaDb from './products/ProductsDaoMariaDb.js'
-import ProductsDaoSql from './products/ProductsDaoSql'
+import CartsDaoFile from './carts/CartsDaoFile.js'
+import CartsDaoFirebase from './carts/CartsDaoFirebase.js'
+import CartsDaoMongoDb from './carts/CartsDaoMongoDb.js'
+import CartsDaoMariaDb from './carts/CartsDaoMariaDb.js'
+import CartsDaoSql from './carts/CartsDaoSql'
 import envs from '../../dotenvConfig.js'
 
 const db = envs.APIP_TYPE || 'FILE'
 
-let productDao
+let cartDao
 
 switch (db) {
     case 'FIREBASE':
-        productDao = new ProductsDaoFirebase()
+        cartDao = new CartsDaoFirebase()
         break
     case 'MONGODB':
-        productDao = new ProductsDaoMongoDb()
+        cartDao = new CartsDaoMongoDb()
         break
     case 'MARIADB':
-        productDao = new ProductsDaoMariaDb()
+        cartDao = new CartsDaoMariaDb()
         break
     case 'SQL':
-        productDao = new ProductsDaoSql()
+        cartDao = new CartsDaoSql()
         break
     default:
-        productDao = new ProductsDaoFile()
+        cartDao = new CartsDaoFile()
         break
 }
 
-export { productDao }
+export { cartDao }
