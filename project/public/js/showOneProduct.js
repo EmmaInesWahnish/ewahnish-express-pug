@@ -47,11 +47,11 @@ const renderProducts = (productId) => {
                 cards.innerHTML = `<div>
                                     <div id=${productId} class="card-header big_id center" width="300px" >
                                         <h6>${product.id}</h6>
-                                        <h3>${product.codigo}</h3>
-                                        <h3><i>${product.nombre}</i></h3> 
-                                        <h3>${product.descripcion}</h3>
-                                        <h3>Precio: ${product.precio}</h3>
-                                        <h3>Stock: ${product.stock}</h3>
+                                        <h5>${product.codigo}</h5>
+                                        <h5><i>${product.nombre}</i></h5> 
+                                        <h5>${product.descripcion}</h5>
+                                        <h5>Precio: ${product.precio}</h5>
+                                        <h5>Stock: ${product.stock}</h5>
                                         <div class"pictures">
                                             <img src='${product.foto}'
                                         <div>     

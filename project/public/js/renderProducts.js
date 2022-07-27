@@ -58,11 +58,11 @@ const renderProducts = () => {
                 cards.innerHTML = `<div>
                                     <div id=${product.id} class="card-header center big_id" width="300px" >
                                         <h6>${product.id}</h6>
-                                        <h3>${product.codigo}</h3>
-                                        <h3><i>${product.nombre}</i></h3> 
-                                        <h3>${product.descripcion}</h3>
-                                        <h3>Precio: ${product.precio}</h3>
-                                        <h3>Stock: ${product.stock}</h3>
+                                        <h5>${product.codigo}</h5>
+                                        <h5><i>${product.nombre}</i></h5> 
+                                        <h5>${product.descripcion}</h5>
+                                        <h5>Precio: ${product.precio}</h5>
+                                        <h5>Stock: ${product.stock}</h5>
                                         <div id=${pictureId} class"pictures">
                                             <img src='${product.foto}'>
                                         <div>     
@@ -78,14 +78,14 @@ const renderProducts = () => {
                 const buttons = document.createElement('div');
 
                 if (data.bool) {
-                    buttons.innerHTML = `<button style="width:250px"
+                    buttons.innerHTML = `<button style="width:200px" 
                                                 id=U${product.id} 
-                                                class="btn btn-primary">
+                                                class="btn btn-primary btn-sm">
                                                     Modificacion de Producto
                                         </button>                    
-                                        <button style="width:250px" 
+                                        <button style="width:200px" 
                                                 id=D${product.id}
-                                                class="btn btn-danger">
+                                                class="btn btn-danger btn-sm">
                                                     Eliminacion de Producto
                                         </button>`;
 
