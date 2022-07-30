@@ -7,7 +7,7 @@ const renderModalOneProduct = () => {
 
     const thisCart = document.getElementById('thisCart');
 
-    let cartNumber = Number(thisCart.innerText);
+    let cartNumber = thisCart.innerText;
 
     document.getElementById('modalForm').style.display = 'block';
 
@@ -30,7 +30,7 @@ const renderModalOneProduct = () => {
 
     theId.addEventListener('change', function () {
 
-        cartNumber = Number(document.getElementById('theId').value);
+        cartNumber = document.getElementById('theId').value;
     })
 
     formUpdate.addEventListener('click', function () {
