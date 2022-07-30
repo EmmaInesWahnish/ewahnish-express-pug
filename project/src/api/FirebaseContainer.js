@@ -32,7 +32,7 @@ class FirebaseContainer {
     async save(item) {
         try {
             const doc = this.query.doc();
-            await doc.set(item[0]);
+            await doc.set(item);
             const theProductId = doc.id;
             return theProductId;
         }
@@ -43,7 +43,7 @@ class FirebaseContainer {
 
     async saveArray(array) {
         for (let item in array) {
-            this.save(item)
+            this.save(array[item])
         }
         console.log('Producto/s Agregado/s');
     }
@@ -53,7 +53,6 @@ class FirebaseContainer {
             const querySnapshot = await this.query.get();
             let docs = querySnapshot.docs;
             const response = docs.map(doc => ({ ...doc.data(), id: doc.id }));
-            console.log(response);
             return response;
         } catch (error) {
             console.log(error);
