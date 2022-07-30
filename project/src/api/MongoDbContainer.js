@@ -33,10 +33,10 @@ class MongoDbContainer {
     async save(item) {
         try {
             this.connectToDb();
-            await this.TheModel.create(item[0]);
+            await this.TheModel.create(item);
             try {
                 const items = await this.TheModel.find({}).sort({_id: -1}).limit(1);
-                const theProductId = items[0]._id;
+                const theProductId = items._id;
                 return theProductId              
             }
             catch(e) {

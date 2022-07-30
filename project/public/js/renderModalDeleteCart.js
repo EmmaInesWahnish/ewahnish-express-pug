@@ -1,4 +1,5 @@
-import deleteACart from './deleteACart.js'
+//import deleteACart from './deleteACart.js';
+import deleteACart from './deleteACartRightNow.js'
 const renderModalDeleteCart = () => {
 
     let cartId = 0;
@@ -18,7 +19,7 @@ const renderModalDeleteCart = () => {
 
     theCartId.addEventListener('change', function(){
 
-        cartId = Number(document.getElementById('theCartId').value); 
+        cartId = document.getElementById('theCartId').value; 
     })
 
     formDelete.addEventListener('click', function () {

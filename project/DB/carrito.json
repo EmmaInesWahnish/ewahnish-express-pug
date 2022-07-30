@@ -731,5 +731,90 @@
             "cantidad": 2
          }
       ]
+   },
+   {
+      "id": 56,
+      "timestamp": 1659207607731,
+      "productos": [
+         {
+            "id": "62de94c3ed5c1ba52b0cf877",
+            "timestamp": "2022-07-25T13:04:02.182Z",
+            "nombre": "Baliza rotativa",
+            "descripcion": "Baliza rotativa giratoria imantada 12v",
+            "codigo": "BG-00-01",
+            "foto": "/images/baliza-giratoria.jpeg",
+            "precio": 1390,
+            "stock": 50,
+            "cantidad": 1
+         }
+      ]
+   },
+   {
+      "id": 57,
+      "timestamp": 1659216029323,
+      "productos": [
+         {
+            "id": 8,
+            "timestamp": "1658188305274.0",
+            "nombre": "Triangulo Baliza",
+            "descripcion": "Triangulo baliza led portatil",
+            "codigo": "BA-00-01",
+            "foto": "/images/triangulo-baliza.jpeg",
+            "precio": 1100,
+            "stock": 200,
+            "cantidad": 1
+         }
+      ]
+   },
+   {
+      "id": 58,
+      "timestamp": 1659221358814,
+      "productos": [
+         {
+            "id": 11,
+            "timestamp": 1656710054455,
+            "nombre": "Cargador de bateria",
+            "descripcion": "Cargador de bateria apto para auto moto y cuatriciclo",
+            "codigo": "CB-00-01",
+            "foto": "/images/cargador-bateria.jpeg",
+            "precio": 5100,
+            "stock": 100,
+            "cantidad": 1
+         }
+      ]
+   },
+   {
+      "id": 59,
+      "timestamp": 1659221426010,
+      "productos": [
+         {
+            "id": "MGonNtcXD5ZbI9ooI1bk",
+            "timestamp": 1658540235142,
+            "nombre": "Sopladora",
+            "descripcion": "Sopladora Luqstoff",
+            "codigo": "SO-00-01",
+            "foto": "/images/sopladora.jpeg",
+            "precio": 10987,
+            "stock": 100,
+            "cantidad": 1
+         }
+      ]
+   },
+   {
+      "id": 60,
+      "timestamp": 1659221506471,
+      "productos": [
+         {
+            "id": "62de94c3ed5c1ba52b0cf871",
+            "timestamp": "2022-07-25T13:04:02.182Z",
+            "nombre": "Taladro de banco",
+            "descripcion": "Taladro de banco agujereadora Luqstoff",
+            "codigo": "TB-00-01",
+            "foto": "/images/taladro-banco.jpeg",
+            "precio": 4670,
+            "stock": 100,
+            "cantidad": 1
+         }
+      ]
    }
 ]

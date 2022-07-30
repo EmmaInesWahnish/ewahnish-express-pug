@@ -174,6 +174,7 @@ const renderProducts = () => {
                                 timestamp: Date.now(),
                                 productos: [],
                             }
+
                             cartId = createACart(cart, quantity, product);
 
                             let cartNumber = document.getElementById("cartNumber")
@@ -182,7 +183,7 @@ const renderProducts = () => {
 
                         } else {
                             cartId = cartNumber.innerText
-                            renderModalAddToCart(product, quantity, cartId);
+                            renderModalAddToCart(product, quantity, cartId );
                         }
 
                     })

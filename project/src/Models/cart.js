@@ -6,8 +6,8 @@ const cartCollection = 'carrito';
 const CartSchema = new Schema({
     timestamp: { type: Date, required: true },
     productos: [{
-        _id: { type: String, required: true},
-        timestamp: { type: Date, required: true },
+        id: { type: String, required: true},
+        timestamp: { type: String, required: true },
         nombre: { type: String, required: true, max: 100 },
         descripcion: { type: String, required: true, max: 100 },
         codigo: { type: String, required: true, max: 100 },

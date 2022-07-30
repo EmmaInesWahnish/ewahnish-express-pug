@@ -4,12 +4,18 @@ import envs from '../../dotenvConfig.js';
 
 const routerCart = express.Router();
 
+const whichDb = envs.APIC_TYPE;
+
 // *** ROUTES ***
 //This route returns all carts
 routerCart.get('/', async (req, res) => {
     try {
         const array = await Cart.getAll();
-        res.json({ message: 'Carritos ', carrito: array });
+        res.json({
+            message: 'Carritos ',
+            carrito: array,
+            whichDb: whichDb
+        });
     }
     catch (error) {
         res.json({
@@ -28,8 +34,9 @@ routerCart.get('/:id', async (req, res) => {
             res.json({
                 message: 'carrito encontrado',
                 carrito: carrito,
+                whichDb: whichDb
             })
-            console.log("En routerCart carrito ", carrito )
+            console.log("En routerCart carrito ", carrito)
         } else {
             res.json({
                 message: "carrito no encontrado"
@@ -60,7 +67,8 @@ routerCart.post('/', async (req, res) => {
                 res.json({
                     message: "Carrito incorporado",
                     carrito: carrito,
-                    cartId: cartId
+                    cartId: cartId,
+                    whichDb: whichDb
                 })
             }
             catch (error) {
@@ -117,18 +125,33 @@ routerCart.post('/:id/productos', async (req, res) => {
                     productos: productArray
                 }
             }
-            try {
-                await Cart.modifyById(cartId, modifiedCart);
-                res.json({
-                    message: 'Modificacion exitosa',
-                    product: modifiedCart
-                })
+            if ((whichDb === 'SQL') || (whichDb === 'MARIADB')) {
+                try {
+                    await Cart.updateJsonType(cartId, productArray)
+                }
+                catch(error) {
+                    res.json({
+                        message: 'No fue posible cargar los productos',
+                        error: error
+                    })
+                }
             }
-            catch (error) {
-                res.json({
-                    message: 'No fue posible cargar los productos en productos.txt',
-                    error: error
-                })
+            else {
+                try {
+                    await Cart.modifyById(cartId, modifiedCart);
+                    res.json({
+                        message: 'Modificacion exitosa',
+                        product: modifiedCart,
+                        cartId: cartId,
+                        whichDb: whichDb
+                    })
+                }
+                catch (error) {
+                    res.json({
+                        message: 'No fue posible cargar los productos',
+                        error: error
+                    })
+                }
             }
         }
         else {

@@ -29,10 +29,8 @@ class SqlContainer {
     }
 
     async save(item) {
-        const connection = this.myDbConnection
-        const theTable = this.myTable
         try {
-            await connection(theTable).insert(item);
+            await this.myDbConnection(this.myTable).insert(item);
         }
         catch (e) {
             console.log(e);
@@ -103,6 +101,20 @@ class SqlContainer {
     async saveLine(object) {
         try {
 
+            await this.save(object)
+
+        } catch (error) {
+            console.log(error)
+            return error
+        }
+
+    }
+
+    async updateJsonType(myId, myJsonArray) {
+        try {
+            this.myDbConnection.table(this.myTable)
+            .where({id: myId})
+            .update({productos: JSON.stringify(myJsonArray)});
             await this.save(object)
 
         } catch (error) {
