@@ -27,10 +27,9 @@ routerCart.get('/:id', async (req, res) => {
         if (carrito != undefined) {
             res.json({
                 message: 'carrito encontrado',
-                id: carrito.id,
-                timestamp: carrito.timestamp,
-                productos: carrito.productos
+                carrito: carrito,
             })
+            console.log("En routerCart carrito ", carrito )
         } else {
             res.json({
                 message: "carrito no encontrado"
@@ -48,13 +47,13 @@ routerCart.get('/:id', async (req, res) => {
 //This route ads an empty cart
 routerCart.post('/', async (req, res) => {
     let receive = req.body;
-    let carrito = [{
+    let carrito = {
         timestamp: receive.timestamp,
         productos: receive.productos,
-    }]
+    }
     if (carrito) {
         try {
-            await Cart.saveArray(carrito);
+            await Cart.save(carrito);
             try {
                 const carrito = await Cart.getAll();
                 const cartId = carrito[carrito.length - 1].id;

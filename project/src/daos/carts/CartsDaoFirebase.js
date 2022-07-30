@@ -17,7 +17,7 @@ const query = db.collection('carrito');
 
 import FirebaseContainer from '../../api/FirebaseContainer.js';
 
-class ProductsDaoFirebase extends FirebaseContainer {
+class CartsDaoFirebase extends FirebaseContainer {
 
     constructor() {
         super()
@@ -30,4 +30,4 @@ class ProductsDaoFirebase extends FirebaseContainer {
     }
 }
 
-export default ProductsDaoFirebase;
+export default CartsDaoFirebase;
