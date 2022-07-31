@@ -60,11 +60,17 @@ routerCart.post('/', async (req, res) => {
         productos: receive.productos,
     }
     if (carrito) {
+        let cartId
         try {
-            await Cart.save(carrito);
+            const theProductId = await Cart.save(carrito)
             try {
                 const carrito = await Cart.getAll();
-                const cartId = carrito[carrito.length - 1].id;
+                if (whichDb === 'FIREBASE') {
+                    cartId = theProductId;
+                }
+                else {
+                    cartId = carrito[carrito.length - 1].id;
+                }
                 res.json({
                     message: "Carrito incorporado",
                     carrito: carrito,
@@ -130,7 +136,7 @@ routerCart.post('/:id/productos', async (req, res) => {
                 try {
                     await Cart.updateJsonType(cartId, productArray)
                 }
-                catch(error) {
+                catch (error) {
                     res.json({
                         message: 'No fue posible cargar los productos',
                         error: error

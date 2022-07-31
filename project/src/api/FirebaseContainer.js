@@ -32,8 +32,9 @@ class FirebaseContainer {
     async save(item) {
         try {
             const doc = this.query.doc();
+            const theProductId = doc.id;            
             await doc.set(item);
-            const theProductId = doc.id;
+            console.log(" the Id ",theProductId)
             return theProductId;
         }
         catch (e) {
