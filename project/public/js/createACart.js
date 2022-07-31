@@ -16,13 +16,13 @@ const createACart = (cart, quantity, product) => {
         const data = await res.json();
         cartId = data.cartId;
         document.getElementById('activeCart').innerHTML = "";
-        document.getElementById('activeCart').innerHTML = `Carrito Activo = `;
+        document.getElementById('activeCart').innerHTML = "Carrito Activo = ";
         document.getElementById('cartNumber').innerHTML = "";
-        document.getElementById('cartNumber').innerHTML = `${cartId}`;
+        document.getElementById('cartNumber').innerHTML = cartId;
         document.getElementById('active').innerHTML = "";
-        document.getElementById('active').innerHTML = `Nro `;
+        document.getElementById('active').innerHTML = "Nro ";
         document.getElementById('thisCart').innerHTML = "";
-        document.getElementById('thisCart').innerHTML = `${cartId}`;
+        document.getElementById('thisCart').innerHTML = cartId;
         let cartProduct = {
             id: product.id,
             timestamp: product.timestamp,
@@ -38,8 +38,6 @@ const createACart = (cart, quantity, product) => {
         const productRoute2 = `http://localhost:8080/api/carrito/${cartId}/productos`
     
         console.log(productRoute2);
-    
-        console.log("Agrego producto ", cartProduct)
     
         const requestOptions = {
             method: 'POST',

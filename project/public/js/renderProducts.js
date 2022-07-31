@@ -129,14 +129,14 @@ const renderProducts = () => {
                                         <div class="flex-container-buttons  p-0 m-0 bg-light" style="width:200px height=25px">
                                             <button id=A${product.id}
                                                     class="btn btn-light p-0 m-0">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="auto" fill="grey" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" fill="grey" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
   <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
 </svg>
                                             </button>
                                             <div id=Q${product.id} class="flex-item"><span> ${quantity} </span></div>
                                             <button id=S${product.id}
                                                     class="btn btn-light  p-0 m-0">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="auto" fill="grey" class="bi bi-dash-square-fill" viewBox="0 0 16 16">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" fill="grey" class="bi bi-dash-square-fill" viewBox="0 0 16 16">
   <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm2.5 7.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1z"/>
 </svg>
                                             </button>

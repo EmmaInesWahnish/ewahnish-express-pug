@@ -22,7 +22,7 @@ const renderModalOneProduct = () => {
       </div>
       <button type="submit" id=${buttonId} class="btn btn-success">Aceptar</button>`;
 
-    if (cartNumber !== 0) {
+    if (cartNumber !== '') {
         document.getElementById('theId').value = cartNumber;
      }  
 
