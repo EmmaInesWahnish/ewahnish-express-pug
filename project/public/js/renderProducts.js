@@ -55,19 +55,17 @@ const renderProducts = () => {
 
                 cards.setAttribute('class', 'flex-container-card')
 
-                cards.innerHTML = `<div>
-                                    <div id=${product.id} class="card-header center big_id" width="300px" >
+                cards.innerHTML = `<div id=${product.id} class="card-header center big_id" width="300px" >
                                         <h6>${product.id}</h6>
-                                        <h5>${product.codigo}</h5>
-                                        <h5><i>${product.nombre}</i></h5> 
-                                        <h5>${product.descripcion}</h5>
-                                        <h5>Precio: ${product.precio}</h5>
-                                        <h5>Stock: ${product.stock}</h5>
-                                        <div id=${pictureId} class"pictures">
-                                            <img src='${product.foto}'>
-                                        <div>     
-                                    </div>
-                                    <div id=${product.id}></div>`
+                                        <h6>${product.codigo}</h6>
+                                        <h6><i>${product.nombre}</i></h6> 
+                                        <h6>${product.descripcion}</h6>
+                                        <h6>Precio: ${product.precio}</h6>
+                                        <h6>Stock: ${product.stock}</h6>
+                                        <div id=${pictureId} class="pictures">
+                                            <img src='${product.foto}'>     
+                                        </div>
+                                   <div>`
 
                 cardContainer.appendChild(cards);
 
@@ -78,7 +76,8 @@ const renderProducts = () => {
                 const buttons = document.createElement('div');
 
                 if (data.bool) {
-                    buttons.innerHTML = `<button style="width:200px" 
+                    buttons.innerHTML = `<div class="flex-container-button-group card-footer">
+                                        <button style="width:200px" 
                                                 id=U${product.id} 
                                                 class="btn btn-primary btn-sm">
                                                     Modificacion de Producto
@@ -87,7 +86,8 @@ const renderProducts = () => {
                                                 id=D${product.id}
                                                 class="btn btn-danger btn-sm">
                                                     Eliminacion de Producto
-                                        </button>`;
+                                        </button>
+                                        <div>`;
 
                     cardButtons.appendChild(buttons)
 
@@ -125,31 +125,33 @@ const renderProducts = () => {
 
                     let quantity = qobject[i].value;
 
-                    buttons.innerHTML = `<div class="flex-container-buttons  p-0 m-0" style="width:250px">
+                    buttons.innerHTML = `<div class="flex-container-button-group card-footer">
+                                        <div class="flex-container-buttons  p-0 m-0 bg-light" style="width:200px height=25px">
                                             <button id=A${product.id}
-                                                    class="btn btn-xs btn-light">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                                                    class="btn btn-light p-0 m-0">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="auto" fill="grey" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
   <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
 </svg>
                                             </button>
                                             <div id=Q${product.id} class="flex-item"><span> ${quantity} </span></div>
                                             <button id=S${product.id}
-                                                    class="btn btn-xs btn-light">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-dash-square-fill" viewBox="0 0 16 16">
+                                                    class="btn btn-light  p-0 m-0">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="auto" fill="grey" class="bi bi-dash-square-fill" viewBox="0 0 16 16">
   <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm2.5 7.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1z"/>
 </svg>
                                             </button>
                                         </div>                                
                                         <button 
                                                 id=M${product.id} 
-                                                class="btn btn-success" style="width:250px">
+                                                class="btn btn-success" style="width:200px">
                                                     Agregar al carrito
                                         </button>
                                         <button 
                                                 id=C${product.id} 
-                                                class="btn btn-danger" style="width:250px">
+                                                class="btn btn-danger" style="width:200px">
                                                     Eliminar del carrito
-                                        </button>`;
+                                        </button>
+                                        </div>`;
 
 
                     cardButtons.appendChild(buttons)
