@@ -1,5 +1,4 @@
 const deleteACart = (cartId) => {
-    console.log(cartId)
     const productRoute = `http://localhost:8080/api/carrito/${cartId}`
 
     console.log(productRoute);
@@ -23,7 +22,6 @@ const deleteACart = (cartId) => {
                     .catch(err => console.log(err))
             }
             for (let product of data.productos) {
-                console.log("Aqui entro")
                 const productId = product.id;
 
                 const productRouteTwo = `http://localhost:8080/api/carrito/${cartId}/productos/${productId}`
@@ -39,7 +37,6 @@ const deleteACart = (cartId) => {
                     .then(async res => {
 
                         const data = await res.json();
-                        console.log(data);
                         fetch(productRoute, {
                             method: 'DELETE',
                             headers: {

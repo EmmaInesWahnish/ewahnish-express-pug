@@ -39,7 +39,6 @@ const renderProducts = () => {
     fetch('http://localhost:8080/api/productos')
         .then(res => res.json())
         .then(data => {
-            console.log(data.bool);
 
             document.getElementById('productCards').innerHTML = "";
 

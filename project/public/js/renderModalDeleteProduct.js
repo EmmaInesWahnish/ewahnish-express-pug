@@ -1,6 +1,6 @@
 import deleteOneProduct from './deleteOneProduct.js'
 const renderModalDeleteProduct = (product) => {
-    //console.log(product)
+    
     let buttonId = "DM" + product.id;
 
     document.getElementById('modalForm').style.display = 'block';

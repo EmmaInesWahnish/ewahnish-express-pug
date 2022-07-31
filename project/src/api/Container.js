@@ -77,7 +77,6 @@ class AnyContainer {
     }
 
     async modifyById(id, item) {
-        console.log("Llegaron ",id," ",item)
         try {
             const elements = await this.getAll()
 

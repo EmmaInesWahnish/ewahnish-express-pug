@@ -1,7 +1,7 @@
 import modifyOneProduct from './modifyOneProduct.js';
 import ModifiedProduct from '../Classes/ModifiedProduct.js';
 const renderModalModifyProduct = (product) => {
-  //console.log(product)
+  
   let buttonId = "SM" + product.id;
 
   document.getElementById('modal').style.display = 'block';

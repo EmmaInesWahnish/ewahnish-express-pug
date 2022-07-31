@@ -12,7 +12,6 @@ const addOneProduct = (addedProduct) => {
     fetch(productRoute, requestOptions)
     .then(async res => {
         const data = await res.json();
-        console.log(data);
         const theProductId = data.theProductId;
         if (data.product[0].id === undefined){
             productId = theProductId;

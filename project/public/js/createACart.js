@@ -34,7 +34,6 @@ const createACart = (cart, quantity, product) => {
             stock: product.stock,
             cantidad: quantity
         }
-        console.log("Aqui cart Id ",cartId , "aqui cart ", cart)
         const productRoute2 = `http://localhost:8080/api/carrito/${cartId}/productos`
     
         console.log(productRoute2);

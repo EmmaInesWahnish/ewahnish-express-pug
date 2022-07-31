@@ -26,8 +26,6 @@ const renderModalOneProduct = () => {
 
     formUpdate.addEventListener('click', function () {
 
-        console.log(productId)
-
         showOneProduct(productId);
 
         document.getElementById('modalForm').style.display = 'none';

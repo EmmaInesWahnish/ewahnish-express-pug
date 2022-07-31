@@ -1,5 +1,4 @@
 const deleteACart = (cartId) => {
-    console.log(cartId)
     const productRoute = `http://localhost:8080/api/carrito/${cartId}`
 
     console.log(productRoute);

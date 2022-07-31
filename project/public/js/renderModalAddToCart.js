@@ -15,8 +15,6 @@ const renderModalAddToCart = (product, quantity, cartId) => {
 
     console.log(productRoute);
 
-    console.log("Agrego producto ", cartProduct)
-
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

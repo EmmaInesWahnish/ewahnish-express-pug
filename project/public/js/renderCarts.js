@@ -35,24 +35,17 @@ const renderCarts = (cartNumber) => {
 
                 const whichDb = data.whichDb;
 
-                console.log("In renderCarts carrito >>> ", carrito);
-
-                console.log("which database >>>", whichDb)
-
                 let productos = []
 
                 switch (whichDb) {
                     case 'MONGODB':
                         productos = carrito[0].productos;
-                        console.log("En case MONGODB ", productos)
                         break;
                     case 'FIREBASE':
                         productos = carrito.productos;
-                        console.log("En case FIREBASE ", productos)
                         break;
                     default:
                         productos = carrito.productos;
-                        console.log("En case FIREBASE ", productos)
                         break;
                 }
 

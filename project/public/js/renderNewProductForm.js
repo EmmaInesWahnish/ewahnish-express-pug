@@ -100,7 +100,6 @@ const renderNewProductForm = () => {
         precio: product.precio,
         stock: product.stock,
       }
-      console.log("Producto que se intenta añadir ", addedProduct)
       addOneProduct(addedProduct);
   
     })
