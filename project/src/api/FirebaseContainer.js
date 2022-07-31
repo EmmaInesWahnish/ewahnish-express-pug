@@ -64,7 +64,7 @@ class FirebaseContainer {
             const doc = this.query.doc(`${myId}`);
             const item = await doc.get(doc);
             const response = ({ ...item.data(), id: item.id });
-            console.log(" en getById", response)
+            console.log(" en getById", item.data())
             return response;
         } catch (error) {
             console.log(error)

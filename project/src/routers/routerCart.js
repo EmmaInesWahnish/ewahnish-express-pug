@@ -30,6 +30,7 @@ routerCart.get('/:id', async (req, res) => {
     let id = req.params.id;
     try {
         const carrito = await Cart.getById(id);
+        console.log("In getById ", carrito)
         if (carrito != undefined) {
             res.json({
                 message: 'carrito encontrado',
