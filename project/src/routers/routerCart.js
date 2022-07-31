@@ -110,6 +110,7 @@ routerCart.post('/:id/productos', async (req, res) => {
     let carts = [];
     let modifiedCart = [];
     try {
+        let productArray = [];
         carts = await Cart.getAll();
         indexc = carts.findIndex(element => element.id == id);
         console.log("Entra al primer try ", indexc)
@@ -117,11 +118,16 @@ routerCart.post('/:id/productos', async (req, res) => {
             searchedCart = carts[indexc];
             let cartId = searchedCart.id;
             let cartTimestamp = searchedCart.timestamp;
-            const productArray = searchedCart.productos;
+            if ((whichDb === 'SQL') || (whichDb === 'MARIADB')) {
+                if ((searchedCart.productos != null)) {
+                    productArray = JSON.parse(carts[indexc].productos);
+                }
+            } else {
+                productArray = searchedCart.productos;
+            }
             indexp = productArray.findIndex(element => element.id == receive.id);
             if (indexp !== -1) {
-                carts[indexc].productos[indexp].cantidad = carts[indexc].productos[indexp].cantidad + receive.cantidad;
-                modifiedProduct = carts[indexc];
+                productArray[indexp].cantidad = productArray[indexp].cantidad + receive.cantidad;
             }
             else {
                 console.log("recibo ", receive)
@@ -133,33 +139,35 @@ routerCart.post('/:id/productos', async (req, res) => {
                 }
             }
             if ((whichDb === 'SQL') || (whichDb === 'MARIADB')) {
-                try {
-                    await Cart.updateJsonType(cartId, productArray)
-                }
-                catch (error) {
-                    res.json({
-                        message: 'No fue posible cargar los productos',
-                        error: error
-                    })
+                modifiedCart = {
+                    id: cartId,
+                    timestamp: cartTimestamp,
+                    productos: JSON.stringify(productArray)
                 }
             }
             else {
-                try {
-                    await Cart.modifyById(cartId, modifiedCart);
-                    res.json({
-                        message: 'Modificacion exitosa',
-                        product: modifiedCart,
-                        cartId: cartId,
-                        whichDb: whichDb
-                    })
-                }
-                catch (error) {
-                    res.json({
-                        message: 'No fue posible cargar los productos',
-                        error: error
-                    })
+                modifiedCart = {
+                    id: cartId,
+                    timestamp: cartTimestamp,
+                    productos: productArray
                 }
             }
+            try {
+                await Cart.modifyById(cartId, modifiedCart);
+                res.json({
+                    message: 'Modificacion exitosa',
+                    product: modifiedCart,
+                    cartId: cartId,
+                    whichDb: whichDb
+                })
+            }
+            catch (error) {
+                res.json({
+                    message: 'No fue posible cargar los productos',
+                    error: error
+                })
+            }
+
         }
         else {
             res.json({
@@ -179,15 +187,22 @@ routerCart.delete('/:id/productos/:id_prod', async (req, res) => {
     const id = req.params.id;
     const id_prod = req.params.id_prod
     try {
+        let productArray = [];
         const carts = await Cart.getAll();
         const indexc = carts.findIndex(element => element.id == id);
         const searchedCart = carts[indexc];
-        const productArray = searchedCart.productos;
+        if ((whichDb === 'SQL') || (whichDb === 'MARIADB')) {
+            if ((searchedCart.productos != null)) {
+                productArray = JSON.parse(carts[indexc].productos);
+            }
+        } else {
+            productArray = searchedCart.productos;
+        }
         if (indexc !== -1) {
             const indexp = productArray.findIndex(element => element.id == id_prod);
             if (indexp !== -1) {
                 try {
-                    await Cart.deleteProdById(id, id_prod);
+                    await Cart.deleteProdById(id, id_prod, indexp, productArray);
                     res.json({
                         message: 'Eliminacion exitosa',
                     })

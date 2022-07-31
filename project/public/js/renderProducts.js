@@ -39,6 +39,8 @@ const renderProducts = () => {
     fetch('http://localhost:8080/api/productos')
         .then(res => res.json())
         .then(data => {
+            
+            let whichDb = data.whichDb;
 
             document.getElementById('productCards').innerHTML = "";
 
@@ -46,8 +48,8 @@ const renderProducts = () => {
             for (let product of data.products) {
                 array.push(product)
                 qobject.push({
-                   value: 0,
-                   id: product.id 
+                    value: 0,
+                    id: product.id
                 });
                 let pictureId = "PIC" + product.id;
                 const cards = document.createElement('div');
@@ -170,10 +172,18 @@ const renderProducts = () => {
                         let cartId = cartNumber.innerText
 
                         if (cartId === '') {
-
-                            let cart = {
-                                timestamp: Date.now(),
-                                productos: [],
+                            let cart;
+                            if ((whichDb === 'MARIADB') || (whichDb === 'SQL')) {
+                                cart = {
+                                    timestamp: Date.now(),
+                                    productos: null,
+                                }
+                            }
+                            else {
+                                cart = {
+                                    timestamp: Date.now(),
+                                    productos: [],
+                                }
                             }
 
                             cartId = createACart(cart, quantity, product);
@@ -184,7 +194,7 @@ const renderProducts = () => {
 
                         } else {
                             cartId = cartNumber.innerText
-                            renderModalAddToCart(product, quantity, cartId );
+                            renderModalAddToCart(product, quantity, cartId);
                         }
 
                     })

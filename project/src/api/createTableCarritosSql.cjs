@@ -7,7 +7,7 @@ const {knexSqLite} = require('../configurations/mySqlite3.cjs');
 const createTable = async (knexSqlite) => {
   await knexSqlite.schema.createTable('carrito', table =>{
     table.increments('id').primary();
-    table.string('timestamp');
+    table.timestamp('timestamp').defaultTo(knex.fn.now());
     table.json('productos').nullable();
   });
   console.log('Tabla carrito creada')

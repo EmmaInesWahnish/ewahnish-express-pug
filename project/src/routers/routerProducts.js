@@ -9,6 +9,8 @@ let isAdmin;
 
 (envs.IS_ADMIN === 'true') ? isAdmin = true : isAdmin = false;
 
+let whichDb = envs.APIC_TYPE
+
 // *** ROUTES ***
 //This route returns the products list
 routerProducts.get('/', async (req, res) => {
@@ -17,7 +19,8 @@ routerProducts.get('/', async (req, res) => {
         res.json({
             message: 'Lista de productos ',
             products: array,
-            bool: isAdmin
+            bool: isAdmin,
+            whichDb: whichDb
         });
     }
     catch (error) {
@@ -39,7 +42,8 @@ routerProducts.get('/:id', async (req, res) => {
             res.json({
                 message: 'Producto encontrado',
                 product: producto,
-                bool: isAdmin
+                bool: isAdmin,
+                whichDb: whichDb
             })
         } else {
             res.json({
@@ -82,7 +86,8 @@ routerProducts.post('/', async (req, res) => {
                         message: "Producto incorporado",
                         product: producto,
                         bool: isAdmin,
-                        theProductId: theProductId
+                        theProductId: theProductId,
+                        whichDb: whichDb
                     })
                 }
                 catch (error) {
@@ -170,7 +175,8 @@ routerProducts.put('/:id', async (req, res) => {
                             await Products.saveArray(array);
                             res.json({
                                 message: 'Modificacion exitosa',
-                                product: array
+                                product: array,
+                                whichDb: whichDb
                             })
                         }
                         catch (error) {
@@ -193,7 +199,8 @@ routerProducts.put('/:id', async (req, res) => {
                         await Products.modifyById(id, searchedProduct);
                         res.json({
                             message: 'Modificacion exitosa',
-                            product: array
+                            product: array,
+                            whichDb: whichDb
                         })
                     }
                     catch (error) {
@@ -237,7 +244,8 @@ routerProducts.delete('/:id', async (req, res) => {
             } else {
                 res.json({
                     message: "El producto ha sido eliminado",
-                    product: removedProduct
+                    product: removedProduct,
+                    whichDb: whichDb
                 })
             }
         }

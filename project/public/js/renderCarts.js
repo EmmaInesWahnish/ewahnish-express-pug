@@ -44,6 +44,12 @@ const renderCarts = (cartNumber) => {
                     case 'FIREBASE':
                         productos = carrito.productos;
                         break;
+                    case 'MARIADB':
+                        productos = JSON.parse(carrito[0].productos);
+                        break;
+                    case 'SQL':
+                        productos = JSON.parse(carrito[0].productos);
+                        break;
                     default:
                         productos = carrito.productos;
                         break;

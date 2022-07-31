@@ -127,6 +127,31 @@ class SqlContainer {
 
     }
 
+    async deleteProdById(id, id_prod, indexp, productArray) {
+        console.log("The id ", id)
+        console.log("Id_prod ", id_prod)
+        try {
+            const element = await this.getById(id)
+
+            console.log(element)
+
+            const timestamp = element[0].timestamp;
+
+            let removedProduct = productArray.splice(indexp, 1);
+
+            const modifiedCart = {
+                id: id,
+                timestamp: timestamp,
+                productos: JSON.stringify(productArray),
+            }
+
+            this.modifyById(id, modifiedCart)
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 }
 
 export default SqlContainer;

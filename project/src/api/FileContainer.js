@@ -97,7 +97,7 @@ class AnyContainer {
         }
     }
 
-    async deleteProdById(id, id_prod) {
+    async deleteProdById(id, id_prod, indexp, productArray) {
         try {
             const elements = await this.getAll()
 
@@ -114,8 +114,6 @@ class AnyContainer {
                 timestamp: elements[whichId].timestamp,
                 productos: productArray,
             }
-
-            if (productArray.length === 0)
 
             if (whichId !== -1) {
                 let modifiedObject = elements.splice(whichId, 1, modifiedCart);
