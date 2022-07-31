@@ -43,8 +43,8 @@ const renderProducts = (productId) => {
 
                 cards.setAttribute('class', 'flex-container-card')
 
-                cards.innerHTML = `<div>
-                                    <div id=${productId} class="card-header big_id center" width="300px" >
+                cards.innerHTML = `<div class="center">
+                                    <div id=${productId} class="card-header big_id" width="300px" >
                                         <h6>${product.id}</h6>
                                         <h5>${product.codigo}</h5>
                                         <h5><i>${product.nombre}</i></h5> 
@@ -54,8 +54,7 @@ const renderProducts = (productId) => {
                                         <div class"pictures">
                                             <img src='${product.foto}'
                                         <div>     
-                                    </div>
-                                    <div id=${product.id + 'A'}></div>`
+                                    </div>`
 
                 cardContainer.appendChild(cards);
             }
