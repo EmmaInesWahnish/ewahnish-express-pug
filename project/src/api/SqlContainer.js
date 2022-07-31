@@ -31,6 +31,9 @@ class SqlContainer {
     async save(item) {
         try {
             await this.myDbConnection(this.myTable).insert(item);
+            const array = await this.getAll();
+            theProductId = array[array.length - 1].id;
+            return theProductId;
         }
         catch (e) {
             console.log(e);
