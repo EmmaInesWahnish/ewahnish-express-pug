@@ -59,7 +59,7 @@ class AnyContainer {
         try {
             const elements = await this.getAll()
 
-            const whichId = elements.findIndex(element => element.id === id);
+            const whichId = elements.findIndex(element => element.id == id);
 
             if (whichId !== -1) {
                 let removedObject = [];
@@ -81,7 +81,7 @@ class AnyContainer {
         try {
             const elements = await this.getAll()
 
-            const whichId = elements.findIndex(element => element.id === id);
+            const whichId = elements.findIndex(element => element.id == id);
 
             if (whichId !== -1) {
                 let modifiedObject = elements.splice(whichId, 1, item);

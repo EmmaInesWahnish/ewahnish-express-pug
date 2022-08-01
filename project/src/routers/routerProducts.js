@@ -68,7 +68,7 @@ routerProducts.post('/', async (req, res) => {
         })
     } else {
         let receive = req.body;
-        let producto = [{
+        let producto = {
             timestamp: Date.now(),
             nombre: receive.nombre,
             descripcion: receive.descripcion,
@@ -76,7 +76,7 @@ routerProducts.post('/', async (req, res) => {
             foto: receive.foto,
             precio: receive.precio,
             stock: receive.stock
-        }]
+        }
         if (producto) {
             try {
                 const theProductId = await Products.save(producto);
