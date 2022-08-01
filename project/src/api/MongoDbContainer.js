@@ -36,7 +36,8 @@ class MongoDbContainer {
             await this.TheModel.create(item);
             try {
                 const items = await this.TheModel.find({}).sort({_id: -1}).limit(1);
-                const theProductId = items._id;
+                const theProductId = items[0]._id;
+                console.log("In mongodb container id ", theProductId)
                 return theProductId              
             }
             catch(e) {
