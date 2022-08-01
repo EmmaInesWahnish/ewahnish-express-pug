@@ -23,9 +23,9 @@ class AnyContainer {
     async save(object) {
         try { 
             const elements = await this.getAll()                                    
-            const newID = elements.length === 0 ? 1 : elements[elements.length - 1].id + 1
+            const theProductId = elements.length === 0 ? 1 : elements[elements.length - 1].id + 1
             
-            object.id = newID
+            object.id = theProductId
 
             elements.push(object)
 
@@ -34,7 +34,7 @@ class AnyContainer {
             await fs.promises.writeFile(this.anyFile, fileData)
 
 
-            return newID
+            return theProductId
         } catch (error) {
             console.log(error)
             return error

@@ -14,7 +14,8 @@ const addOneProduct = (addedProduct) => {
         const data = await res.json();
         let productId
         const theProductId = data.theProductId;
-        if (data.product[0].id === undefined){
+        let whichDb = data.whichDb
+        if ( whichDb != 'MONGODB'){
             productId = theProductId;
         }
         else {
