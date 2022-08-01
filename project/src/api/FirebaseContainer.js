@@ -122,7 +122,7 @@ class FirebaseContainer {
 
             console.log(element)
 
-            const timestamp = element[0].timestamp;
+            const timestamp = element.timestamp;
 
             let removedProduct = productArray.splice(indexp, 1);
 

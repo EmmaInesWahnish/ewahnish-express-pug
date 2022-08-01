@@ -816,5 +816,134 @@
             "cantidad": 1
          }
       ]
+   },
+   {
+      "id": 61,
+      "timestamp": 1659312461238,
+      "productos": [
+         {
+            "id": 2,
+            "timestamp": 1656710054455,
+            "nombre": "Maquina de Pintar",
+            "descripcion": "Maquina de pintar con compresor",
+            "codigo": "NN-00-01",
+            "foto": "/images/maquina-de-pintar.jpeg",
+            "precio": 5880,
+            "stock": 50,
+            "cantidad": 1
+         },
+         {
+            "id": 1,
+            "timestamp": 1656710054455,
+            "nombre": "Pistola de Calor",
+            "descripcion": "Pistola de calor Black & Decker",
+            "codigo": "BD-00-01",
+            "foto": "/images/pistola-de-calor.jpeg",
+            "precio": 4670,
+            "stock": 100,
+            "cantidad": 1
+         }
+      ]
+   },
+   {
+      "id": 62,
+      "timestamp": 1659312730218,
+      "productos": [
+         {
+            "id": 4,
+            "timestamp": 1656710054455,
+            "nombre": "Set de Destornilladores",
+            "descripcion": "Set de destornilladores Bahco",
+            "codigo": "SD-00-01",
+            "foto": "/images/set-destornilladores.jpeg",
+            "precio": 3570,
+            "stock": 150,
+            "cantidad": 1
+         },
+         {
+            "id": 5,
+            "timestamp": 1656710054455,
+            "nombre": "Caja de herramientas",
+            "descripcion": "Caja de herramientas Carro 47 x 27",
+            "codigo": "CH-00-01",
+            "foto": "/images/caja-herramientas-carro.jpeg",
+            "precio": 4670,
+            "stock": 100,
+            "cantidad": 1
+         }
+      ]
+   },
+   {
+      "id": 63,
+      "timestamp": 1659312829149,
+      "productos": [
+         {
+            "id": 8,
+            "timestamp": 1656710054455,
+            "nombre": "Triangulo Baliza",
+            "descripcion": "Triangulo baliza led portatil",
+            "codigo": "BA-00-01",
+            "foto": "/images/triangulo-baliza.jpeg",
+            "precio": 1100,
+            "stock": 200,
+            "cantidad": 1
+         },
+         {
+            "id": 9,
+            "timestamp": 1656710054455,
+            "nombre": "Baliza rotativa",
+            "descripcion": "Baliza rotativa giratoria imantada 12v",
+            "codigo": "BG-00-01",
+            "foto": "/images/baliza-giratoria.jpeg",
+            "precio": 1390,
+            "stock": 50,
+            "cantidad": 1
+         }
+      ]
+   },
+   {
+      "id": 64,
+      "timestamp": 1659312871538,
+      "productos": [
+         {
+            "id": 15,
+            "timestamp": 1656710054455,
+            "nombre": "Sopladora",
+            "descripcion": "Sopladora Luqstoff",
+            "codigo": "BD-00-01",
+            "foto": "/images/sopladora.jpeg",
+            "precio": 10987,
+            "stock": 100,
+            "cantidad": 1
+         },
+         {
+            "id": 14,
+            "timestamp": 1656710054455,
+            "nombre": "Bomba Centrifuga",
+            "descripcion": "Bomba centrifuga 1/2 Hp Fluvial",
+            "codigo": "BC-00-01",
+            "foto": "/images/bomba-centrifuga.jpeg",
+            "precio": 12800,
+            "stock": 100,
+            "cantidad": 1
+         }
+      ]
+   },
+   {
+      "id": "65",
+      "timestamp": 1659313442559,
+      "productos": [
+         {
+            "id": 11,
+            "timestamp": 1656710054455,
+            "nombre": "Cargador de bateria",
+            "descripcion": "Cargador de bateria apto para auto moto y cuatriciclo",
+            "codigo": "CB-00-01",
+            "foto": "/images/cargador-bateria.jpeg",
+            "precio": 5100,
+            "stock": 100,
+            "cantidad": 1
+         }
+      ]
    }
 ]
