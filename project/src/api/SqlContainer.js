@@ -29,10 +29,13 @@ class SqlContainer {
     }
 
     async save(item) {
+        const connection = this.myDbConnection
+        const theTable = this.myTable
+        let theProductId = ''
         try {
-            await this.myDbConnection(this.myTable).insert(item);
+            await connection(theTable).insert(item);
             const array = await this.getAll();
-            theProductId = array[array.length - 1].id;
+            (array.length === 0)? theProductId = 0: theProductId = array[array.length - 1].id;
             return theProductId;
         }
         catch (e) {
@@ -112,21 +115,7 @@ class SqlContainer {
         }
 
     }
-
-    async updateJsonType(myId, myJsonArray) {
-        try {
-            this.myDbConnection.table(this.myTable)
-            .where({id: myId})
-            .update({productos: JSON.stringify(myJsonArray)});
-            await this.save(object)
-
-        } catch (error) {
-            console.log(error)
-            return error
-        }
-
-    }
-
+    
     async deleteProdById(id, id_prod, indexp, productArray) {
         console.log("The id ", id)
         console.log("Id_prod ", id_prod)
