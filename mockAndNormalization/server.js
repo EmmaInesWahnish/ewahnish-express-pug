@@ -1,3 +1,4 @@
+const { knex } = require('./options/mariaDB.js');
 const { knexSqLite } = require('./options/mySqlite3.js');
 const DbContainer = require('./DbContainer/DbContainer.js');
 const express = require('express');
@@ -10,7 +11,8 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 
 const Messages = new DbContainer(knexSqLite, 'messages');
-const Products = new ProductsDao();
+const Products = new DbContainer(knex, 'productos');
+const ProductsTest = new ProductsDao();
 
 let list = [];
 let productos = [];
@@ -119,17 +121,30 @@ const addToMessageList = async (msg) => {
     return list;
 }
 
+app.get('/productos_test', async (req, res) => {
+    let generated_products = []
+    try {
+        generated_products = await ProductsTest.populate(req.query.cant);
+        console.log(generated_products);
+        res.render('products.hbs', { generated_products })
+    }
+
+    catch (error) {
+        console.log(error)
+    }
+})
+
 app.get('/populate', async (req, res) => {
-try {
-    const generated_products = await Products.populate(req.query.cant);
-    res.json({
-        message: 'Productos ',
-        products: generated_products,
-    });
-}
-catch(error){
-    console.log(error)
-}
+    try {
+        const generated_products = await ProductsTest.populate(req.query.cant);
+        res.json({
+            message: 'Productos ',
+            products: generated_products,
+        });
+    }
+    catch (error) {
+        console.log(error)
+    }
 })
 
 const port = process.env.PORT || 3000;

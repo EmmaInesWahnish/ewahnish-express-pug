@@ -5,11 +5,17 @@ class ProductsDao extends MemoryContainer {
     constructor() { super()};
     
     populate(quantity=10) {
-        const newProducts = []
+        let newProducts = []
         for(let i=0; i < quantity; i++ ){
             this.save(generateProduct())
-            newProducts.push(generateProduct())
         }
+        try {
+            newProducts = this.getAll();
+        } 
+        catch(error){
+            console.log(error)
+        }
+
         return newProducts
     }
 }
