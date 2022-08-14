@@ -1,9 +1,9 @@
-const { knex } = require('./options/mariaDB.js');
-const { knexSqLite } = require('./options/mySqlite3.js');
-const DbContainer = require('./DbContainer/DbContainer.js');
+const { knex } = require('./src/options/mariaDB.js');
+const { knexSqLite } = require('./src/options/mySqlite3.js');
+const DbContainer = require('./src/api/DbContainer.js');
 const express = require('express');
 const handlebars = require('express-handlebars');
-const ProductsDao = require('./daos/ProductsDao.js')
+const ProductsDao = require('./src/daos/ProductsDao.js')
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
@@ -17,9 +17,10 @@ const ProductsTest = new ProductsDao();
 let list = [];
 let productos = [];
 
-app.use(express.static('./public'))
+app.use(express.static("./public"))
 app.use(express.urlencoded({ extended: true }))
 
+console.log(__dirname)
 app.engine('hbs',
     handlebars.engine({
         extname: '.hbs',
