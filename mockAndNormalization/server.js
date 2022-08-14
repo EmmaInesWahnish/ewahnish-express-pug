@@ -3,7 +3,7 @@ const { knexSqLite } = require('./src/options/mySqlite3.js');
 const DbContainer = require('./src/api/DbContainer.js');
 const express = require('express');
 const handlebars = require('express-handlebars');
-const ProductsDao = require('./src/daos/ProductsDao.js')
+const routerTestProducts = require('./src/routers/routerTestProducts.js')
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
@@ -12,7 +12,6 @@ const io = new Server(server);
 
 const Messages = new DbContainer(knexSqLite, 'messages');
 const Products = new DbContainer(knex, 'productos');
-const ProductsTest = new ProductsDao();
 
 let list = [];
 let productos = [];
@@ -34,6 +33,8 @@ app.engine('hbs',
 app.set('view engine', 'hbs');
 app.set('views', './public/views');
 app.set('view engine', 'html');
+
+app.use('/api/productos_test', routerTestProducts);
 
 app.get('/', async (req, res) => {
 
@@ -121,32 +122,6 @@ const addToMessageList = async (msg) => {
     }
     return list;
 }
-
-app.get('/productos_test', async (req, res) => {
-    let generated_products = []
-    try {
-        generated_products = await ProductsTest.populate(req.query.cant);
-        console.log(generated_products);
-        res.render('products.hbs', { generated_products })
-    }
-
-    catch (error) {
-        console.log(error)
-    }
-})
-
-app.get('/populate', async (req, res) => {
-    try {
-        const generated_products = await ProductsTest.populate(req.query.cant);
-        res.json({
-            message: 'Productos ',
-            products: generated_products,
-        });
-    }
-    catch (error) {
-        console.log(error)
-    }
-})
 
 const port = process.env.PORT || 3000;
 server.listen(port, () => {
