@@ -4,7 +4,8 @@ const generateProduct = require('../js/generatePoduct.js')
 class ProductsDao extends MemoryContainer {
     constructor() { super()};
     
-    populate(quantity=10) {
+    populate(quantity=5) {
+        this.deleteAll();
         let newProducts = []
         for(let i=0; i < quantity; i++ ){
             this.save(generateProduct())

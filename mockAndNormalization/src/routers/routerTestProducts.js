@@ -10,12 +10,13 @@ routerTestProducts.get('/', async (req, res) => {
     let generated_products = []
     try {
         generated_products = await ProductsTest.populate(req.query.cant);
-        console.log(generated_products);
-        res.render('products.hbs', { generated_products })
+        res.render('products.hbs', { generated_products })        
     }
-
     catch (error) {
-        console.log(error)
+        res.json({
+            message: 'No se ha podido recuperar la lista de items de prueba',
+            error: error
+        })
     }
 })
 

@@ -34,7 +34,7 @@ app.set('view engine', 'hbs');
 app.set('views', './public/views');
 app.set('view engine', 'html');
 
-app.use('/api/productos_test', routerTestProducts);
+app.use('/api/productos-test', routerTestProducts);
 
 app.get('/', async (req, res) => {
 
