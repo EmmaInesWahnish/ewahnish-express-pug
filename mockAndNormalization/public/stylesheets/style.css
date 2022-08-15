@@ -857,9 +857,10 @@ i {
   left: 0;
   right: 0;
   display: flex;
-  height: 3rem;
+  height: 9rem;
   box-sizing: border-box;
   backdrop-filter: blur(10px);
+  overflow: scroll;
 }
 
 .input {
@@ -868,6 +869,16 @@ i {
   flex-grow: 1;
   border-radius: 2rem;
   margin: 0.25rem;
+  width: 30%;
+}
+
+.inputl {
+  border: none;
+  padding: 0 1rem;
+  flex-grow: 1;
+  border-radius: 2rem;
+  margin: 0.25rem;
+  width: 93%;
 }
 
 .input:focus {
