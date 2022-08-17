@@ -1,4 +1,4 @@
-import envs from '../../dotenvConfig.js';
+const envs = require('../../dotenvConfig.js');
 const URL = envs.URL;
 class MongoDbContainer {
 
@@ -152,4 +152,4 @@ class MongoDbContainer {
 
 }
 
-export default MongoDbContainer;
+module.exports = MongoDbContainer;
