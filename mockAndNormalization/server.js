@@ -1,8 +1,11 @@
-const { knex } = require('./src/options/mariaDB.js');
+//const { knex } = require('./src/options/mariaDB.js');
 const { knexSqLite } = require('./src/options/mySqlite3.js');
-const DbContainer = require('./src/api/DbContainer.js');
+const ProductsDaoMongoDb = require('./src/daos/ProductDaoMongoDb.js');
+const DbContainer = require('./src/api/DbContainer.js')
 const express = require('express');
-const handlebars = require('express-handlebars');
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
+const hbs = require('express-handlebars');
+const Handlebars = require('handlebars');
 const routerTestProducts = require('./src/routers/routerTestProducts.js')
 const app = express();
 const http = require('http');
@@ -11,7 +14,7 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 
 const Messages = new DbContainer(knexSqLite, 'messages');
-const Products = new DbContainer(knex, 'productos');
+const Products = new ProductsDaoMongoDb();
 
 let list = [];
 let productos = [];
@@ -19,11 +22,11 @@ let productos = [];
 app.use(express.static("./public"))
 app.use(express.urlencoded({ extended: true }))
 
-console.log(__dirname)
 app.engine('hbs',
-    handlebars.engine({
+    hbs.engine({
         extname: '.hbs',
         defaultLayout: 'main.hbs',
+        handlebars: allowInsecurePrototypeAccess(Handlebars),
         layoutsDir: __dirname + '/public/views/layouts/', //ruta a la plantilla principal
         partialsDir: __dirname + '/public/views/partials/' //ruta a los parciales
     })
