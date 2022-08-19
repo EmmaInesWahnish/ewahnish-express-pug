@@ -920,3 +920,11 @@ i {
 .noDisplay {
   display: none;
 }
+
+.avatar {
+  margin-right: 0.5rem;
+  border-radius: 100%;
+  overflow: hidden;
+  width: 3em;
+  height: 3em;
+}
