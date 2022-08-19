@@ -95,7 +95,7 @@ function addProduct(e) {
                         ${data.price}
                     </td> 
                     <td>
-                        <img src="${data.thumbnail}" >
+                        <img class="product_picture" src="${data.thumbnail}" >
                     </td>
                 <tr>`;
     productTable.appendChild(where);
