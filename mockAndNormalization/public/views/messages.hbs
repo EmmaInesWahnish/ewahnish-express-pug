@@ -1,0 +1,29 @@
+{{>_buttonGroup}}
+
+<body>
+    <div class="bg-light m-5" width="80%">
+        <h1 class="text-primary">Centro de mensajes</h1>
+        <ul id="messages"></ul>
+        <div>
+        {{>_messageTest}}
+        </div>
+        <form id="form" action="">
+            <div width="auto">
+                <div>
+                    <input class="input" type="email" id="username" value="e@w" required />
+                    <input class="input" type="text" id="name" autocomplete="off" placeholder="Nombre " />
+                    <input class="input" type="text" id="last_name" value="Apellido" required />
+                    <input class="input" type="number" id="age" autocomplete="off" placeholder="Edad " />
+                    <input class="input" type="text" id="nickname" value="Alias" required />
+                    <input class="input" type="text" id="avatar" autocomplete="off" placeholder="Imagen" />
+                </div>
+                <div>
+                    <input class="inputl" type="text" id="message" autocomplete="off" placeholder="Mensaje" />
+                </div>
+                <div>
+                    <button class="btn-primary" type="submit">Enviar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>

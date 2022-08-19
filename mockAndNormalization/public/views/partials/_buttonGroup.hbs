@@ -1,6 +1,7 @@
 <div class="bg-primary">
     <button onclick="goHome()" type="button" class="btn btn-primary">Home</button>
     <button onclick="gotoProducts()" type="button" class="btn btn-primary">Productos de Prueba</button>
+    <button onclick="gotoMessages()" type="button" class="btn btn-primary">Mensajes de Prueba</button>
     <!--    <button onclick="emptyMessages()" type="button" class="noDisplay btn btn-primary">Eliminar Mensajes</button>
     <button onclick="emptyProducts()" type="button" class="noDisplay btn btn-primary">Eliminar Productos</button>-->
 </div>
@@ -14,5 +15,11 @@
     function gotoProducts() {
         let port = location.port;
         location.replace(`http://localhost:${port}/api/productos-test`)
+    }
+</script>
+<script>
+    function gotoMessages() {
+        let port = location.port;
+        location.replace(`http://localhost:${port}/api/mensajes-test`)
     }
 </script>

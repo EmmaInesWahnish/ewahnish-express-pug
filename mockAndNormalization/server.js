@@ -6,7 +6,8 @@ const express = require('express');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 const hbs = require('express-handlebars');
 const Handlebars = require('handlebars');
-const routerTestProducts = require('./src/routers/routerTestProducts.js')
+const routerTestProducts = require('./src/routers/routerTestProducts.js');
+const routerTestMessages = require('./src/routers/routerTestMessages.js');
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
@@ -38,6 +39,7 @@ app.set('views', './public/views');
 app.set('view engine', 'html');
 
 app.use('/api/productos-test', routerTestProducts);
+app.use('/api/mensajes-test', routerTestMessages);
 
 app.get('/', async (req, res) => {
 
