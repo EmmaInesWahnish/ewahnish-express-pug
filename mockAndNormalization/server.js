@@ -1,7 +1,8 @@
 //const { knex } = require('./src/options/mariaDB.js');
 const { knexSqLite } = require('./src/options/mySqlite3.js');
 const ProductsDaoMongoDb = require('./src/daos/ProductDaoMongoDb.js');
-const DbContainer = require('./src/api/DbContainer.js')
+const DbContainer = require('./src/api/DbContainer.js');
+const ChatDaoMongoDb = require('./src/daos/ChatDaoMongoDb.js');
 const express = require('express');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 const hbs = require('express-handlebars');
@@ -14,13 +15,13 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-const Messages = new DbContainer(knexSqLite, 'messages');
+const Messages = new ChatDaoMongoDb();
 const Products = new ProductsDaoMongoDb();
 
 let list = [];
 let productos = [];
 
-app.use(express.static("./public"))
+app.use(express.static("public"))
 app.use(express.urlencoded({ extended: true }))
 
 app.engine('hbs',
@@ -119,8 +120,9 @@ app.get('/productos', async (req, res) => {
 });
 
 const addToMessageList = async (msg) => {
+    
     try {
-        await Messages.saveLine(msg);
+        await Messages.save(msg);
     }
     catch (error) {
         console.log(error)

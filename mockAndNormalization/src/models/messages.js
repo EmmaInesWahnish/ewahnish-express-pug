@@ -13,7 +13,7 @@ const MessageSchema = new Schema({
         alias: { type: String, required: false},
         avatar: { type: Number, required: false },
     },
-    text: { type: String, required: true, max: 100 },
+    text: { type: String, required: true},
 })
 
 MessageSchema.virtual('id').get(function () {

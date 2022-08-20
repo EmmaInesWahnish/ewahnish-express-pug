@@ -6,7 +6,6 @@ class MessagesDao extends MemoryContainer {
     
     populate(quantity=5) {
         this.deleteAll();
-        console.log('in populate >>>>> 01')
         let newMessages = [];
         for(let i=0; i < quantity; i++ ){
             this.save(generateMessage())

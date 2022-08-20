@@ -1,11 +1,11 @@
 
 const mongoose = require('mongoose');
 const envs = require('../../dotenvConfig.js')
-const ChatModel = require("../../../src/Models/products.js");
+const MessageModel = require('../models/messages.js');
 const MongoDbContainer = require('../api/MongoDbContainer.js');
 
 const URL = envs.URL.toString();
-const TheModel = ChatModel;
+const TheModel = MessageModel;
 
 const connectToDb = async () => {
     try {

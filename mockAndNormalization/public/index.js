@@ -4,7 +4,7 @@ let messages = document.getElementById('messages')
 let form = document.getElementById('form');
 let productForm = document.getElementById('productForm')
 let input = document.getElementById('input');
-let username = document.getElementById('username');
+let email = document.getElementById('email');
 
 form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -12,7 +12,7 @@ form.addEventListener('submit', function (e) {
     if (input.value) {
         socket.emit('chat message', message);
         input.value = '';
-        username.value = 'ewahnish@gmail.com';
+        email.value = 'c@m';
     }
 });
 
@@ -52,11 +52,19 @@ socket.on('new product', (msg) => {
 
 function addMessage(e) {
     let today = new Date();
+    let author ={
+        email: document.getElementById("email").value,
+        nombre: document.getElementById("name").value,
+        apellido: document.getElementById("last_name").value,
+        edad: document.getElementById("age").value,
+        alias: document.getElementById("nickname").value,
+        avatar: document.getElementById("avatar").value
+    }
+
     let message = {
-        socketid: socket.id,
-        sender: document.getElementById("username").value,
+        timestamp: today,
+        author: author,
         text: document.getElementById("input").value,
-        timehh: today
     };
     return message
 }
@@ -71,12 +79,14 @@ function addProduct(e) {
 }
 
   function renderMessage(data) {
-    let theDate = (data.timehh).toString().substr(0,10);
-    let theTime = (data.timehh).toString().substr(11,8);
+    console.log(data.author.avatar)
+    let theDateTime = (data.timestamp).toString();
     const where = document.createElement('div')
-    where.innerHTML = `<b>${data.sender}</b> 
-                        <span id="theDate">[${theDate} ${theTime}]</span> 
+    where.innerHTML = `<b>${data.author.email}</b>
+                        <span id="theDate">${theDateTime}</span> 
+                        <span id="name">${data.author.alias}</span> 
                         <i>${data.text}</i>
+                        <img class="avatar" src=${data.author.avatar}/>
                     <div>`;
     messages.appendChild(where);
   }

@@ -43,7 +43,7 @@ body {
   font-family: trebuchet;
   color: #12355B;
   background-color: #EFEFEF;
-  font-size: 1.5em;
+  font-size: 1em;
 }
 
 .isRed {
@@ -857,7 +857,7 @@ i {
   left: 0;
   right: 0;
   display: flex;
-  height: 14rem;
+  height: 8rem;
   box-sizing: border-box;
   backdrop-filter: blur(10px);
   overflow: scroll;
@@ -933,6 +933,6 @@ i {
 .product_picture {
   margin-right: 0.5rem;
   overflow: hidden;
-  width: 3em;
-  height: 3em;
+  width: 2.5em;
+  height: 2.5em;
 }
