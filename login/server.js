@@ -1,7 +1,4 @@
-//const { knex } = require('./src/options/mariaDB.js');
-const { knexSqLite } = require('./src/options/mySqlite3.js');
 const ProductsDaoMongoDb = require('./src/daos/ProductDaoMongoDb.js');
-const DbContainer = require('./src/api/DbContainer.js');
 const ChatDaoMongoDb = require('./src/daos/ChatDaoMongoDb.js');
 const express = require('express');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
@@ -9,6 +6,8 @@ const hbs = require('express-handlebars');
 const Handlebars = require('handlebars');
 const routerTestProducts = require('./src/routers/routerTestProducts.js');
 const routerTestMessages = require('./src/routers/routerTestMessages.js');
+const routerTestMessagesOwner = require('./src/routers/routerTestMessagesOwner.js');
+const routerTestMessagesTable = require('./src/routers/routerTestMessagesTable.js');
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
@@ -21,8 +20,9 @@ const Products = new ProductsDaoMongoDb();
 let list = [];
 let productos = [];
 
-app.use(express.static("./public"))
-app.use(express.urlencoded({ extended: true }))
+app.use(express.static("public"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.engine('hbs',
     hbs.engine({
@@ -41,6 +41,8 @@ app.set('view engine', 'html');
 
 app.use('/api/productos-test', routerTestProducts);
 app.use('/api/mensajes-test', routerTestMessages);
+app.use('/api/mensajes-test-owner', routerTestMessagesOwner);
+app.use('/api/mensajes-test-table', routerTestMessagesTable);
 
 app.get('/', async (req, res) => {
 

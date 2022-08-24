@@ -1,0 +1,46 @@
+{{>_buttonGroup}}
+
+<body>
+    <div class="jumbotron">
+        <h2 class="text-primary">Ingrese producto</h2>
+        <form id="productForm" action="">
+
+            <div class="form-group">
+                <label for="title"><b>Nombre</b></label>
+                <input id="title" class="form-control" type="text" name="title">
+            </div>
+
+            <div class="form-group">
+                <label for="price"><b>Precio</b></label>
+                <input id="price" class="form-control" type="number" name="price">
+            </div>
+
+            <div class="form-group">
+                <label for="thumbnail"><b>Imagen</b></label>
+                <input id="thumbnail" class="form-control" type="text" name="thumbnail">
+            </div>
+
+            <button type="submit" class="btn-success">Enviar</button>
+        </form>
+        {{>_table}}
+        <h2 class="text-primary">Centro de mensajes</h2>
+        <ul id="messages"></ul>
+    </div>
+    <div class="bg-light m-5" width="80%">
+        <form id="form" action="">
+            <div>
+                <input class="input" type="email" id="email" value="c@m" required />
+                <input class="input" type="text" id="name" autocomplete="off" value="Candelaria" placeholder="Nombre" />
+                <input class="input" type="text" id="last_name" value="Ramos" />
+                <input class="input" type="number" id="age" autocomplete="off" value=15 placeholder="Edad" />
+                <input class="input" type="text" id="nickname" value="Cande" />
+                <input class="input" type="text" id="avatar" autocomplete="off" placeholder="Imagen" />
+                <input class="inputl" type="text" id="input" autocomplete="off" placeholder="Mensaje" />
+            </div>
+            <div>
+                <button class="btn-primary" type="submit">Enviar</button>
+            </div>
+        </form>
+    </div>
+    <script src="../index.js"></script>
+</body>

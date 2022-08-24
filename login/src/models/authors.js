@@ -1,29 +1,27 @@
 const mongoose = require("mongoose");
 const { Schema, model } = mongoose
 
-const messageCollection = 'mensajes';
+const authorCollection = 'autores';
 
-const MessageSchema = new Schema({
-    timestamp: { type: Date, required: true },
+const AuthorSchema = new Schema({
     author: {
         email: { type: String, required: true},
         nombre: { type: String, required: false, max: 100 },
         apellido: { type: String, required: false, max: 100 },
         edad: { type: Number, required: false},
         alias: { type: String, required: false},
-        avatar: { type: String, required: false },
+        avatar: { type: Number, required: false },
     },
-    text: { type: String, required: true},
 })
 
-MessageSchema.virtual('id').get(function () {
+AuthorSchema.virtual('id').get(function () {
     return this._id.toHexString();
 });
 
-MessageSchema.set('toJSON', {
+AuthorSchema.set('toJSON', {
     virtuals: true
 });
 
-const MessageModel = model(messageCollection, MessageSchema)
+const AuthorModel = model(authorCollection, AuthorSchema)
 
-module.exports =  MessageModel;
+module.exports =  AuthorModel;
