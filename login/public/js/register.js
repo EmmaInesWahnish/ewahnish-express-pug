@@ -1,11 +1,11 @@
-const form = document.getElementById('loginForm');
+const form = document.getElementById('registerForm');
 
 form.addEventListener('submit', evt => {
     evt.preventDefault();
     let data = new FormData(form);
     let obj = {};
     data.forEach((value, key) => obj[key] = value);
-    fetch('/api/sessions/login', {
+    fetch('/api/sessions/register', {
         method: 'POST',
         body: JSON.stringify(obj),
         headers: {
@@ -14,5 +14,4 @@ form.addEventListener('submit', evt => {
     })
         .then(result => result.json())
         .then(json => console.log(json));
-
 })

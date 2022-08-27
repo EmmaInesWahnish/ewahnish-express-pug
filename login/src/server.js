@@ -67,7 +67,7 @@ app.use('/api/mensajes-test', routerTestMessages);
 app.use('/api/mensajes-test-owner', routerTestMessagesOwner);
 app.use('/api/mensajes-test-table', routerTestMessagesTable);
 app.use('/',viewsRouter);
-app.use('/api/sessions',sessionRouter)
+app.use('/api/sessions',sessionRouter);
 
 app.get('/', async (req, res) => {
 

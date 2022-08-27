@@ -3,10 +3,10 @@
 <body>
     <div class="container mt-3">
         <div class="jumbotron">
-            <h1 style="color:darkblue;">Ingreso</h1>
+            <h1 style="color:darkblue;">Register</h1>
             <br>
 
-            <form action="/login" method="post">
+            <form id="registerForm" >
 
                 <div class="form-group">
                     <label for="email"><b>Email</b></label>
@@ -18,28 +18,25 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password02"><b>Re-type password</b></label>
-                    <input id="password02" class="form-control" type="password" name="password">
-                </div>
-                <div class="form-group">
-                    <label for="first_name"><b>Email</b></label>
+                    <label for="first_name"><b>First Name</b></label>
                     <input id="first_name" class="form-control" type="text" name="first_name">
                 </div>
 
                 <div class="form-group">
-                    <label for="last_name"><b>Password</b></label>
-                    <input id="last_name" class="form-control" type="password" name="last_name">
+                    <label for="last_name"><b>Last Name</b></label>
+                    <input id="last_name" class="form-control" type="text" name="last_name">
                 </div>
 
                 <div class="form-group">
-                    <label for="age"><b>Password</b></label>
+                    <label for="age"><b>Age</b></label>
                     <input id="age" class="form-control" type="number" name="age">
                 </div>
 
-                <button type="submit" class="btn btn-success mt-3 mb-5">Enviar</button>
+                <button type="submit" class="btn btn-success mt-3 mb-5">Submit</button>
             </form>
 
         </div>
     </div>
+    <script src="/js/register.js"></script>
 </body>
 {{>_footer}}

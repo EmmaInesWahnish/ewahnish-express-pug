@@ -6,6 +6,7 @@ router.post('/register',passport.authenticate('register',{failureRedirect:'/api/
     console.log(req.user);
     res.send({status:"success",payload:req.user._id})
 })
+
 router.get('/registerfail',async(req,res)=>{
     console.log("Register failed");
     res.status(500).send({status:"error",error:"Register failed"})

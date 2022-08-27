@@ -3,10 +3,10 @@
 <body>
     <div class="container mt-3">
         <div class="jumbotron">
-            <h1 style="color:darkblue;">Ingreso</h1>
+            <h1 style="color:darkblue;">Log In</h1>
             <br>
 
-            <form action="/login" method="post">
+            <form id="loginForm">
 
                 <div class="form-group">
                     <label for="email"><b>Email</b></label>
@@ -18,10 +18,12 @@
                     <input id="password" class="form-control" type="password" name="password">
                 </div>
 
-                <button type="submit" class="btn btn-success mt-3 mb-5">Enviar</button>
+                <button type="submit" class="btn btn-success mt-3 mb-5">Submit</button>
+
             </form>
 
         </div>
     </div>
+    <script src="/js/login.js"></script>
 </body>
 {{>_footer}}

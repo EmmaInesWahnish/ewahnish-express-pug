@@ -3,6 +3,7 @@ const form = document.getElementById('loginForm');
 form.addEventListener('submit', evt => {
     evt.preventDefault();
     let data = new FormData(form);
+    console.log("In Login Form >>>> ",data);
     let obj = {};
     data.forEach((value, key) => obj[key] = value);
     fetch('/api/sessions/login', {
