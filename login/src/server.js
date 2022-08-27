@@ -1,36 +1,59 @@
-const ProductsDaoMongoDb = require('./src/daos/ProductDaoMongoDb.js');
-const ChatDaoMongoDb = require('./src/daos/ChatDaoMongoDb.js');
+const ProductsDaoMongoDb = require('./daos/ProductDaoMongoDb.js');
+const ChatDaoMongoDb = require('./daos/ChatDaoMongoDb.js');
+const mongoose = require('mongoose');
+const envs = require('../dotenvConfig.js')
 const express = require('express');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 const hbs = require('express-handlebars');
 const Handlebars = require('handlebars');
-const routerTestProducts = require('./src/routers/routerTestProducts.js');
-const routerTestMessages = require('./src/routers/routerTestMessages.js');
-const routerTestMessagesOwner = require('./src/routers/routerTestMessagesOwner.js');
-const routerTestMessagesTable = require('./src/routers/routerTestMessagesTable.js');
+const routerTestProducts = require('./routers/routerTestProducts.js');
+const routerTestMessages = require('./routers/routerTestMessages.js');
+const routerTestMessagesOwner = require('./routers/routerTestMessagesOwner.js');
+const routerTestMessagesTable = require('./routers/routerTestMessagesTable.js');
+const viewsRouter = require('./routers/viewsRouter.js')
+const sessionRouter = require('./routers/sessionRouter.js')
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const store = require('session-file-store');
+const MongoStore = require('connect-mongo');
+const path = require('path');
+
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
+const URL = envs.URL.toString();
 const Messages = new ChatDaoMongoDb();
 const Products = new ProductsDaoMongoDb();
+const connection = mongoose.connect(URL);
 
 let list = [];
 let productos = [];
 
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/../public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(session({
+    store: MongoStore.create({
+        mongoUrl:URL,
+        mongoOptions:{useNewUrlParser:true,useUnifiedTopology:true},
+        ttl:100
+    }),
+    secret:"SecretPhraseRumplestilskin007",
+    resave: false,
+    saveUninitialized: false
+}))
 
 app.engine('hbs',
     hbs.engine({
         extname: '.hbs',
         defaultLayout: 'main.hbs',
         handlebars: allowInsecurePrototypeAccess(Handlebars),
-        layoutsDir: __dirname + '/public/views/layouts/', //ruta a la plantilla principal
-        partialsDir: __dirname + '/public/views/partials/' //ruta a los parciales
+        layoutsDir: __dirname + '/../public/views/layouts/', //ruta a la plantilla principal
+        partialsDir: __dirname + '/../public/views/partials/' //ruta a los parciales
     })
 );
 
@@ -43,6 +66,8 @@ app.use('/api/productos-test', routerTestProducts);
 app.use('/api/mensajes-test', routerTestMessages);
 app.use('/api/mensajes-test-owner', routerTestMessagesOwner);
 app.use('/api/mensajes-test-table', routerTestMessagesTable);
+app.use('/',viewsRouter);
+app.use('/api/sessions',sessionRouter)
 
 app.get('/', async (req, res) => {
 
@@ -106,19 +131,6 @@ io.on('connection', async (socket) => {
 
     });
 
-});
-
-app.get('/productos', async (req, res) => {
-
-    try {
-        productos = await Products.getAll()
-    }
-    catch (error) {
-        console.log(error);
-    }
-
-    console.log(productos)
-    res.render('products.hbs', { productos });
 });
 
 const addToMessageList = async (msg) => {
