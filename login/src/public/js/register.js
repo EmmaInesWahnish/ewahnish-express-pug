@@ -2,16 +2,21 @@ const form = document.getElementById('registerForm');
 
 form.addEventListener('submit', evt => {
     evt.preventDefault();
+
     let data = new FormData(form);
     let obj = {};
     data.forEach((value, key) => obj[key] = value);
-    fetch('/api/sessions/register', {
+    console.log("In register >>>> ", obj)
+    const registerRoute = '/api/sessions/register'
+
+    const requestOptions = {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(obj),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
+    };
+
+    fetch(registerRoute, requestOptions)
         .then(result => result.json())
-        .then(json => console.log(json));
-})
+        .then(json => console.log(json))
+        .catch(err => console.log(err));
+}) 

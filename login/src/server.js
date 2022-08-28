@@ -6,17 +6,10 @@ const express = require('express');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 const hbs = require('express-handlebars');
 const Handlebars = require('handlebars');
-const routerTestProducts = require('./routers/routerTestProducts.js');
-const routerTestMessages = require('./routers/routerTestMessages.js');
-const routerTestMessagesOwner = require('./routers/routerTestMessagesOwner.js');
-const routerTestMessagesTable = require('./routers/routerTestMessagesTable.js');
 const viewsRouter = require('./routers/viewsRouter.js')
 const sessionRouter = require('./routers/sessionRouter.js')
-const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const store = require('session-file-store');
 const MongoStore = require('connect-mongo');
-const path = require('path');
 
 const app = express();
 const http = require('http');
@@ -32,7 +25,7 @@ const connection = mongoose.connect(URL);
 let list = [];
 let productos = [];
 
-app.use(express.static(__dirname + "/../public"));
+app.use(express.static(__dirname+'/public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -40,7 +33,7 @@ app.use(session({
     store: MongoStore.create({
         mongoUrl:URL,
         mongoOptions:{useNewUrlParser:true,useUnifiedTopology:true},
-        ttl:100
+        ttl:3600
     }),
     secret:"SecretPhraseRumplestilskin007",
     resave: false,
@@ -52,34 +45,18 @@ app.engine('hbs',
         extname: '.hbs',
         defaultLayout: 'main.hbs',
         handlebars: allowInsecurePrototypeAccess(Handlebars),
-        layoutsDir: __dirname + '/../public/views/layouts/', //ruta a la plantilla principal
-        partialsDir: __dirname + '/../public/views/partials/' //ruta a los parciales
+        layoutsDir: __dirname + '/views/layouts/', //ruta a la plantilla principal
+        partialsDir: __dirname + '/views/partials/' //ruta a los parciales
     })
 );
 
 //Template engine setting
 app.set('view engine', 'hbs');
-app.set('views', './public/views');
+app.set('views',__dirname+'/views');
 app.set('view engine', 'html');
 
-app.use('/api/productos-test', routerTestProducts);
-app.use('/api/mensajes-test', routerTestMessages);
-app.use('/api/mensajes-test-owner', routerTestMessagesOwner);
-app.use('/api/mensajes-test-table', routerTestMessagesTable);
 app.use('/',viewsRouter);
 app.use('/api/sessions',sessionRouter);
-
-app.get('/', async (req, res) => {
-
-    try {
-        productos = await Products.getAll()
-        res.render('index.hbs', { root: __dirname, productos })
-    }
-    catch (error) {
-        console.log(error);
-    }
-
-})
 
 io.on('connection', async (socket) => {
 

@@ -1,9 +1,11 @@
 const express = require('express');
-const UserModel = require('../models/users.js')
+const usersService = require('../models/Users.js')
+
 const sessionRouter = express.Router();
 
 sessionRouter.post('/register', async (req, res) => {
-    const { first_name, last_name, email, age, password } = req.body;
+    console.log("in session router", req.body)
+    const { email, password, first_name, last_name, age } = req.body;
     if (!first_name || !last_name || !email || !password) return res.status(400).send({ error: "Incomplete values" })
 
     let exists = await usersService.findOne({ email: email });
@@ -16,9 +18,9 @@ sessionRouter.post('/register', async (req, res) => {
         last_name: last_name,
         age: age,
     }
-
+    
     try {
-        const result = await UserModel.create(user);
+        const result = await usersService.create(user);
         res.send({ status: 'success', payload: result })
     } catch (error) {
         res.status(500).send({ error: error })
@@ -26,14 +28,14 @@ sessionRouter.post('/register', async (req, res) => {
 })
 
 sessionRouter.post('/login', async (req, res) => {
-    console.log(req.body);
+    console.log("in sessionRouter ", req.body);
     try {
         const { email, password } = req.body;
         if (!email || !password) return res.status(400).send({ status: "error", error: "Incomplete values" });
-        let exists = await UserModel.findOne({ email: email });
-        if (!exists) return res.status(400).send({ status: "error", error: "User does not exist" });
+        const user = await usersService.findOne({$and:[{email:email},{password:password}]},{first_name:1,last_name:1,email:1});
+        if (!user) return res.status(400).send({ status: "error", error: "User does not exist" });
         req.session.user = user;
-        res.send({ status: "success", payload: user })
+        res.send({status:"success",payload:user})
     } catch (error) {
         res.status(500).send({ error: error })
     }

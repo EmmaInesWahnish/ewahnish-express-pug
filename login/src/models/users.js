@@ -1,26 +1,15 @@
 const mongoose = require("mongoose");
-const { Schema, model } = mongoose
 
-const userCollection = 'users';
+const collection = 'users';
 
-const UserSchema = new Schema({
-    author: {
-        email: { type: String, required: true},
-        password: { type: String, required: true},
-        first_name: { type: String, required: true, max: 100 },
-        last_name: { type: String, required: true, max: 100 },
-        age: { type: Number, required: false},
-    },
+const usersSchema = new mongoose.Schema({
+    email: String,
+    password: String,
+    first_name: String,
+    last_name: String,
+    age: Number
 })
 
-UserSchema.virtual('id').get(function () {
-    return this._id.toHexString();
-});
+const usersService = mongoose.model(collection, usersSchema);
 
-UserSchema.set('toJSON', {
-    virtuals: true
-});
-
-const UserModel = model(userCollection, UserSchema)
-
-module.exports =  UserModel;
+module.exports = usersService;

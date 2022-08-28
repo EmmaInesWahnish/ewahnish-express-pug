@@ -6,6 +6,7 @@ router.get('/',(req,res)=>{
     if(!req.session.user) return res.redirect('/login');
     res.render('home');
 });
+
 router.get('/data',(req,res)=>{
     if(!req.session.user) return res.redirect('/login');
     res.render('data',{user:req.session.user})

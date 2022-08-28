@@ -25,6 +25,7 @@ app.use(session({
     resave:false,
     saveUninitialized:false
 }))
+
 initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
