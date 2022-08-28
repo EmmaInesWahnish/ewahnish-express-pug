@@ -9,7 +9,6 @@ let email = document.getElementById('email');
 form.addEventListener('submit', function (e) {
     e.preventDefault();
     let message = addMessage();
-    console.log("En index ",message)
     if (input.value) {
         socket.emit('chat message', message);
         input.value = '';
@@ -80,7 +79,6 @@ function addProduct(e) {
 }
 
   function renderMessage(data) {
-    console.log("In render message ", data)
     let theDateTime = (data.timestamp).toString();
     const where = document.createElement('div')
     where.innerHTML = `<b>${data.author.email}</b>
@@ -93,8 +91,19 @@ function addProduct(e) {
   }
 
   function signOut(){
-    let port = location.port;
-    location.replace(`http://localhost:${port}/api/sessions/logout`)
+    
+    const loginRoute = '/api/sessions/logout'
+
+    fetch(loginRoute)
+        .then(result => result.json())
+        .then(json => theStatus = json)
+        .finally(() => {
+            if (theStatus.status === 'success') {
+                let port = location.port;
+                location.replace(`http://localhost:${port}/`)
+            }
+        })
+        .catch(err => console.log(err));
   }
 
   function renderProduct(data) {

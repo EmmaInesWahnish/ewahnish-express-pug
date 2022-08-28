@@ -7,7 +7,6 @@ form.addEventListener('submit', evt => {
     let data = new FormData(form);
     let obj = {};
     data.forEach((value, key) => obj[key] = value);
-    console.log("In register >>>> ", obj)
     const loginRoute = '/api/sessions/login'
 
     const requestOptions = {
