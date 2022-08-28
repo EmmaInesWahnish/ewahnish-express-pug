@@ -18,5 +18,9 @@ form.addEventListener('submit', evt => {
     fetch(registerRoute, requestOptions)
         .then(result => result.json())
         .then(json => console.log(json))
+        .finally(() => {
+            let port = location.port;
+            location.replace(`http://localhost:${port}/`)
+        })
         .catch(err => console.log(err));
 }) 

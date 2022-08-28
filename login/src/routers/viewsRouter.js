@@ -23,7 +23,7 @@ viewsRouter.get('/register',(req,res)=>{
 })
 
 viewsRouter.get('/login',(req,res)=>{
-    if(req.session.user) return res.redirect('/');
+    if(req.session.user) return res.redirect('/redirect');
     res.render('loginForm.hbs');
 })
 

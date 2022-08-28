@@ -1,5 +1,7 @@
 const form = document.getElementById('loginForm');
 
+let theStatus = "";
+
 form.addEventListener('submit', evt => {
     evt.preventDefault();
     let data = new FormData(form);
@@ -16,6 +18,18 @@ form.addEventListener('submit', evt => {
 
     fetch(loginRoute, requestOptions)
         .then(result => result.json())
-        .then(json => console.log(json))
+        .then(json => theStatus = json)
+        .finally(() => {
+            if (theStatus.status === 'success') {
+                let port = location.port;
+                location.replace(`http://localhost:${port}/`)
+            }
+            else {
+                let port = location.port;
+                location.replace(`http://localhost:${port}/register`)
+            }
+        })
         .catch(err => console.log(err));
+
+
 }) 

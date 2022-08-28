@@ -92,6 +92,11 @@ function addProduct(e) {
     messages.appendChild(where);
   }
 
+  function signOut(){
+    let port = location.port;
+    location.replace(`http://localhost:${port}/api/sessions/logout`)
+  }
+
   function renderProduct(data) {
     document.getElementById('noHay').innerText ="";
     const productTable = document.getElementById('products')

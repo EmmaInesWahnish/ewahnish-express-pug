@@ -20,6 +20,7 @@ img {
 /*titulos*/
 h1 {
   font-family: trebuchet;
+  color:#2d85e5;
   font-size: 2em;
   text-shadow: 2px 2px 5px grey;
   text-align: center;
@@ -935,4 +936,9 @@ i {
   overflow: hidden;
   width: 2.5em;
   height: 2.5em;
+}
+
+.logoutIcon {
+  font-size: 2em;
+  cursor: pointer;
 }

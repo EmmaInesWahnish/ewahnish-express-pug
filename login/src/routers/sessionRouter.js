@@ -44,7 +44,7 @@ sessionRouter.post('/login', async (req, res) => {
 sessionRouter.get('/logout', async (req, res) => {
     req.session.destroy(err => {
         if (err) return res.status(500).send("error");
-        res.send("ok :)")
+        res.send({status:"success",payload:"Log Out successful"})
     })
 })
 
