@@ -1,0 +1,59 @@
+{{>_buttonGroup}}
+
+<body>
+    <div>
+        <h1 class="p-2" width="100%">Bienvenido/a {{user.first_name}}! 👋
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-box-arrow-right logoutIcon" 
+                onclick="signOut()"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                <path fill-rule="evenodd"
+                    d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+            </svg>
+        </h1>
+    </div>
+    <div class="jumbotron p-2">
+        <h2 class="text-primary">Ingrese producto</h2>
+        <form id="productForm" action="">
+
+            <div class="form-group">
+                <label for="title"><b>Nombre</b></label>
+                <input id="title" class="form-control" type="text" name="title">
+            </div>
+
+            <div class="form-group">
+                <label for="price"><b>Precio</b></label>
+                <input id="price" class="form-control" type="number" name="price">
+            </div>
+
+            <div class="form-group">
+                <label for="thumbnail"><b>Imagen</b></label>
+                <input id="thumbnail" class="form-control" type="text" name="thumbnail">
+            </div>
+
+            <button type="submit" class="btn-success">Enviar</button>
+        </form>
+        {{>_table}}
+        <h2 class="text-primary">Centro de mensajes</h2>
+        <ul id="messages"></ul>
+    </div>
+    <div class="bg-light m-5" width="80%">
+        <form id="form" action="">
+            <div>
+                <input class="input" type="email" id="email" value="c@m" required />
+                <input class="input" type="text" id="name" autocomplete="off" value="Candelaria" placeholder="Nombre" />
+                <input class="input" type="text" id="last_name" value="Ramos" />
+                <input class="input" type="number" id="age" autocomplete="off" value=15 placeholder="Edad" />
+                <input class="input" type="text" id="nickname" value="Cande" />
+                <input class="input" type="text" id="avatar" autocomplete="off" placeholder="Imagen" />
+                <input class="inputl" type="text" id="input" autocomplete="off" placeholder="Mensaje" />
+            </div>
+            <div>
+                <button class="btn-primary" type="submit">Enviar</button>
+            </div>
+        </form>
+    </div>
+    <script src="/js/index.js"></script>
+</body>
