@@ -10,6 +10,8 @@ const viewsRouter = require('./routers/viewsRouter.js')
 const sessionRouter = require('./routers/sessionRouter.js')
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const initializePassport = require('./config/passportConfig.js')
+const passport = require('passport');
 
 const app = express();
 const http = require('http');
@@ -39,6 +41,10 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }))
+
+initializePassport();
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.engine('hbs',
     hbs.engine({
