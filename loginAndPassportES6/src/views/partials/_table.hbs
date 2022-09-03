@@ -1,0 +1,42 @@
+{{#if productos }}
+<h2>Lista de productos</h2>
+<div class="table-responsive">
+    <table id="products" class="table table-dark table-bordered table-striped">
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Imagen</th>
+        </tr>
+        {{#each productos}}
+        <tr>
+            <td>
+                {{this.id}}
+            </td>
+            <td>
+                {{this.title}}
+            </td>
+            <td>
+                {{this.price}}
+            </td>
+            <td>
+                <img class="product_picture" src="{{this.thumbnail}}">
+            </td>
+        </tr>
+        {{/each}}
+    </table>
+</div>
+{{else}}
+<h1 class="text-warning">Lista de productos</h1>
+<div class="table-responsive">
+    <table id="products" class="table table-dark table-bordered table-striped">
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Imagen</th>
+        </tr>
+    </table>
+</div>
+<h3 id="noHay" class="bg-light text-danger">No hay productos</h1>
+{{/if}}
