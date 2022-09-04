@@ -7,6 +7,9 @@ const renderHome = () => {
     document.getElementById('oneProduct').innerHTML = "";
     document.getElementById('myCart').innerText = "";
     document.getElementById('productsInCart').innerHTML = "";
+    document.getElementById('login').innerHTML = "";
+    document.getElementById('register').innerHTML = "";
+    document.getElementById('logout').innerHTML = "";
 
     const homePage = document.getElementById("homePage")
     

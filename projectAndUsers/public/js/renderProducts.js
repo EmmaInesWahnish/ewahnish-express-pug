@@ -23,6 +23,7 @@ const renderProducts = () => {
     document.getElementById('oneProduct').innerHTML = "";
     document.getElementById('myCart').innerText = "";
     document.getElementById('productsInCart').innerHTML = "";
+    document.getElementById('login').innerHTML = "";
 
     const homePage = document.getElementById("homePage")
 
