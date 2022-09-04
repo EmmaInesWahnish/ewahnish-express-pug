@@ -20,7 +20,6 @@ img {
 /*titulos*/
 h1 {
   font-family: trebuchet;
-  color:#12355B;
   font-size: 2em;
   text-shadow: 2px 2px 5px grey;
   text-align: center;
@@ -29,7 +28,6 @@ h1 {
 /*titulos h2 algo mas pequeños*/
 h2 {
   font-family: trebuchet;
-  color:#12355B;
   font-size: 1.8em;
   font-weight: 600;
 }
@@ -37,14 +35,13 @@ h2 {
 /*Subtitulo explicaciones*/
 h4 {
   font-family: trebuchet;
-  color: #2D85E5;
 }
 
 body {
   font-family: trebuchet;
   color: #12355B;
   background-color: #EFEFEF;
-  font-size: 1em;
+  font-size: 1.5em;
 }
 
 .isRed {
@@ -333,17 +330,6 @@ button,
 
 /* flex container*/
 /*fin para listados*/
-.w3-modal-content .form__item__input {
-  display: block;
-  width: 40%;
-  min-height: fit-content;
-  border: 3px;
-  margin: 3px;
-  padding: 5px;
-  border-color: #12355B;
-  border-style: solid;
-}
-
 .form {
   width: auto;
   gap: 5px;
@@ -414,17 +400,6 @@ footer {
   font-family: trebuchet;
   color: lightslategray;
   background-image: linear-gradient(to right, rgba(45, 133, 229, 0), rgb(3, 3, 63));
-}
-
-footerD {
-  display: block;
-  font-size: 1em;
-  margin: 0;
-  padding: 1em;
-  border: #12355B;
-  font-family: trebuchet;
-  color: lightslategray;
-  background-image: linear-gradient(to right, rgba(45, 133, 229, 0), #2d85e5);
 }
 
 /*fin pie de pagina*/
@@ -505,29 +480,7 @@ footerD {
 }
 
 /*finaliza seccion pagina acerca de nosotros*/
-/* Header Modal Explicativo*/
-.header-modal {
-  color: #2D85E5;
-  width: 100%;
-  height: auto;
-  border: 0;
-  background-image: linear-gradient(to right, rgba(45, 133, 229, 0), #2d85e5);
-}
 
-/* Texto Modal Explicativo*/
-.texto-modal {
-  color: #12355B;
-  margin: 5px;
-  border: 5px;
-  padding: 10px;
-}
-
-.modal-content {
-  background-color: transparent;
-  padding: 0;
-}
-
-/*Fin Modal Texto explicativo*/
 /*para listados*/
 .espacio-listado {
   margin: auto;
@@ -578,13 +531,6 @@ table td {
 
 .imgbanner-tipob {
   background-color: #FFAC44;
-}
-
-/*modal-container class*/
-.modal-container {
-  border-color: #2D85E5;
-  padding: 5px;
-  border-style: ridge;
 }
 
 /*userid class*/
@@ -854,7 +800,7 @@ strong, b {
 }
 
 i {
-  color:#2D85E5;
+  color: blue;
 }
 
 #theDate {
@@ -869,10 +815,9 @@ i {
   left: 0;
   right: 0;
   display: flex;
-  height: 8rem;
+  height: 3rem;
   box-sizing: border-box;
   backdrop-filter: blur(10px);
-  overflow: scroll;
 }
 
 .input {
@@ -881,16 +826,6 @@ i {
   flex-grow: 1;
   border-radius: 2rem;
   margin: 0.25rem;
-  width: 30%;
-}
-
-.inputl {
-  border: none;
-  padding: 0 1rem;
-  flex-grow: 1;
-  border-radius: 2rem;
-  margin: 0.25rem;
-  width: 93%;
 }
 
 .input:focus {
@@ -900,9 +835,8 @@ i {
 #form>button {
   border: none;
   padding: 0 1rem;
-  margin: 0.30rem;
-  border-radius: 1.5rem;
-  background-color: #2D85E5;
+  margin: 0.25rem;
+  border-radius: 15px;
   outline: none;
   color: #fff;
 }
@@ -933,22 +867,14 @@ i {
   display: none;
 }
 
-.avatar {
-  margin-right: 0.5rem;
-  border-radius: 100%;
-  overflow: hidden;
-  width: 3em;
-  height: 3em;
-  background-color: blanchedalmond;
+.displayBlock {
+  display:block
 }
 
-.product_picture {
-  margin-right: 0.5rem;
-  overflow: hidden;
-  width: 2.5em;
-  height: 2.5em;
+.toggle-content {
+	display: none;
 }
 
-.logoutIcon {
-  cursor: pointer;
+.toggle-content.is-visible {
+	display: block;
 }
