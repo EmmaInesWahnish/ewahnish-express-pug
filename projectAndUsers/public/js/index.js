@@ -22,6 +22,8 @@ const newLogin = document.getElementById('login_user');
 
 const newRegister = document.getElementById('register_user');
 
+const logoutUser = document.getElementById('logout_user')
+
 const productDetail = document.getElementById('productDetail');
 
 const deleteCart = document.getElementById('deleteCart');
@@ -50,6 +52,10 @@ newRegister.addEventListener('click', () => {
     renderRegisterForm();
 });
 
+logoutUser.addEventListener('click', () => {
+    signOut();
+});
+
 productDetail.addEventListener('click', () => {
     renderModalOneProduct()
 }) 
@@ -60,4 +66,20 @@ deleteCart.addEventListener('click', () => {
 
 listCart.addEventListener('click', () => {
     renderModalOneCart()
-}) 
+})
+
+function signOut(){
+    
+    const loginRoute = '/api/sessions/logout'
+
+    fetch(loginRoute)
+        .then(result => result.json())
+        .then(json => theStatus = json)
+        .finally(() => {
+            if (theStatus.status === 'success') {
+                let port = location.port;
+                location.replace(`http://localhost:${port}/`)
+            }
+        })
+        .catch(err => console.log(err));
+  }

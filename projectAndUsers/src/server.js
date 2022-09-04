@@ -1,7 +1,14 @@
 import express from 'express';
 import routerProducts from './routers/routerProducts.js';
 import routerCart from './routers/routerCart.js';
-import envs from '../dotenvConfig.js'
+import envs from '../dotenvConfig.js';
+import viewsRouter from './routers/viewsRouter.js';
+import sessionRouter from './routers/sessionRouter.js';
+import ChatDaoMongoDb from './daos/ChatDaoMongoDb.js';
+import session from 'express-session';
+import MongoStore from 'connect-mongo';
+import initializePassport from './configurations/passportConfig.js';
+import passport from 'passport';
 
 const app = express();
 
@@ -11,8 +18,28 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 
+const URL = envs.URL.toString();
+const Messages = new ChatDaoMongoDb();
+
+app.use(session({
+    store: MongoStore.create({
+        mongoUrl:URL,
+        mongoOptions:{useNewUrlParser:true,useUnifiedTopology:true},
+        ttl: 600
+    }),
+    secret:"SecretPhraseRumplestilskin007",
+    resave: false,
+    saveUninitialized: false
+}))
+
+initializePassport();
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/api/productos', routerProducts);
 app.use('/api/carrito', routerCart);
+app.use('/',viewsRouter);
+app.use('/api/sessions',sessionRouter);
 
 app.all('*', (req, res) => {
     res.status(404).send({
