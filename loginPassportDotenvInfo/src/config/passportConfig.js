@@ -1,8 +1,7 @@
-import passport from "passport";
-import local from 'passport-local';
-import usersService from '../models/Users.js';
-import { createHash, isValidPassword } from "../utils.js";
-
+const passport = require('passport');
+const local = require('passport-local');
+const usersService = require('../models/Users.js');
+const { createHash, isValidPassword } = require('../utils.js');
 const LocalStrategy = local.Strategy;
 
 const initializePassport = () => {
@@ -51,4 +50,5 @@ const initializePassport = () => {
     })
 
 }
-export default initializePassport;
+
+module.exports = initializePassport;
