@@ -1,3 +1,5 @@
+import renderHome from "./renderHome.js";
+
 const renderregisterForm = () => {
 
     document.getElementById('activeCart').innerHTML = "";
@@ -10,9 +12,9 @@ const renderregisterForm = () => {
     document.getElementById('login').innerHTML = "";
     document.getElementById('register').innerHTML = "";
     document.getElementById('logout').innerHTML = "";
-    
+
     const homePage = document.getElementById("homePage")
-    
+
     let show = function (elem) {
         elem.style.display = 'block';
     };
@@ -58,7 +60,35 @@ const renderregisterForm = () => {
 </form>
 
 </div>`
-registerUser.appendChild(registerForm);  
+
+    registerUser.appendChild(registerForm);
+
+    const form = document.getElementById('registerForm');
+
+    form.addEventListener('submit', evt => {
+        evt.preventDefault();
+
+        let data = new FormData(form);
+        let obj = {};
+        data.forEach((value, key) => obj[key] = value);
+        console.log("In register >>>> ", obj)
+        const registerRoute = '/api/sessions/register'
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(obj),
+        };
+
+        fetch(registerRoute, requestOptions)
+            .then(result => result.json())
+            .then(json => console.log(json))
+            .finally(() => {
+                renderHome()
+            })
+            .catch(err => console.log(err));
+    })
+
 }
 
 export default renderregisterForm;

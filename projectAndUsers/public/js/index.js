@@ -28,7 +28,7 @@ const productDetail = document.getElementById('productDetail');
 
 const deleteCart = document.getElementById('deleteCart');
 
-const listCart =document.getElementById('listCart');
+const listCart = document.getElementById('listCart');
 
 const homePage = document.getElementById('home');
 
@@ -58,28 +58,27 @@ logoutUser.addEventListener('click', () => {
 
 productDetail.addEventListener('click', () => {
     renderModalOneProduct()
-}) 
+})
 
 deleteCart.addEventListener('click', () => {
     renderModalDeleteCart()
-}) 
+})
 
 listCart.addEventListener('click', () => {
     renderModalOneCart()
 })
 
-function signOut(){
-    
-    const loginRoute = '/api/sessions/logout'
+function signOut() {
 
+    const loginRoute = '/api/sessions/logout'
+    let theStatus;
     fetch(loginRoute)
         .then(result => result.json())
         .then(json => theStatus = json)
         .finally(() => {
             if (theStatus.status === 'success') {
-                let port = location.port;
-                location.replace(`http://localhost:${port}/`)
+                renderHome();
             }
         })
         .catch(err => console.log(err));
-  }
+}
