@@ -1,10 +1,10 @@
 
 const mongoose = require('mongoose');
-const envs = require('../config/dotenvConfig.js')
+const config = require('../config/dotenvConfig.js')
 const ProductModel = require("../models/products.js");
 const MongoDbContainer = require('../api/MongoDbContainer.js');
 
-const URL = envs.URL.toString();
+const URL = config.envs.URL.toString();
 const TheModel = ProductModel;
 
 const connectToDb = async () => {

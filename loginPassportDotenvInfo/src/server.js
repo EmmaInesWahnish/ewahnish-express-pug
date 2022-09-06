@@ -1,7 +1,7 @@
 const ProductsDaoMongoDb = require('./daos/ProductDaoMongoDb.js');
 const ChatDaoMongoDb = require('./daos/ChatDaoMongoDb.js');
 const mongoose = require('mongoose');
-const envs = require('./config/dotenvConfig.js')
+const config = require('./config/dotenvConfig.js')
 const express = require('express');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 const hbs = require('express-handlebars');
@@ -19,7 +19,7 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-const URL = envs.URL.toString();
+const URL = config.envs.URL.toString();
 const Messages = new ChatDaoMongoDb();
 const Products = new ProductsDaoMongoDb();
 const connection = mongoose.connect(URL);
@@ -127,7 +127,7 @@ const addToMessageList = async (msg) => {
     return list;
 }
 
-const port = process.env.PORT || 3000;
+const port = config.server.PORT;
 server.listen(port, () => {
     console.log(`Server listening at port ${server.address().port}`);
 });
