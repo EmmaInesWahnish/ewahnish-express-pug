@@ -3,13 +3,34 @@ import express from 'express';
 const viewsRouter = express.Router();
 
 viewsRouter.get('/register',(req,res)=>{
-    if(req.session.user) return res.redirect('/');
-    res.render('registerForm.hbs');
+    if(req.session.user){
+        return res.redirect('/');
+    }
+    else {
+        res.json({
+            message: 'register',
+        });    
+    };
 })
 
 viewsRouter.get('/login',(req,res)=>{
-    if(req.session.user) return res.redirect('/redirect');
-    res.render('loginForm.hbs');
+    if(req.session.user){
+        return res.redirect('/');
+    }
+    else {
+        res.json({
+            message: 'Log',
+        });    
+    };
 })
+
+viewsRouter.get('/', (req, res) => {
+    console.log("In viewsRouter >>>> ", req.session)
+    res.json({
+        status: 'information',
+        user: req.session.user
+    });
+})
+
 
 export default viewsRouter

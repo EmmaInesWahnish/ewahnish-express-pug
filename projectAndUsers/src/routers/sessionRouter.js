@@ -36,4 +36,11 @@ sessionRouter.get('/logout', async (req, res) => {
     })
 })
 
+sessionRouter.get('/', (req, res) => {
+    res.json({
+        status: 'information',
+        user: req.session.user
+    });
+})
+
 export default sessionRouter

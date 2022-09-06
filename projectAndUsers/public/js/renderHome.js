@@ -1,3 +1,4 @@
+import renderLoginForm from './renderLoginForm.js';
 const renderHome = () => {
 
     document.getElementById('activeCart').innerHTML = "";
@@ -19,8 +20,30 @@ const renderHome = () => {
     let hide = function (elem) {
         elem.style.display = 'none';
     };
+    hide(homePage)
+    let session = "";
 
-    show(homePage)
+    const homeRoute = 'http://localhost:8080/api/sessions';
+
+    const requestOptions = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    };
+
+    fetch(homeRoute, requestOptions)
+        .then(result => result.json())
+        .then(json => session = json)
+        .finally(() => {
+            console.log("In render home >>>> ", session)
+            if (session.user) {
+                show(homePage)
+            }
+            else {
+                renderLoginForm();
+            }
+        })
+        .catch(err => console.log(err))
+
 }
 
 export default renderHome;
