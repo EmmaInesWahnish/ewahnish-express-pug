@@ -1,7 +1,7 @@
 import showOneProduct from './showOneProduct.js';
 const modifyOneProduct = (modifiedProduct) => {
 
-    const productRoute = `http://localhost:8080/api/productos/${modifiedProduct.id}`
+    const productRoute = `/api/productos/${modifiedProduct.id}`
 
     console.log("ruta ",productRoute);
 

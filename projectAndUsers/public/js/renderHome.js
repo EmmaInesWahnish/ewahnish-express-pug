@@ -23,7 +23,7 @@ const renderHome = () => {
     hide(homePage)
     let session = "";
 
-    const homeRoute = 'http://localhost:8080/api/sessions';
+    const homeRoute = '/api/sessions';
 
     const requestOptions = {
         method: 'GET',

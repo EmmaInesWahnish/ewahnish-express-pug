@@ -20,7 +20,7 @@ const renderCarts = (cartNumber) => {
 
     hide(homePage)
 
-    const productRoute = `http://localhost:8080/api/carrito/${cartNumber}`
+    const productRoute = `/api/carrito/${cartNumber}`
 
     fetch(productRoute)
         .then(res => res.json())

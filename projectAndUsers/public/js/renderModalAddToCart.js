@@ -11,7 +11,7 @@ const renderModalAddToCart = (product, quantity, cartId) => {
         cantidad: quantity
     }
 
-    const productRoute = `http://localhost:8080/api/carrito/${cartId}/productos`
+    const productRoute = `/api/carrito/${cartId}/productos`
 
     console.log(productRoute);
 

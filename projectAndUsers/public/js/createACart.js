@@ -3,7 +3,7 @@ const createACart = (cart, quantity, product) => {
 
     let cartId = '';
 
-    const productRoute = `http://localhost:8080/api/carrito/`
+    const productRoute = `/api/carrito/`
 
     const requestOptions = {
         method:'POST',

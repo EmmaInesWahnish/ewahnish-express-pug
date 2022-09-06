@@ -1,5 +1,5 @@
 const renderModalDeleteFromCart = (productId, cartId) => {
-    const productRoute = `http://localhost:8080/api/carrito/${cartId}/productos/${productId}`
+    const productRoute = `/api/carrito/${cartId}/productos/${productId}`
 
     console.log(productRoute);
 

@@ -24,7 +24,7 @@ const renderProducts = (productId) => {
 
     hide(homePage)
 
-    const productRoute = `http://localhost:8080/api/productos/${productId}`
+    const productRoute = `/api/productos/${productId}`
 
     console.log(productRoute);
 

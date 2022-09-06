@@ -1,6 +1,6 @@
 const deleteOneProduct = (productId) => {
     console.log(productId)
-    const productRoute = `http://localhost:8080/api/productos/${productId}`
+    const productRoute = `/api/productos/${productId}`
 
     console.log(productRoute);
 

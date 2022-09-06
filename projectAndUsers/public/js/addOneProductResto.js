@@ -1,7 +1,7 @@
 import showOneProduct from './showOneProduct.js'
 const addOneProduct = (addedProduct) => {
 
-    const productRoute = `http://localhost:8080/api/productos/`
+    const productRoute = `/api/productos/`
 
     const requestOptions = {
         method:'POST',
