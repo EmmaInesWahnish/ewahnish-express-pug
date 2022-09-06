@@ -1,4 +1,4 @@
-const envs = require('../../dotenvConfig.js');
+const envs = require('../config/dotenvConfig.js');
 const URL = envs.URL;
 class MongoDbContainer {
 

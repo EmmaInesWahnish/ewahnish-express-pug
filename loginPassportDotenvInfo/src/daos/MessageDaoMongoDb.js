@@ -1,6 +1,6 @@
 
 const mongoose = require('mongoose');
-const envs = require('../../dotenvConfig.js')
+const envs = require('../config/dotenvConfig.js')
 const MessageModel = require("../models/messages.js");
 const MongoDbContainer = require('../api/MongoDbContainer.js');
 
