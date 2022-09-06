@@ -1,3 +1,5 @@
+import renderRegisterForm from './renderRegisterForm.js'
+import renderHome from './renderHome.js'
 const renderLoginForm = () => {
 
     document.getElementById('activeCart').innerHTML = "";
@@ -10,9 +12,9 @@ const renderLoginForm = () => {
     document.getElementById('login').innerHTML = "";
     document.getElementById('register').innerHTML = "";
     document.getElementById('logout').innerHTML = "";
-    
+
     const homePage = document.getElementById("homePage")
-    
+
     let show = function (elem) {
         elem.style.display = 'block';
     };
@@ -46,7 +48,41 @@ const renderLoginForm = () => {
     </form>
 
 </div>`
-loginUser.appendChild(loginForm);  
+
+    loginUser.appendChild(loginForm);
+
+    const form = document.getElementById('loginForm');
+
+    let theStatus = "";
+
+    form.addEventListener('submit', evt => {
+        evt.preventDefault();
+        let data = new FormData(form);
+        let obj = {};
+        data.forEach((value, key) => obj[key] = value);
+        const loginRoute = '/api/sessions/login'
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(obj),
+        };
+
+        fetch(loginRoute, requestOptions)
+            .then(result => result.json())
+            .then(json => theStatus = json)
+            .finally(() => {
+                if (theStatus.status === 'success') {
+                    renderHome();
+                }
+                else {
+                    renderRegisterForm();
+                }
+            })
+            .catch(err => console.log(err))
+
+    })
+
 }
 
 export default renderLoginForm;
