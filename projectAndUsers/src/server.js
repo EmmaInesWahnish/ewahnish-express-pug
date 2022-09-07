@@ -1,7 +1,7 @@
 import express from 'express';
 import routerProducts from './routers/routerProducts.js';
 import routerCart from './routers/routerCart.js';
-import envs from '../dotenvConfig.js';
+import config from './configurations/dotenvConfig.js';
 import viewsRouter from './routers/viewsRouter.js';
 import sessionRouter from './routers/sessionRouter.js';
 import ChatDaoMongoDb from './daos/ChatDaoMongoDb.js';
@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 
-const URL = envs.URL.toString();
+const URL = config.envs.URL.toString();
 const Messages = new ChatDaoMongoDb();
 
 app.use(session({
@@ -49,7 +49,7 @@ app.all('*', (req, res) => {
 })
 
 /* Server Listen */
-const port = envs.PORT;
+const port = config.envs.PORT;
 const server = app.listen(port, () => {
     console.log(`Server http listening at port ${server.address().port}`)
 })

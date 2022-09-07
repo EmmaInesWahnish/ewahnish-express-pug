@@ -34,7 +34,6 @@ const renderHome = () => {
         .then(result => result.json())
         .then(json => session = json)
         .finally(() => {
-            console.log("In render home >>>> ", session)
             if (session.user) {
                 show(homePage)
             }

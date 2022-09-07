@@ -2,6 +2,7 @@ import passport from 'passport';
 import local from 'passport-local';
 import usersService from '../models/Users.js';
 import { createHash, isValidPassword } from '../utils.js';
+import config from './dotenvConfig.js'
 const LocalStrategy = local.Strategy;
 
 const initializePassport = () => {
@@ -27,26 +28,32 @@ const initializePassport = () => {
         }
     }))
 
-    passport.use('login',new LocalStrategy({usernameField:"email"},async(email,password,done)=>{
+    passport.use('login', new LocalStrategy({ usernameField: "email" }, async (email, password, done) => {
         try {
             if (!email || !password) return done(null, false);
+            if ((email === 'admin@mail.com') && (password === config.envs.ADMIN_PWD)) {
+                let user = await usersService.findOne({ email: email });
+                user.isAdmin = true;
+                return done(null, user)
+            }
             let user = await usersService.findOne({ email: email });
-            if (!user) return done(null,false);
-            if (!isValidPassword(user, password)) return done(null,false);
-            return done(null,user)
+            if (!user) return done(null, false);
+            if (!isValidPassword(user, password)) return done(null, false);
+            user.isAdmin = false
+            return done(null, user)
         } catch (error) {
             return done(error)
         }
-    
+
     }))
 
-    passport.serializeUser((user,done)=>{
-        done(null,user._id)
+    passport.serializeUser((user, done) => {
+            done(null, user._id)
     })
 
-    passport.deserializeUser(async(id,done)=>{
-        let result = await usersService.findOne({_id:id})
-        return done(null,result);
+    passport.deserializeUser(async (id, done) => {
+        let result = await usersService.findOne({ _id: id })
+        return done(null, result);
     })
 
 }
