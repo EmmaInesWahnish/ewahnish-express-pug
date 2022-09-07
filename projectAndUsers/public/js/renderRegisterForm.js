@@ -28,7 +28,7 @@ const renderregisterForm = () => {
     const registerUser = document.getElementById('register');
     const registerForm = document.createElement('div');
     registerForm.setAttribute('class', 'jumbotron');
-    registerForm.innerHTML = `<h1 style="color:darkblue;">Log In</h1>
+    registerForm.innerHTML = `<h1 style="color:darkblue;">Registro</h1>
     <br>
     <form id="registerForm" >
 
