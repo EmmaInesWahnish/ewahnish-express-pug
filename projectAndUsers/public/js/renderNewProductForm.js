@@ -1,4 +1,5 @@
 import addOneProduct from './addOneProduct.js'
+import renderHome from './renderHome.js';
 let product = {};
 const renderNewProductForm = () => {
 
@@ -23,6 +24,12 @@ const renderNewProductForm = () => {
     };
 
     hide(homePage)
+
+    fetch('/api/productos/isadmin')
+    .then(res => res.json())
+    .then(data => {
+
+        if (data.bool) {
 
     const newProduct = document.getElementById('newProduct');
     const productForm = document.createElement('div');
@@ -106,7 +113,13 @@ const renderNewProductForm = () => {
       addOneProduct(addedProduct);
   
     })
-  
+
+  } else {
+    alert("Operacion no autorizada")
+    renderHome()
+  }
+})
+
 
 
 }

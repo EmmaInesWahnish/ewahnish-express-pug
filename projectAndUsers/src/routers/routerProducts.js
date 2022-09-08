@@ -7,25 +7,43 @@ import fs from 'fs';
 
 let isAdmin;
 
-(envs.IS_ADMIN === 'true') ? isAdmin = true : isAdmin = false;
-
 let whichDb = envs.APIC_TYPE
 
 // *** ROUTES ***
 //This route returns the products list
 routerProducts.get('/', async (req, res) => {
+    console.log(req.session.user.isAdmin)
     try {
         const array = await Products.getAll();
         res.json({
             message: 'Lista de productos ',
             products: array,
-            bool: isAdmin,
+            bool: req.session.user.isAdmin,
             whichDb: whichDb
         });
     }
     catch (error) {
         res.json({
             message: 'No se ha podido recuperar la lista de productos',
+            error: error
+        })
+    }
+})
+
+//This route returns user information
+routerProducts.get('/isadmin', async (req, res) => {
+    console.log(req.session.user.isAdmin)
+    try {
+        res.json({
+            message: 'Informacion',
+            user: req.session.user,
+            bool: req.session.user.isAdmin,
+            whichDb: whichDb
+        });
+    }
+    catch (error) {
+        res.json({
+            message: 'No se ha podido recuperar informacion',
             error: error
         })
     }
