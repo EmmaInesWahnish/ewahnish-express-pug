@@ -5,15 +5,6 @@ const randomsRouter = express.Router();
 
 randomsRouter.get('/', async (req, res) => {
 
-    process.on('exit', evt => {
-        console.log("Saliendo...")
-        console.log(evt);
-    })
-    process.on('uncaughtException', evt => {
-        console.log("evt", typeof evt);
-        console.log("Excepción no controlada");
-    })
-
     let object = await processRandoms(100);
 
     try {
