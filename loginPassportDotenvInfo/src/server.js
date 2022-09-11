@@ -65,8 +65,6 @@ app.set('view engine', 'html');
 
 app.use('/',viewsRouter);
 app.use('/api/sessions',sessionRouter);
-app.use('/api/info',infoRouter);
-app.use('/api/randoms',randomsRouter);
 
 io.on('connection', async (socket) => {
 
