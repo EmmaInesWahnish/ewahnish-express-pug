@@ -12,7 +12,7 @@ process.on('uncaughtException', evt => {
     }
 })
 let randomNumber = [];
-let randomNoCeros = [];
+let randomNoCeros = {};
 let count=0;
 let sum = 0;
 
@@ -31,9 +31,9 @@ const processRandoms = async (quantity) => {
         }
         for (let i=0; i<1000;i++){
             if (randomNumber[i][`${i+1}`] != 0){
-                randomNoCeros.push(randomNumber[i]);
+                randomNoCeros[`${i+1}`]= randomNumber[i][`${i+1}`];
                 count++;
-                sum = sum + Number(randomNumber[i][`${i+1}`])
+                sum = sum + Number(randomNumber[i][`${i+1}`]);
             }
         }
     console.log(randomNoCeros);
