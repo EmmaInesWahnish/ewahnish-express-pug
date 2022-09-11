@@ -6,11 +6,13 @@ const express = require('express');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 const hbs = require('express-handlebars');
 const Handlebars = require('handlebars');
-const viewsRouter = require('./routers/viewsRouter.js')
-const sessionRouter = require('./routers/sessionRouter.js')
+const viewsRouter = require('./routers/viewsRouter.js');
+const sessionRouter = require('./routers/sessionRouter.js');
+const infoRouter = require('./routers/infoRouter.js');
+const randomsRouter = require('./routers/randomsRouter.js');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-const initializePassport = require('./config/passportConfig.js')
+const initializePassport = require('./config/passportConfig.js');
 const passport = require('passport');
 
 const app = express();
@@ -63,6 +65,8 @@ app.set('view engine', 'html');
 
 app.use('/',viewsRouter);
 app.use('/api/sessions',sessionRouter);
+app.use('/api/info',infoRouter);
+app.use('/api/randoms',randomsRouter);
 
 io.on('connection', async (socket) => {
 
