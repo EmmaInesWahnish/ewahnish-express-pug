@@ -9,8 +9,12 @@ import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import initializePassport from './configurations/passportConfig.js';
 import passport from 'passport';
+import { createServer } from "http";
+import { Server } from "socket.io";
 
 const app = express();
+const httpServer = createServer(app);
+const io = new Server(httpServer);
 
 // this code is necessary for express to understand json format
 app.use(express.json());
@@ -32,6 +36,8 @@ app.use(session({
     saveUninitialized: false
 }))
 
+let list = [];
+
 initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
@@ -47,6 +53,46 @@ app.all('*', (req, res) => {
         message: `404 - ruta no encontrada ${req.path}`
     })
 })
+
+io.on('connection', async (socket) => {
+
+    try {
+        list = await Messages.getAll();
+        for (let msg in list) {
+            socket.emit('old messages', list[msg]);
+        }
+    }
+    catch (error) {
+        console.log(error);
+    }
+
+    io.sockets.emit('new user', `${socket.id} ha ingresado al Centro de Mensajes`);
+
+
+    socket.on('disconnect', () => {
+        io.sockets.emit('new user', `${socket.id} ha abandonado el Centro de mensajes`);
+    });
+
+    socket.on('chat message', (msg) => {
+        io.emit('chat message', msg);
+        addToMessageList(msg)
+    })
+
+
+});
+
+const addToMessageList = async (msg) => {
+    
+    try {
+        await Messages.save(msg);
+    }
+    catch (error) {
+        console.log(error)
+    }
+    return list;
+}
+
+httpServer.listen(3000);
 
 /* Server Listen */
 const port = config.envs.PORT;
