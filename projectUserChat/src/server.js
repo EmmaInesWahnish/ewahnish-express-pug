@@ -11,7 +11,12 @@ import initializePassport from './configurations/passportConfig.js';
 import passport from 'passport';
 import { createServer } from "http";
 import { Server } from "socket.io";
+import cluster from 'node:cluster';
+import http from 'node:http';
+import { cpus } from 'node:os';
+import process from 'node:process';
 
+const numCPUs = cpus().length;
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer);
@@ -97,6 +102,6 @@ httpServer.listen(3000);
 /* Server Listen */
 const port = config.envs.PORT;
 const server = app.listen(port, () => {
-    console.log(`Server http listening at port ${server.address().port}`)
+    console.log(`Server http listening at port ${server.address().port} process id ${process.pid}`)
 })
 server.on('error', error => console.log(`Error en servidor ${error}`))
