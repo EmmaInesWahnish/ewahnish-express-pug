@@ -3,7 +3,6 @@ module.exports = {
     name: "Server1",
     script: "src/server.js",
     watch: true,
-    instance_var: 'INSTANCE_ID',
     env: {
       "PORT": 8081,
       "NODE_ENV": "development",
@@ -13,7 +12,6 @@ module.exports = {
   {
     name: "Server2",
     script: "src/server.js",
-    instance_var: 'INSTANCE_ID',
     watch: true,
     env: {
       "PORT": 8082,
