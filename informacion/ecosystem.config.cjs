@@ -5,9 +5,10 @@ module.exports = {
     watch: true,
     env: {
       "PORT": 8081,
-      "NODE_ENV": "development",
     },
     exec_mode: "fork",
+    args: "-a 2 b 30",
+    node_args: "--harmony --expose-gc",
   },
   {
     name: "Server2",
@@ -15,7 +16,6 @@ module.exports = {
     watch: true,
     env: {
       "PORT": 8082,
-      "NODE_ENV": "development",
     },
     exec_mode: "fork",
   },
@@ -23,13 +23,11 @@ module.exports = {
     name: "Server3",
     script: "src/server.js",
     watch: true,
-    env: {
-      "PORT": 8080,
-      "NODE_ENV": "development",
+    env:{
+      "PORT": 8080, 
     },
     exec_mode: "cluster",
-    instances: 0,
-    args: "-a 2 b 30",
-    node_args: "--expose-gc",
+    node_args: "--harmony --expose-gc",
+    instances: 1,
   }],
 };
