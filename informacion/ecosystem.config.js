@@ -27,7 +27,7 @@ module.exports = {
       "PORT": 8080, 
     },
     exec_mode: "cluster",
+    instances:0,
     node_args: "--harmony --expose-gc",
-    instances: 1,
   }],
 };

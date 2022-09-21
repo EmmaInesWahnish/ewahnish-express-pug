@@ -1,6 +1,6 @@
-import os from 'os';
-import cluster from 'cluster';
-import express from 'express';
+const os = require('os');
+const cluster = require('cluster');
+const express = require('express');
 
 const CPUs = os.cpus().length;
 
