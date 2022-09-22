@@ -12,3 +12,8 @@
 127.0.0.1 - - [22/Sep/2022:11:52:24 -0300] "GET /favicon.ico HTTP/1.1" 404 150 "http://localhost/api/randoms" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
 127.0.0.1 - - [22/Sep/2022:11:52:43 -0300] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
 127.0.0.1 - - [22/Sep/2022:11:52:43 -0300] "GET /socket.io/socket.io.js HTTP/1.1" 404 161 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+127.0.0.1 - - [22/Sep/2022:14:59:39 -0300] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+127.0.0.1 - - [22/Sep/2022:14:59:42 -0300] "GET /socket.io/socket.io.js HTTP/1.1" 404 161 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+127.0.0.1 - - [22/Sep/2022:14:59:42 -0300] "GET /favicon.ico HTTP/1.1" 404 150 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+127.0.0.1 - - [22/Sep/2022:15:00:47 -0300] "GET /api/info HTTP/1.1" 200 62 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+127.0.0.1 - - [22/Sep/2022:15:00:51 -0300] "GET /api/info HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
