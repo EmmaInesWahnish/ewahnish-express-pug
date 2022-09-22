@@ -2,3 +2,4 @@
 2022/09/21 14:46:06 [emerg] 11784#10080: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
 2022/09/21 14:48:17 [emerg] 23256#20952: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
 2022/09/21 14:49:32 [emerg] 21964#23288: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
+2022/09/22 13:55:44 [emerg] 6684#15020: unknown directive "proxy_pass:http://localhost:8082" in C:\Users\ewahn\Documents\ewahnish-express-db\nginx-1.23.1/conf/nginx.conf:30
