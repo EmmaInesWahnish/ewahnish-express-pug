@@ -17,3 +17,8 @@
 127.0.0.1 - - [22/Sep/2022:14:59:42 -0300] "GET /favicon.ico HTTP/1.1" 404 150 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
 127.0.0.1 - - [22/Sep/2022:15:00:47 -0300] "GET /api/info HTTP/1.1" 200 62 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
 127.0.0.1 - - [22/Sep/2022:15:00:51 -0300] "GET /api/info HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+127.0.0.1 - - [22/Sep/2022:15:09:42 -0300] "GET /api/info HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+127.0.0.1 - - [22/Sep/2022:15:11:08 -0300] "GET /api/randoms HTTP/1.1" 200 12404 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+127.0.0.1 - - [22/Sep/2022:15:11:41 -0300] "GET /api/info HTTP/1.1" 200 385 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+127.0.0.1 - - [22/Sep/2022:15:14:53 -0300] "GET /api/anotherRandoms HTTP/1.1" 200 12400 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+127.0.0.1 - - [22/Sep/2022:15:14:58 -0300] "GET /api/randoms HTTP/1.1" 200 12418 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
