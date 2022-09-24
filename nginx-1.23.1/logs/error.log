@@ -3,3 +3,4 @@
 2022/09/21 14:48:17 [emerg] 23256#20952: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
 2022/09/21 14:49:32 [emerg] 21964#23288: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
 2022/09/22 13:55:44 [emerg] 6684#15020: unknown directive "proxy_pass:http://localhost:8082" in C:\Users\ewahn\Documents\ewahnish-express-db\nginx-1.23.1/conf/nginx.conf:30
+2022/09/22 14:59:42 [error] 15796#7560: *1 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: nginx_node_server, request: "GET /socket.io/socket.io.js HTTP/1.1", upstream: "http://127.0.0.1:8082/socket.io/socket.io.js", host: "localhost", referrer: "http://localhost/"
