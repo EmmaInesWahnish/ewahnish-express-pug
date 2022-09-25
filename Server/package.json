@@ -9,8 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "compression": "^1.7.4",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
-    "nodemon": "^2.0.20"
+    "express-winston": "^4.2.0",
+    "nodemon": "^2.0.20",
+    "winston": "^3.8.2"
   }
 }
