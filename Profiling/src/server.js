@@ -1,5 +1,5 @@
-const express = require("express");
-const crypto = require("crypto");
+import express from "express";
+import crypto from "crypto";
 
 const app = express();
 
@@ -9,9 +9,9 @@ app.use(express.static('public'))
 
 const PORT = parseInt(process.argv[2]) || 8080;
 const server = app.listen(PORT, () => {
-  console.log(`Servidor escuchando en el puerto ${PORT}`);
+  console.log(`Listening at port ${PORT}`);
 });
-server.on("error", (error) => console.log(`Error en servidor: ${error}`));
+server.on("error", (error) => console.log(`Error in server : ${error}`));
 
 app.get("/getUsers", (req, res) => {
     res.json({ users })

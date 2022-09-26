@@ -1,6 +1,6 @@
-const express = require('express');
-const cluster = require('cluster');
-const { cpus } = require('os');
+import express from 'express';
+import cluster from 'cluster';
+import { cpus } from 'os';
 
 const PORT = parseInt(process.argv[2]) || 8080
 const modoCluster = process.argv[3] == 'CLUSTER'
