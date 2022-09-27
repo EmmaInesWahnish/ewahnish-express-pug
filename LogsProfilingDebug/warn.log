@@ -1,8 +1,1 @@
-{"level":"error","message":"Insuficient params"}
-{"level":"warn","message":"Convirtiendo a number"}
-{"level":"error","message":"Invalid types"}
-{"level":"error","message":"Invalid types"}
-{"level":"warn","message":"Convirtiendo a number","service":"user-service"}
-{"level":"error","message":"Invalid types","service":"user-service"}
-{"level":"error","message":"Invalid types","service":"user-service"}
-{"level":"warn","message":"Invalid types","service":"user-service","timestamp":"2022-09-27T17:12:01.390Z"}
+{"level":"warn","message":"Invalid types","service":"user-service","timestamp":"2022-09-27T18:10:00.688Z"}
