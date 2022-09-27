@@ -3,3 +3,4 @@
 {"level":"error","message":"Invalid types"}
 {"level":"error","message":"Invalid types","service":"user-service"}
 {"level":"error","message":"Invalid types","service":"user-service"}
+{"level":"error","message":"Insuficient params","service":"user-service","timestamp":"2022-09-27T17:11:05.726Z"}

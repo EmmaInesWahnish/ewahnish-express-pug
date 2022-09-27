@@ -1,3 +1,8 @@
+import winston from 'winston';
+import logConfiguration from './gralLogger.js'
+
+const logger = winston.createLogger(logConfiguration);
+
 const randomNumberCount = (cant) => {
     let quantity = (cant)? cant:100000000;
     let randomNumber = [];
@@ -22,8 +27,8 @@ const randomNumberCount = (cant) => {
             sum = sum + Number(randomNumber[i][`${i + 1}`]);
         }
     }
-    console.log(randomNoCeros);
-    console.log("Number : ", count, "Sum : ", sum)
+    logger.info(randomNoCeros);
+    logger.info({"Number": count, "Sum": sum})
     return randomNoCeros;
 }
 

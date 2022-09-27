@@ -1,6 +1,6 @@
 import winston from 'winston';
 const { combine, timestamp, json } = winston.format;
-import config from './src/configurations/dotenvConfig.js'
+import config from '../configurations/dotenvConfig.js'
 
 const errorFilter = winston.format((info, opts) => {
     return info.level === 'error' ? info : false;
@@ -24,7 +24,7 @@ const debugFilter = winston.format((info, opts) => {
     return info.level === 'debug' ? info : false;
 });
 
-export const gralLogger = winston.createLogger({
+const logConfiguration = {
     level: process.env.LOG_LEVEL || 'info',
     format: combine(timestamp(), json()),
     defaultMeta: { service: 'user-service' },
@@ -41,9 +41,7 @@ export const gralLogger = winston.createLogger({
             format: combine(errorFilter(), timestamp(), json())
         })
     ]
-});
-
-export const logger = () => (req, res, next) => {
-    req.logger = gralLogger;
-    next();
 }
+
+export default logConfiguration
+

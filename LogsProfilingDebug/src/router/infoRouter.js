@@ -24,7 +24,7 @@ infoRouter.get('/', async (req, res) => {
         processFolder: processFolder,
         cpus: CPUs,
     }
-    console.log("Console log of information : ", myInfo);
+    req.logger.verbose("Console log of information : ", myInfo);
     try {
         res.json(myInfo);
     }
