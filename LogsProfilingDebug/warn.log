@@ -1,0 +1,7 @@
+{"level":"error","message":"Insuficient params"}
+{"level":"warn","message":"Convirtiendo a number"}
+{"level":"error","message":"Invalid types"}
+{"level":"error","message":"Invalid types"}
+{"level":"warn","message":"Convirtiendo a number","service":"user-service"}
+{"level":"error","message":"Invalid types","service":"user-service"}
+{"level":"error","message":"Invalid types","service":"user-service"}
