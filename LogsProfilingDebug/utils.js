@@ -1,4 +1,5 @@
 import winston from 'winston';
+import logConfiguration from './src/js/gralLogger.js'
 const { combine, timestamp, json } = winston.format;
 import config from './src/configurations/dotenvConfig.js'
 
