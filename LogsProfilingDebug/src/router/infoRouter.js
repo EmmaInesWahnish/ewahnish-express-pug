@@ -37,8 +37,12 @@ infoRouter.get('/', async (req, res) => {
         cpus: CPUs,
     }
     req.logger.verbose("Console log of information : ", myInfo);
+    let testOne = [];
+    for (let i=0; i <1000; i++){
+        testOne.push(myInfo);
+    }
     try {
-        res.json(myInfo);
+        res.json({testOne});
     }
     catch (error) {
         res.json({
