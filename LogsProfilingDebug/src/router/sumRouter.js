@@ -24,7 +24,7 @@ sumRouter.get('/:num1/:num2', (req, res) => {
 })
 
 sumRouter.get('/', (req, res) => {
-    req.logger.error('Insuficient params')
+    req.logger.error('No parameters received')
     return res.status(400).send('No parameters received');
 })
 

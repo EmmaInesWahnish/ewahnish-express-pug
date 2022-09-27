@@ -5,13 +5,16 @@ import { logger } from '../utils.js'
 import sumRouter from './router/sumRouter.js';
 import infoRouter from './router/infoRouter.js';
 import randomsRouter from './router/randomsRouter.js';
+import compression from 'compression';
 import config from './configurations/dotenvConfig.js'
+
+let useCompression = process.env.USE_COMPRESSION;
 
 const app = express();
 
 const modeCluster = process.env.MODE;
 
-if (modeCluster && cluster.isPrimary) {
+if (modeCluster === 'CLUSTER' && cluster.isPrimary) {
     const numCPUs = cpus().length
 
     console.log(`Número de procesadores: ${numCPUs}`)
@@ -29,12 +32,14 @@ if (modeCluster && cluster.isPrimary) {
 
     app.use(logger())
 
+    if (useCompression === 'YES') {
+        app.use(compression())
+    }
+
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
-    //app.use(express.static(__dirname + '/public'));
 
-    //app.use('/', sumRouter);
-    app.use('/suma', sumRouter);
+    app.use('/sum', sumRouter);
     app.use('/api/info', infoRouter);
     app.use('/api/randoms', randomsRouter);
 

@@ -5,7 +5,7 @@ const randomsRouter = express.Router();
 
 randomsRouter.get('/', async (req, res) => {
     const randomNoCeros = randomNumberCount(req.query.cant);
-    req.logger.info(`Se clasificaran ${req.query.cant} numeros al azar`)
+    req.logger.info(`Se han clasificado los numeros al azar`)
     res.send({
         randoms: randomNoCeros,
     });

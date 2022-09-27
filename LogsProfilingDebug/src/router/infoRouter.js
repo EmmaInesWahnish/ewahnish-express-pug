@@ -1,5 +1,17 @@
 import express from 'express';
 import os from 'os';
+import config from '../configurations/dotenvConfig.js'
+
+let useCompression = process.env.USE_COMPRESSION;
+
+let theTitle = ''
+
+if (useCompression === 'YES') {
+    theTitle = "Information with Compression";
+}
+else { 
+    theTitle = "Information";
+}
 
 const infoRouter = express.Router();
 
@@ -14,7 +26,7 @@ infoRouter.get('/', async (req, res) => {
     let execPath = process.execPath;
     let platform = process.platform;
     let myInfo = {
-        message: 'Informacion',
+        message: theTitle,
         arguments: argums,
         platform: platform,
         nodeVersion: nodeVersion,
