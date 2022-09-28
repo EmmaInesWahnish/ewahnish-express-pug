@@ -29,7 +29,7 @@ const logConfiguration = {
     format: combine(timestamp(), json()),
     defaultMeta: { service: 'user-service' },
     transports: [
-        new winston.transports.File({filename:'combined.log'}),
+        new winston.transports.Console({}),
         new winston.transports.File({ 
             level: 'warn', 
             filename: 'warn.log',

@@ -3,6 +3,7 @@ import os from 'os';
 import config from '../configurations/dotenvConfig.js'
 
 let useCompression = process.env.USE_COMPRESSION;
+let consoleLog = process.env.CONSOLE_LOG;
 
 let theTitle = ''
 
@@ -37,6 +38,9 @@ infoRouter.get('/', async (req, res) => {
         cpus: CPUs,
     }
     req.logger.verbose("Console log of information : ", myInfo);
+    if (consoleLog === 'YES'){
+        console.log("Informacion enviada :",myInfo);
+    }
     let testOne = [];
     for (let i=0; i <1000; i++){
         testOne.push(myInfo);
