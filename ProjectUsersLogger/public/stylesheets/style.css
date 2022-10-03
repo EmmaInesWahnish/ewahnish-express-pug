@@ -523,7 +523,7 @@ footerD {
 }
 
 .modal-content {
-  background-color: transparent;
+  background-color: bg-light;
   padding: 0;
 }
 
