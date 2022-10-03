@@ -12,7 +12,6 @@ let whichDb = config.envs.SELECTED_DB
 // *** ROUTES ***
 //This route returns the products list
 routerProducts.get('/', async (req, res) => {
-    console.log(req.session.user.isAdmin)
     try {
         const array = await Products.getAll();
         res.json({
@@ -32,7 +31,6 @@ routerProducts.get('/', async (req, res) => {
 
 //This route returns user information
 routerProducts.get('/isadmin', async (req, res) => {
-    console.log(req.session.user.isAdmin)
     try {
         res.json({
             message: 'Informacion',
@@ -77,7 +75,7 @@ routerProducts.get('/:id', async (req, res) => {
 
 //This route ads a product
 routerProducts.post('/', async (req, res) => {
-    if (!isAdmin) {
+    if (!req.session.user.isAdmin) {
         res.json({
             message: `Ruta ${req.path} metodo ${req.method} no autorizada`,
             error: -1
@@ -131,7 +129,7 @@ routerProducts.post('/', async (req, res) => {
 //This route updates the product with the selected id
 //A property is updated only if it receives a non null value
 routerProducts.put('/:id', async (req, res) => {
-    if (!isAdmin) {
+    if (!req.session.user.isAdmin) {
         res.json({
             message: `Ruta ${req.path} metodo ${req.method} no autorizada`,
             error: -1
@@ -139,12 +137,10 @@ routerProducts.put('/:id', async (req, res) => {
     } else {
         const id = req.params.id;
         let receive = req.body;
-        console.log("The id ", id, "receive  ", receive)
         try {
             const products = await Products.getAll();
             const index = products.findIndex(element => element.id == id);
             let searchedProduct = products[index];
-            console.log(index, " product.nombre ", receive.nombre);
             if (index !== -1) {
 
                 if (receive.nombre !== null && receive.nombre !== undefined) {
@@ -167,7 +163,6 @@ routerProducts.put('/:id', async (req, res) => {
                 }
 
                 searchedProduct = products[index];
-                console.log(searchedProduct);
                 //The array gets updated here
                 let array = [];
 
@@ -243,14 +238,13 @@ routerProducts.put('/:id', async (req, res) => {
 
 //This route removes the product with the selected id
 routerProducts.delete('/:id', async (req, res) => {
-    if (!isAdmin) {
+    if (!req.session.user.isAdmin) {
         res.json({
             message: `Ruta ${req.path} metodo ${req.method} no autorizada`,
             error: -1
         })
     } else {
         const id = req.params.id;
-        console.log(id);
         try {
             const removedProduct = await Products.deleteById(id);
             if (removedProduct.length === 0) {
