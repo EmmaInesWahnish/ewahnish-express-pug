@@ -1,5 +1,4 @@
 // config.js
-import winston from 'winston'; 
 import dotenv from 'dotenv';
 const result = dotenv.config();
 if (result.error) {
@@ -21,15 +20,14 @@ const config = {
   envs,
   persistences:DBS,
   server: {
-    PORT: envs.PORT ?? DEV_PORT,
+    PORT: process.env.PORT ?? DEV_PORT,
     routes: {
       base: "/api",
-      sessions: "/api/sessions",
-      views: "/api/views"
+      productos:"/api/productos",
+      carrito:"/api/carrito",
+      sessions: "/api/sessions"
     }
   }
 }
-
-console.log("En dotenv config >>>> ",config)
 
 export default config;

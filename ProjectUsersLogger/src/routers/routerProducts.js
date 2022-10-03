@@ -7,7 +7,7 @@ import fs from 'fs';
 
 let isAdmin;
 
-let whichDb = config.envs.APIC_TYPE
+let whichDb = config.envs.SELECTED_DB
 
 // *** ROUTES ***
 //This route returns the products list
@@ -184,7 +184,7 @@ routerProducts.put('/:id', async (req, res) => {
                     })
                 })
                 //productos.json file is replaced with the updated array
-                if (config.envs.APIP_TYPE === "FILE") {
+                if (config.envs.SELECTED_DB === "FILE") {
                     try {
                         await fs.promises.unlink('./DB/productos.json');
                         try {

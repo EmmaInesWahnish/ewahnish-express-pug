@@ -5,7 +5,7 @@ import CartsDaoMariaDb from './carts/CartsDaoMariaDb.js'
 import CartsDaoSql from './carts/CartsDaoSql.js'
 import config from '../configurations/dotenvConfig.js'
 
-const db = config.envs.APIC_TYPE || 'FILE'
+const db = config.envs.SELECTED_DB || 'FILE'
 
 let Cart
 

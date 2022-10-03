@@ -4,7 +4,7 @@ import config from '../configurations/dotenvConfig.js';
 
 const routerCart = express.Router();
 
-const whichDb = config.envs.APIC_TYPE;
+const whichDb = config.envs.SELECTED_DB;
 
 // *** ROUTES ***
 //This route returns all carts

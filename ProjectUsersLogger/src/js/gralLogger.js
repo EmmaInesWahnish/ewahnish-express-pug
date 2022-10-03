@@ -1,6 +1,5 @@
 import winston from 'winston';
 const { combine, timestamp, json } = winston.format;
-import config from '../configurations/dotenvConfig.js'
 
 const errorFilter = winston.format((info, opts) => {
     return info.level === 'error' ? info : false;
@@ -16,6 +15,7 @@ const infoFilter = winston.format((info, opts) => {
 const httpFilter = winston.format((info, opts) => {
     return info.level === 'http' ? info : false;
 });
+
 const verboseFilter = winston.format((info, opts) => {
     return info.level === 'verbose' ? info : false;
 });
@@ -30,6 +30,11 @@ const logConfiguration = {
     defaultMeta: { service: 'user-service' },
     transports: [
         new winston.transports.Console({}),
+        new winston.transports.File({ 
+            level: 'info', 
+            filename: 'info.log',
+            format: combine(infoFilter(),timestamp(),json())
+        }),
         new winston.transports.File({ 
             level: 'warn', 
             filename: 'warn.log',

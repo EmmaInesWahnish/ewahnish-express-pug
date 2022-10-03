@@ -56,7 +56,7 @@ app.all('*', (req, res) => {
 
 /* Server Listen */
 const ilogger = winston.createLogger(logConfiguration);
-const port = config.envs.PORT;
+const port = config.server.PORT;
 const server = app.listen(port, () => {
     ilogger.info(`Server http listening at port ${server.address().port}`)
 })

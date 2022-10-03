@@ -5,7 +5,7 @@ import ProductsDaoMariaDb from './products/ProductsDaoMariaDb.js'
 import ProductsDaoSql from './products/ProductsDaoSql.js'
 import config from '../configurations/dotenvConfig.js'
 
-const db = config.envs.APIP_TYPE || 'FILE'
+const db = config.envs.SELECTED_DB || 'FILE'
 
 let Products
 
