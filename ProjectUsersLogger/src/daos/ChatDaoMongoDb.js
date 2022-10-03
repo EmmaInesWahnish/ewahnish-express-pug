@@ -3,6 +3,10 @@ import mongoose from 'mongoose';
 import config from '../configurations/dotenvConfig.js'
 import MessageModel from '../models/messages.js';
 import MongoDbContainer from '../api/MongoDbContainer.js';
+import winston from 'winston';
+import logConfiguration from '../js/gralLogger.js';
+
+const gLogger = winston.createLogger(logConfiguration);
 
 const URL = config.envs.URL.toString();
 const TheModel = MessageModel;
@@ -13,7 +17,7 @@ const connectToDb = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         })
-        console.log("Estado de la conexion ", mongoose.connection.readyState);
+        gLogger.info(`Estado de la conexion (ChatDao) ${mongoose.connection.readyState}`);
     } catch (error) {
         console.error("DB Error: ", error);
     }

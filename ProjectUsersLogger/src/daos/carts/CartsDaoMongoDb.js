@@ -3,6 +3,10 @@ import mongoose from 'mongoose';
 import config from '../../configurations/dotenvConfig.js'
 import CartModel from "../../../src/Models/cart.js";
 import MongoDbContainer from '../../api/MongoDbContainer.js';
+import winston from 'winston';
+import logConfiguration from '../../js/gralLogger.js';
+
+const gLogger = winston.createLogger(logConfiguration);
 
 const URL = config.envs.URL.toString();
 const TheModel = CartModel;
@@ -13,7 +17,8 @@ const connectToDb = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         })
-        console.log("Estado de la conexion ", mongoose.connection.readyState);
+        let theState = mongoose.connection.readyState
+        gLogger.info(`Estado de la conexion (CartDao) ${theState}`);
     } catch (error) {
         console.error("DB Error: ", error);
     }
