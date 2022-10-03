@@ -10,6 +10,7 @@ sessionRouter.post('/register',passport.authenticate('register',{failureRedirect
 sessionRouter.get('/registerfail', async (req, res) => {
     console.log("Register failed");
     res.status(500).send({ status: "error", error: "Register failed" })
+    req.logger.warn('Intento de registro fallido')
 })
 
 sessionRouter.post('/login',passport.authenticate('login',{failureRedirect:'/api/sessions/loginfail'}), async (req, res) => {
@@ -26,6 +27,7 @@ sessionRouter.post('/login',passport.authenticate('login',{failureRedirect:'/api
 sessionRouter.get('/loginfail',(req,res)=>{
     console.log("login failed");
     res.status(500).send({status:"error",error:"Login failed"})
+    req.logger.warn('Intento de login fallido');
 })
 
 sessionRouter.get('/logout', async (req, res) => {

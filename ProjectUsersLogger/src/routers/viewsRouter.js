@@ -25,7 +25,6 @@ viewsRouter.get('/login',(req,res)=>{
 })
 
 viewsRouter.get('/', (req, res) => {
-    console.log("In viewsRouter >>>> ", req.session)
     res.json({
         status: 'information',
         user: req.session.user

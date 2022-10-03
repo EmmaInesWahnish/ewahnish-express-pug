@@ -1,13 +1,13 @@
 import express from 'express';
 import { Products} from "../daos/daosProducts.js";
-import envs from '../../dotenvConfig.js'
+import config from '../configurations/dotenvConfig.js';
 
 const routerProducts = express.Router();
 import fs from 'fs';
 
 let isAdmin;
 
-let whichDb = envs.APIC_TYPE
+let whichDb = config.envs.APIC_TYPE
 
 // *** ROUTES ***
 //This route returns the products list
@@ -52,10 +52,8 @@ routerProducts.get('/isadmin', async (req, res) => {
 //This route returns a product according to its id.
 routerProducts.get('/:id', async (req, res) => {
     let id = req.params.id;
-    console.log("Id en routerProduct ", id)
     try {
         const producto = await Products.getById(id);
-        console.log("El producto ", producto)
         if (producto != undefined) {
             res.json({
                 message: 'Producto encontrado',
@@ -84,6 +82,7 @@ routerProducts.post('/', async (req, res) => {
             message: `Ruta ${req.path} metodo ${req.method} no autorizada`,
             error: -1
         })
+        req.logger.warn(`Ruta ${req.path} metodo ${req.method} no autorizada ( Informacion de sesion ${req.session})`)
     } else {
         let receive = req.body;
         let producto = {
@@ -184,9 +183,8 @@ routerProducts.put('/:id', async (req, res) => {
 
                     })
                 })
-                console.log("Array in routerProducts ", array)
                 //productos.json file is replaced with the updated array
-                if (envs.APIP_TYPE === "FILE") {
+                if (config.envs.APIP_TYPE === "FILE") {
                     try {
                         await fs.promises.unlink('./DB/productos.json');
                         try {

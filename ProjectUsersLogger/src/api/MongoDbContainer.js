@@ -1,5 +1,7 @@
-import envs from '../../dotenvConfig.js';
-const URL = envs.URL;
+import config from '../configurations/dotenvConfig.js';
+
+const URL = config.envs.URL;
+
 class MongoDbContainer {
 
     constructor(myTable) {

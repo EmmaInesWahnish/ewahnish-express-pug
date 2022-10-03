@@ -1,4 +1,5 @@
-// config.js 
+// config.js
+import winston from 'winston'; 
 import dotenv from 'dotenv';
 const result = dotenv.config();
 if (result.error) {
