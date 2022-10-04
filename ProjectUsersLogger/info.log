@@ -31,3 +31,6 @@
 {"level":"info","message":"Server http listening at port 8080","service":"user-service","timestamp":"2022-10-03T20:33:56.473Z"}
 {"level":"info","message":"Estado de la conexion (CartDao) 1","service":"user-service","timestamp":"2022-10-03T20:33:57.953Z"}
 {"level":"info","message":"Estado de la conexion (CartDao) 1","service":"user-service","timestamp":"2022-10-03T20:33:57.955Z"}
+{"level":"info","message":"Server http listening at port 8080","service":"user-service","timestamp":"2022-10-04T00:07:30.754Z"}
+{"level":"info","message":"Estado de la conexion (CartDao) 1","service":"user-service","timestamp":"2022-10-04T00:07:36.296Z"}
+{"level":"info","message":"Estado de la conexion (CartDao) 1","service":"user-service","timestamp":"2022-10-04T00:07:36.298Z"}
