@@ -6,7 +6,6 @@ import routerCart from './routers/routerCart.js';
 import config from './configurations/dotenvConfig.js';
 import viewsRouter from './routers/viewsRouter.js';
 import sessionRouter from './routers/sessionRouter.js';
-import ChatDaoMongoDb from './daos/ChatDaoMongoDb.js';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import logConfiguration from './js/gralLogger.js';
@@ -24,7 +23,6 @@ app.use(express.static("public"));
 app.use(logger());
 
 const URL = config.envs.URL.toString();
-const Messages = new ChatDaoMongoDb();
 
 app.use(session({
     store: MongoStore.create({

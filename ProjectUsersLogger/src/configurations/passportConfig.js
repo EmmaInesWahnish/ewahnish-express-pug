@@ -1,6 +1,6 @@
 import passport from 'passport';
 import local from 'passport-local';
-import usersService from '../models/Users.js';
+import usersService from '../Models/Users.js';
 import { createHash, isValidPassword } from '../utils.js';
 import config from './dotenvConfig.js'
 const LocalStrategy = local.Strategy;
