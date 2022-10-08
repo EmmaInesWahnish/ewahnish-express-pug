@@ -5,8 +5,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
+  <script src="/socket.io/socket.io.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   <link rel='stylesheet' href='./stylesheets/cardStylesheets.css' />
   <link rel='stylesheet' href='./stylesheets/style.css' />
   <title>Formulario para alta de productos</title>
@@ -60,19 +61,18 @@
         <li class="nav-item">
           <a class="nav-link" href="javascript:void(0);" id="logout_user">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                class="bi bi-box-arrow-right logoutIcon" 
-                viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-                <path fill-rule="evenodd"
-                    d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-            </svg>            
+              class="bi bi-box-arrow-right logoutIcon" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+              <path fill-rule="evenodd"
+                d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+            </svg>
           </a>
         </li>
       </ul>
     </nav>
   </header>
-  <div class="flex-container mb-2 p-3" >
+  <div class="flex-container mb-2 p-3">
     <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor"
       class="bi bi-wrench-adjustable-circle-fill" viewBox="0 0 16 16">
       <path
@@ -99,14 +99,35 @@
     <table id="productsInCart" class="table table-dark table-responsive table-bordered table-striped"></table>
   </div>
   <div id="homePage" class="toggle-content is-visible" width="80%">
-    <h4 class="center"><i>El mejor aliado para cualquier projecto</i></h4>
-    <img height="auto" src='./images/herramientas.svg'>
+    <div>
+      <h1 id="welcome"></h1>
+    </div>
+    <h1>Centro de mensajes</h1>
+    <ul id="messages"></ul>
+    <div class="bg-light m-5" width="80%">
+      <form id="form" action="">
+        <div>
+          <input class="input" type="email" id="email" value="c@m" required />
+          <input class="input" type="text" id="name" autocomplete="off" value="Candelaria" placeholder="Nombre" />
+          <input class="input" type="text" id="last_name" value="Ramos" />
+          <input class="input" type="number" id="age" autocomplete="off" value=15 placeholder="Edad" />
+          <input class="input" type="text" id="nickname" value="Cande" />
+          <input class="input" type="text" id="avatar" autocomplete="off" placeholder="Imagen" />
+          <input class="inputl" type="text" id="input" autocomplete="off" placeholder="Mensaje" />
+        </div>
+        <div>
+          <button class="btn-primary" type="submit">Enviar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   </div>
   <!--Modal generico-->
   <div id="modalForm" class="modal">
     <div class="modal-content">
       <span id="close_generic" class="close">&times;</span>
-      <div class="container">
+      <div class="container bg-light">
         <form class="showes" class="form" action="javascript:void(0);" id="theForm">
         </form>
       </div>
@@ -115,19 +136,12 @@
   <div id="modal" class="modal">
     <div class="modal-content">
       <span id="close" class="close">&times;</span>
-      <div class="container">
+      <div class="container bg-light">
         <form class="showes" class="form" action="javascript:void(0);" id="modifyForm">
         </form>
       </div>
     </div>
   </div>
-  <footer class="item3">
-    <p class="showes">Autor: Emma Ines Wahnish</p>
-    <p>
-      Soporte:
-      <a href="mailto:helpdesk@groovinads.com">helpdesk@groovinads.com</a>
-    </p>
-  </footer>
   <script type="module" src="./js/index.js"></script>
 </body>
 

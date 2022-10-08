@@ -32,6 +32,77 @@ const listCart = document.getElementById('listCart');
 
 const homePage = document.getElementById('home');
 
+const socket= io();
+
+let messages = document.getElementById('messages');
+let form = document.getElementById('form');
+let input = document.getElementById('input');
+let email = document.getElementById('email');
+
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    let message = addMessage();
+    if (input.value) {
+        socket.emit('chat message', message);
+        input.value = '';
+        email.value = 'c@m';
+    }
+});
+
+socket.on('chat message', (msg) => {
+    renderMessage(msg);
+    window.scrollTo(0, document.body.scrollHeight);
+});
+
+socket.on('new user', (msg) => {
+    var item = document.createElement('li');
+    item.textContent = msg;
+    messages.appendChild(item);
+    window.scrollTo(0, document.body.scrollHeight);
+})
+
+socket.on('old messages', (msg) => {
+    renderMessage(msg);
+    window.scrollTo(0, document.body.scrollHeight);
+})
+
+socket.on('new product', (msg) => {
+    console.log(msg)
+    renderProduct(msg);
+    window.scrollTo(0, document.body.scrollHeight);
+})
+
+function addMessage(e) {
+    let today = new Date();
+    let author = {
+        email: document.getElementById("email").value,
+        nombre: document.getElementById("name").value,
+        apellido: document.getElementById("last_name").value,
+        edad: document.getElementById("age").value,
+        alias: document.getElementById("nickname").value,
+        avatar: document.getElementById("avatar").value
+    }
+
+    let message = {
+        timestamp: today,
+        author: author,
+        text: document.getElementById("input").value,
+    };
+    return message
+}
+
+function renderMessage(data) {
+    let theDateTime = (data.timestamp).toString();
+    const where = document.createElement('div')
+    where.innerHTML = `<b>${data.author.email}</b>
+                        <span id="theDate">${theDateTime}</span> 
+                        <span id="name">${data.author.alias}</span> 
+                        <i>${data.text}</i>
+                        <img class="avatar" src="${data.author.avatar}"/>
+                    <div>`;
+    messages.appendChild(where);
+}
+
 listProducts.addEventListener('click', () => {
     renderProducts();
 });
@@ -84,14 +155,14 @@ function signOut() {
 }
 
 var simulateClick = function (elem) {
-	// Create our event (with options)
-	var evt = new MouseEvent('click', {
-		bubbles: true,
-		cancelable: true,
-		view: window
-	});
-	// If cancelled, don't dispatch our event
-	var canceled = !elem.dispatchEvent(evt);
+    // Create our event (with options)
+    var evt = new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        view: window
+    });
+    // If cancelled, don't dispatch our event
+    var canceled = !elem.dispatchEvent(evt);
 };
 
 simulateClick(homePage)

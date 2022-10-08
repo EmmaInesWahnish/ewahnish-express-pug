@@ -35,7 +35,9 @@ const renderHome = () => {
         .then(json => session = json)
         .finally(() => {
             if (session.user) {
+                console.log(session.user)
                 show(homePage)
+                document.getElementById('welcome').innerHTML = `Te damos la bienvenida ${session.user.first_name} (${session.user.email})! 👋`;
             }
             else {
                 renderLoginForm();
