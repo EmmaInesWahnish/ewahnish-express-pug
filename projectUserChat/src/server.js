@@ -97,10 +97,10 @@ const addToMessageList = async (msg) => {
     return list;
 }
 
-httpServer.listen(3000);
 
 /* Server Listen */
 const port = config.envs.PORT;
+httpServer.listen(port);
 const server = app.listen(port, () => {
     console.log(`Server http listening at port ${server.address().port} process id ${process.pid}`)
 })
