@@ -1,0 +1,16 @@
+{"level":"error","message":"404 - ruta no encontrada /blablabla","service":"user-service","timestamp":"2022-10-03T16:31:25.476Z"}
+{"level":"error","message":"404 - ruta no encontrada /blablabla","service":"user-service","timestamp":"2022-10-03T16:33:02.455Z"}
+{"level":"error","message":"404 - ruta no encontrada /favicon.ico","service":"user-service","timestamp":"2022-10-03T17:56:11.297Z"}
+{"level":"error","message":"404 - ruta no encontrada /isAdmin","service":"user-service","timestamp":"2022-10-03T20:23:52.020Z"}
+{"level":"error","message":"404 - ruta no encontrada /isadmin","service":"user-service","timestamp":"2022-10-03T20:24:18.121Z"}
+{"level":"error","message":"404 - ruta no encontrada /isadmin","service":"user-service","timestamp":"2022-10-03T20:24:26.527Z"}
+{"level":"error","message":"404 - ruta no encontrada /api/isdamin","service":"user-service","timestamp":"2022-10-03T20:24:43.870Z"}
+{"level":"error","message":"404 - ruta no encontrada /api/products/isadmin","service":"user-service","timestamp":"2022-10-03T20:25:06.471Z"}
+{"level":"error","message":"404 - ruta no encontrada /socket.io/","service":"user-service","timestamp":"2022-10-08T22:06:39.294Z"}
+{"level":"error","message":"404 - ruta no encontrada /socket.io/","service":"user-service","timestamp":"2022-10-08T22:06:44.369Z"}
+{"level":"error","message":"404 - ruta no encontrada /socket.io/","service":"user-service","timestamp":"2022-10-08T22:06:49.441Z"}
+{"level":"error","message":"404 - ruta no encontrada /socket.io/","service":"user-service","timestamp":"2022-10-08T22:06:54.528Z"}
+{"level":"error","message":"404 - ruta no encontrada /socket.io/","service":"user-service","timestamp":"2022-10-08T22:06:59.600Z"}
+{"level":"error","message":"404 - ruta no encontrada /socket.io/","service":"user-service","timestamp":"2022-10-08T22:07:04.666Z"}
+{"level":"error","message":"Error en servidor Error: listen EADDRINUSE: address already in use :::8080","service":"user-service","timestamp":"2022-10-08T22:09:12.095Z"}
+{"level":"error","message":"Error en servidor Error: listen EADDRINUSE: address already in use :::8080","service":"user-service","timestamp":"2022-10-08T22:20:36.127Z"}
