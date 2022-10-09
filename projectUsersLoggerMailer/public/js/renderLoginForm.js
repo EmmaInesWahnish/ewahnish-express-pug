@@ -36,7 +36,7 @@ const renderLoginForm = () => {
 
         <div class="form-group">
             <label for="email"><b>Email</b></label>
-            <input id="email" class="form-control" type="email" name="email">
+            <input id="lemail" class="form-control" type="email" name="email">
         </div>
 
         <div class="form-group">

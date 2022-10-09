@@ -6,6 +6,7 @@ import routerCart from './routers/routerCart.js';
 import config from './configurations/dotenvConfig.js';
 import viewsRouter from './routers/viewsRouter.js';
 import sessionRouter from './routers/sessionRouter.js';
+import uploadRouter from './routers/uploadRouter.js';
 import ChatDaoMongoDb from './daos/ChatDaoMongoDb.js';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
@@ -54,6 +55,7 @@ app.use('/api/productos', routerProducts);
 app.use('/api/carrito', routerCart);
 app.use('/', viewsRouter);
 app.use('/api/sessions', sessionRouter);
+app.use('/api/multer', uploadRouter);
 
 app.all('*', (req, res) => {
     res.status(404).send({
