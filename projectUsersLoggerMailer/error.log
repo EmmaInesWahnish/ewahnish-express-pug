@@ -14,3 +14,14 @@
 {"level":"error","message":"404 - ruta no encontrada /socket.io/","service":"user-service","timestamp":"2022-10-08T22:07:04.666Z"}
 {"level":"error","message":"Error en servidor Error: listen EADDRINUSE: address already in use :::8080","service":"user-service","timestamp":"2022-10-08T22:09:12.095Z"}
 {"level":"error","message":"Error en servidor Error: listen EADDRINUSE: address already in use :::8080","service":"user-service","timestamp":"2022-10-08T22:20:36.127Z"}
+{"level":"error","message":"404 - ruta no encontrada /upload","service":"user-service","timestamp":"2022-10-09T00:28:59.024Z"}
+{"level":"error","message":"404 - ruta no encontrada /index.css","service":"user-service","timestamp":"2022-10-09T00:48:01.941Z"}
+{"level":"error","message":"404 - ruta no encontrada /uploadfile","service":"user-service","timestamp":"2022-10-09T00:49:08.719Z"}
+{"level":"error","message":"404 - ruta no encontrada /index.css","service":"user-service","timestamp":"2022-10-09T00:54:33.858Z"}
+{"level":"error","message":"404 - ruta no encontrada /index.css","service":"user-service","timestamp":"2022-10-09T00:58:54.500Z"}
+{"level":"error","message":"404 - ruta no encontrada /index.css","service":"user-service","timestamp":"2022-10-09T01:00:02.589Z"}
+{"level":"error","message":"404 - ruta no encontrada /index.css","service":"user-service","timestamp":"2022-10-09T01:00:18.099Z"}
+{"level":"error","message":"404 - ruta no encontrada /index.css","service":"user-service","timestamp":"2022-10-09T01:01:07.574Z"}
+{"level":"error","message":"404 - ruta no encontrada /index.css","service":"user-service","timestamp":"2022-10-09T01:01:20.427Z"}
+{"level":"error","message":"404 - ruta no encontrada /index.css","service":"user-service","timestamp":"2022-10-09T01:02:34.532Z"}
+{"level":"error","message":"404 - ruta no encontrada /index.css","service":"user-service","timestamp":"2022-10-09T01:04:10.405Z"}

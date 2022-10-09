@@ -15,6 +15,7 @@ import passport from 'passport';
 import { createServer } from "http";
 import { Server } from "socket.io";
 import sendEmail from './services/sendEmail.js';
+import multer from 'multer';
 
 const app = express();
 const httpServer = createServer(app);
@@ -35,11 +36,11 @@ const Messages = new ChatDaoMongoDb();
 
 app.use(session({
     store: MongoStore.create({
-        mongoUrl:URL,
-        mongoOptions:{useNewUrlParser:true,useUnifiedTopology:true},
+        mongoUrl: URL,
+        mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
         ttl: 600
     }),
-    secret:"SecretPhraseRumplestilskin007",
+    secret: "SecretPhraseRumplestilskin007",
     resave: false,
     saveUninitialized: false
 }))
@@ -50,10 +51,23 @@ initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
 
+/* ------------------------------------------------------ */
+/* Multer config */
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads')
+    },
+    filename: function (req, file, cb) {
+      //console.log(file)
+      cb(null, `${Date.now()}-${file.originalname}`)
+    }
+  })
+  const upload = multer({ storage: storage })
+
 app.use('/api/productos', routerProducts);
 app.use('/api/carrito', routerCart);
-app.use('/',viewsRouter);
-app.use('/api/sessions',sessionRouter);
+app.use('/', viewsRouter);
+app.use('/api/sessions', sessionRouter);
 
 app.all('*', (req, res) => {
     res.status(404).send({
@@ -61,8 +75,8 @@ app.all('*', (req, res) => {
         message: `404 - ruta no encontrada ${req.path}`
     })
     req.logger.error(`404 - ruta no encontrada ${req.path}`)
-})
-
+})  
+  
 io.on('connection', async (socket) => {
 
     try {
@@ -91,7 +105,7 @@ io.on('connection', async (socket) => {
 });
 
 const addToMessageList = async (msg) => {
-    
+
     try {
         await Messages.save(msg);
     }
@@ -105,7 +119,4 @@ const addToMessageList = async (msg) => {
 const ilogger = winston.createLogger(logConfiguration);
 const port = config.server.PORT;
 httpServer.listen(port);
-const server = app.listen(3000, () => {
-    ilogger.info(`Server http listening at port ${server.address().port}`)
-})
-server.on('error', error => ilogger.error(`Error en servidor ${error}`))
+ilogger.info(`Server http listening at port ${httpServer.address().port}`)

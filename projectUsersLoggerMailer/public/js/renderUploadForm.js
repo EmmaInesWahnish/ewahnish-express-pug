@@ -26,33 +26,22 @@ const renderLoginForm = () => {
 
     hide(homePage)
 
-    const loginUser = document.getElementById('login');
-    const loginForm = document.createElement('div');
-    loginForm.setAttribute('class', 'jumbotron');
-    loginForm.innerHTML = `<h1 style="color:darkblue;">Log In</h1>
+    const uploadFile = document.getElementById('root');
+    const uploadForm = document.createElement('div');
+    uploadForm.setAttribute('class', 'jumbotron');
+    uploadForm.innerHTML = `<h1 style="color:darkblue;">>File Upload</h1>
     <br>
-
-    <form id="loginForm">
-
-        <div class="form-group">
-            <label for="email"><b>Email</b></label>
-            <input id="email" class="form-control" type="email" name="email">
+    <form action="/uploadfile" enctype="multipart/form-data" method="POST">
+        <div class="m-2">
+          <input type="file" name="thisFile" />
         </div>
-
-        <div class="form-group">
-            <label for="password"><b>Password</b></label>
-            <input id="password" class="form-control" type="password" name="password">
-        </div>
-
-        <button type="submit" class="btn btn-success mt-3 mb-5">Submit</button>
-
+        <button type="submit" class="btn btn-success mt-3 mb-5">Upload</button> 
     </form>
+    </div>`
 
-</div>`
+    uploadFile.appendChild(uploadForm);
 
-    loginUser.appendChild(loginForm);
-
-    const form = document.getElementById('loginForm');
+    const form = document.getElementById('uploadForm');
 
     let theStatus = "";
 
@@ -61,7 +50,7 @@ const renderLoginForm = () => {
         let data = new FormData(form);
         let obj = {};
         data.forEach((value, key) => obj[key] = value);
-        const loginRoute = '/api/sessions/login'
+        const uploadRoute = '/api/sessions/login'
 
         const requestOptions = {
             method: 'POST',

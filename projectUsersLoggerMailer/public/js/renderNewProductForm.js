@@ -13,6 +13,7 @@ const renderNewProductForm = () => {
   document.getElementById('login').innerHTML = "";
   document.getElementById('register').innerHTML = "";
   document.getElementById('logout').innerHTML = "";
+  document.getElementById('root').innerHTML = "";
 
   const homePage = document.getElementById("homePage")
 
