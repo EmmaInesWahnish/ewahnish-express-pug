@@ -266,3 +266,7 @@
 {"level":"info","message":"Estado de la conexion (CartDao) 1","service":"user-service","timestamp":"2022-10-09T17:03:35.146Z"}
 {"level":"info","message":"Estado de la conexion (ChatDao) 1","service":"user-service","timestamp":"2022-10-09T17:03:36.408Z"}
 {"level":"info","message":"Estado de la conexion (ChatDao) 1","service":"user-service","timestamp":"2022-10-09T17:03:37.563Z"}
+{"level":"info","message":"Estado de la conexion (CartDao) 1","service":"user-service","timestamp":"2022-10-09T17:06:30.660Z"}
+{"level":"info","message":"Estado de la conexion (CartDao) 1","service":"user-service","timestamp":"2022-10-09T17:06:30.664Z"}
+{"level":"info","message":"Estado de la conexion (ChatDao) 1","service":"user-service","timestamp":"2022-10-09T17:06:30.664Z"}
+{"level":"info","message":"Estado de la conexion (ChatDao) 1","service":"user-service","timestamp":"2022-10-09T17:06:33.585Z"}
