@@ -15,7 +15,6 @@ import passport from 'passport';
 import { createServer } from "http";
 import { Server } from "socket.io";
 import sendEmail from './services/sendEmail.js';
-import multer from 'multer';
 
 const app = express();
 const httpServer = createServer(app);
@@ -51,19 +50,6 @@ initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
 
-/* ------------------------------------------------------ */
-/* Multer config */
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'uploads')
-    },
-    filename: function (req, file, cb) {
-      //console.log(file)
-      cb(null, `${Date.now()}-${file.originalname}`)
-    }
-  })
-  const upload = multer({ storage: storage })
-
 app.use('/api/productos', routerProducts);
 app.use('/api/carrito', routerCart);
 app.use('/', viewsRouter);
@@ -75,8 +61,8 @@ app.all('*', (req, res) => {
         message: `404 - ruta no encontrada ${req.path}`
     })
     req.logger.error(`404 - ruta no encontrada ${req.path}`)
-})  
-  
+})
+
 io.on('connection', async (socket) => {
 
     try {
@@ -116,7 +102,6 @@ const addToMessageList = async (msg) => {
 }
 
 /* Server Listen */
-const ilogger = winston.createLogger(logConfiguration);
 const port = config.server.PORT;
 httpServer.listen(port);
-ilogger.info(`Server http listening at port ${httpServer.address().port}`)
+console.log(`Server http listening at port ${httpServer.address().port} process id ${process.pid}`)
