@@ -8,6 +8,8 @@ import renderNewProductForm from './renderNewProductForm.js';
 
 import renderLoginForm from './renderLoginForm.js';
 
+import renderModalUploadFile from './renderModalUploadFile.js';
+
 import renderRegisterForm from './renderRegisterForm.js'
 
 import renderModalOneProduct from './renderModalOneProduct.js';
@@ -27,6 +29,8 @@ const logoutUser = document.getElementById('logout_user')
 const productDetail = document.getElementById('productDetail');
 
 const deleteCart = document.getElementById('deleteCart');
+
+const upload = document.getElementById('upload')
 
 const listCart = document.getElementById('listCart');
 
@@ -133,6 +137,10 @@ productDetail.addEventListener('click', () => {
 
 deleteCart.addEventListener('click', () => {
     renderModalDeleteCart()
+})
+
+upload.addEventListener('click', () => {
+    renderModalUploadFile()
 })
 
 listCart.addEventListener('click', () => {
