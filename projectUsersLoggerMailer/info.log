@@ -270,3 +270,11 @@
 {"level":"info","message":"Estado de la conexion (CartDao) 1","service":"user-service","timestamp":"2022-10-09T17:06:30.664Z"}
 {"level":"info","message":"Estado de la conexion (ChatDao) 1","service":"user-service","timestamp":"2022-10-09T17:06:30.664Z"}
 {"level":"info","message":"Estado de la conexion (ChatDao) 1","service":"user-service","timestamp":"2022-10-09T17:06:33.585Z"}
+{"level":"info","message":"Estado de la conexion (CartDao) 1","service":"user-service","timestamp":"2022-10-09T17:10:45.438Z"}
+{"level":"info","message":"Estado de la conexion (CartDao) 1","service":"user-service","timestamp":"2022-10-09T17:10:45.441Z"}
+{"level":"info","message":"Estado de la conexion (ChatDao) 1","service":"user-service","timestamp":"2022-10-09T17:10:45.442Z"}
+{"level":"info","message":"Estado de la conexion (ChatDao) 1","service":"user-service","timestamp":"2022-10-09T17:10:57.403Z"}
+{"level":"info","message":"Estado de la conexion (ProductsDao) 1","service":"user-service","timestamp":"2022-10-09T17:12:20.308Z"}
+{"level":"info","message":"Estado de la conexion (CartDao) 1","service":"user-service","timestamp":"2022-10-10T12:10:42.418Z"}
+{"level":"info","message":"Estado de la conexion (CartDao) 1","service":"user-service","timestamp":"2022-10-10T12:10:42.424Z"}
+{"level":"info","message":"Estado de la conexion (ChatDao) 1","service":"user-service","timestamp":"2022-10-10T12:10:54.706Z"}

@@ -5,8 +5,6 @@ const renderModalUploadFile = () => {
 
     formData = new FormData();
 
-    let file = '';
-
     let buttonId = "Image";
 
     document.getElementById('modal').style.display = 'block';
@@ -14,25 +12,20 @@ const renderModalUploadFile = () => {
     const modifyForm = document.getElementById('modifyForm');
 
     modifyForm.innerHTML = `<div class="input-group">
-                            <label for='name'>Your name</label>
-                            <input name='name' id='name' placeholder="Enter your name" />
-                        </div>
                         <div class="form-group">
-                            <label for='files'>Select files</label>
-                            <input id='files' type="file" multiple>
+                            <label for='avatar'>Select file</label>
+                            <input id='avatar' name='avatar' type="file">
                         </div>
 
       <button type="submit" id=${buttonId} class="btn btn-success">Upload</button>`;
 
-    let theFiles = document.getElementById("files");
-    let theName = document.getElementById("name");
+    let theFile = document.getElementById("avatar");
 
     let formUpdate = document.getElementById(buttonId);
 
     formUpdate.addEventListener('click', function () {
 
-        formData.append("name", theName.value);
-        formData.append("files", theFiles.files[0]);
+        formData.append("avatar", theFiles.files[0]);
         console.log("Antes de salir ", formData);
 
         uploadFile(formData);

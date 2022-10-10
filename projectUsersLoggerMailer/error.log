@@ -27,3 +27,4 @@
 {"level":"error","message":"404 - ruta no encontrada /index.css","service":"user-service","timestamp":"2022-10-09T01:04:10.405Z"}
 {"level":"error","message":"404 - ruta no encontrada /favicon.ico","service":"user-service","timestamp":"2022-10-09T15:42:24.322Z"}
 {"level":"error","message":"404 - ruta no encontrada /favicon.ico","service":"user-service","timestamp":"2022-10-09T16:30:38.305Z"}
+{"level":"error","message":"404 - ruta no encontrada /favicon.ico","service":"user-service","timestamp":"2022-10-10T12:10:54.717Z"}
